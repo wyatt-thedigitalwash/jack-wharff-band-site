@@ -1,28 +1,23 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-cream: #EEF0E2;
+  --color-beige: #D2CEB2;
+  --color-olive: #797D68;
+  --color-ashbrown: #4B3728;
+  --color-russet: #5B310D;
+  --color-darkgreen: #181912;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Placeholder for Bookends — swap when the real font file arrives */
+  --font-display: "Rye", cursive;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-ashbrown);
+  font-family: var(--font-sans);
 }
 
 /* Section Spacing Rule:
@@ -32,4 +27,274 @@ body {
 section[data-bg="dark"] + section[data-bg="dark"],
 section[data-bg="light"] + section[data-bg="light"] {
   padding-top: 0;
+}
+
+/* Global link styles for body content */
+main a:not([class]) {
+  text-decoration: underline;
+  text-decoration-color: var(--color-russet);
+  text-underline-offset: 2px;
+}
+
+main a:not([class]):hover {
+  color: var(--color-russet);
+}
+
+/* Global button base */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--color-russet);
+  color: var(--color-cream);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1.25rem;
+  transition: opacity 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+/* ── Cinematic entrance: Video Marquee ── */
+@keyframes video-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(1.04);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+.video-entrance {
+  animation: video-reveal 2200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Cinematic entrance: Photo Gallery cascade ── */
+@keyframes photo-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(1.06) translateY(16px);
+  }
+  50% {
+    opacity: 0.85;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1) translateY(0);
+  }
+}
+
+.photo-hidden {
+  opacity: 0;
+}
+
+.photo-enter {
+  animation: photo-reveal 2000ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Scroll-driven block fade ── */
+.block-fade {
+  opacity: 0;
+  transition: opacity 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.block-fade.block-visible {
+  opacity: 1;
+}
+
+/* ── Bandsintown widget brand overrides ── */
+.tour-widget-wrapper .bit-widget {
+  background: transparent !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.tour-widget-wrapper .bit-event {
+  border-bottom: 1px solid rgba(121, 125, 104, 0.3) !important;
+  padding: 16px 0 !important;
+}
+
+.tour-widget-wrapper .bit-event:last-child {
+  border-bottom: none !important;
+}
+
+/* Date cell */
+.tour-widget-wrapper .bit-date,
+.tour-widget-wrapper .bit-event .bit-date {
+  font-family: var(--font-display) !important;
+  color: #4B3728 !important;
+  font-size: 1.125rem !important;
+}
+
+/* Venue name */
+.tour-widget-wrapper .bit-venue,
+.tour-widget-wrapper .bit-event .bit-venue {
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: #4B3728 !important;
+  font-weight: 500 !important;
+}
+
+/* City / location */
+.tour-widget-wrapper .bit-location,
+.tour-widget-wrapper .bit-event .bit-location {
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: #797D68 !important;
+  font-size: 0.8125rem !important;
+}
+
+/* TICKETS button */
+.tour-widget-wrapper .bit-button,
+.tour-widget-wrapper .bit-offers a,
+.tour-widget-wrapper .buy-btn,
+.tour-widget-wrapper .bit-event a[class*="ticket"],
+.tour-widget-wrapper a.bit-evt-btn {
+  background-color: #5B310D !important;
+  color: #EEF0E2 !important;
+  font-family: var(--font-display) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 3px !important;
+  border: none !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.tour-widget-wrapper .bit-button:hover,
+.tour-widget-wrapper .buy-btn:hover,
+.tour-widget-wrapper a.bit-evt-btn:hover {
+  opacity: 0.85 !important;
+}
+
+/* RSVP button */
+.tour-widget-wrapper .rsvp-btn,
+.tour-widget-wrapper a.bit-rsvp {
+  background: transparent !important;
+  border: 1px solid #5B310D !important;
+  color: #5B310D !important;
+  font-family: var(--font-display) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 3px !important;
+}
+
+/* Track on Bandsintown / footer links */
+.tour-widget-wrapper .bit-track,
+.tour-widget-wrapper .bit-follow,
+.tour-widget-wrapper .track-link,
+.tour-widget-wrapper .bit-widget-footer {
+  color: #797D68 !important;
+  font-size: 0.75rem !important;
+}
+
+.tour-widget-wrapper .bit-track svg,
+.tour-widget-wrapper .bit-follow svg {
+  fill: #4B3728 !important;
+}
+
+/* Show more / fewer buttons */
+.tour-widget-wrapper .bit-show-more,
+.tour-widget-wrapper .bit-show-fewer,
+.tour-widget-wrapper .bit-see-more {
+  background-color: #5B310D !important;
+  color: #EEF0E2 !important;
+  font-family: var(--font-display) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 3px !important;
+  border: none !important;
+}
+
+/* VIP indicator */
+.tour-widget-wrapper .bit-vip,
+.tour-widget-wrapper .bit-event .vip {
+  color: #5B310D !important;
+  font-family: var(--font-display) !important;
+  text-transform: uppercase !important;
+  font-size: 0.75rem !important;
+}
+
+/* No dates message */
+.tour-widget-wrapper .bit-no-dates,
+.tour-widget-wrapper .bit-no-events {
+  color: rgba(75, 55, 40, 0.6) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* Play My City */
+.tour-widget-wrapper .bit-play-my-city a {
+  color: #797D68 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* Bandsintown widget mobile layout override. Class names below are not a public API;
+   if these ever stop applying, verify .bit-event, .bit-event-buttons,
+   .bit-rsvp-container, and .bit-offers-container still match the live DOM. */
+@media (max-width: 767px) {
+  .bit-event {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  a.bit-details {
+    margin-bottom: 12px !important;
+  }
+
+  .bit-details.bit-event-buttons {
+    margin-top: 12px !important;
+  }
+
+  .bit-event-buttons {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    gap: 0.75rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .bit-rsvp-container,
+  .bit-offers-container {
+    flex: 1 !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+
+  .bit-rsvp,
+  .bit-offers,
+  .bit-event-buttons .bit-button {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .video-entrance {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+  .photo-hidden {
+    opacity: 1;
+  }
+  .photo-enter {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+  .block-fade {
+    opacity: 1;
+    transition: none;
+  }
 }
