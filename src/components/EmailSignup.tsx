@@ -2,6 +2,19 @@
 
 import { useState } from "react";
 
+const inputStyle: React.CSSProperties = {
+  background: "transparent",
+  border: "1px solid #EEF0E2",
+  borderRadius: 0,
+  color: "#EEF0E2",
+  padding: "14px 16px",
+  fontFamily: "Arial, Helvetica, sans-serif",
+  fontSize: 16,
+  outline: "none",
+  width: "100%",
+  boxSizing: "border-box",
+};
+
 export default function EmailSignup() {
   const [email, setEmail] = useState("");
   const [zip, setZip] = useState("");
@@ -15,33 +28,95 @@ export default function EmailSignup() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <h3 className="font-display uppercase text-center text-lg tracking-wider text-cream">
+    <form onSubmit={handleSubmit}>
+      <style>{`
+        .signup-input::placeholder {
+          color: rgba(238, 240, 226, 0.5);
+          font-family: Arial, Helvetica, sans-serif;
+          font-style: normal;
+        }
+        .signup-input:focus {
+          border-width: 2px;
+          border-color: #EEF0E2;
+        }
+        .signup-select option {
+          background: #181912;
+          color: #EEF0E2;
+        }
+        .signup-checkbox {
+          appearance: none;
+          -webkit-appearance: none;
+          width: 16px;
+          height: 16px;
+          min-width: 16px;
+          border: 1px solid #EEF0E2;
+          background: transparent;
+          cursor: pointer;
+          position: relative;
+        }
+        .signup-checkbox:checked {
+          background: #5B310D;
+        }
+        .signup-checkbox:checked::after {
+          content: '';
+          position: absolute;
+          left: 4px;
+          top: 1px;
+          width: 5px;
+          height: 9px;
+          border: solid #EEF0E2;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+      `}</style>
+
+      <h3
+        className="text-center uppercase"
+        style={{
+          fontFamily: "var(--font-display), serif",
+          fontSize: 18,
+          letterSpacing: 2,
+          color: "#EEF0E2",
+          marginBottom: 32,
+        }}
+      >
         Stay in the Loop
       </h3>
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:gap-2">
+      {/* Email + Zip row */}
+      <div
+        className="grid"
+        style={{
+          gridTemplateColumns: "3fr 2fr",
+          gap: 16,
+          marginBottom: 16,
+        }}
+      >
         <input
           type="email"
           required
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="flex-1 bg-cream text-ashbrown px-3 py-2 text-sm placeholder:text-olive outline-none focus:ring-1 focus:ring-russet"
+          className="signup-input"
+          style={inputStyle}
         />
         <input
           type="text"
           placeholder="Zip Code"
           value={zip}
           onChange={(e) => setZip(e.target.value)}
-          className="w-full sm:w-28 bg-cream text-ashbrown px-3 py-2 text-sm placeholder:text-olive outline-none focus:ring-1 focus:ring-russet"
+          className="signup-input"
+          style={inputStyle}
         />
       </div>
 
+      {/* Country */}
       <select
         value={country}
         onChange={(e) => setCountry(e.target.value)}
-        className="w-full bg-cream text-ashbrown px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-russet"
+        className="signup-input signup-select"
+        style={{ ...inputStyle, marginBottom: 24 }}
       >
         <option value="AF">Afghanistan</option>
         <option value="AL">Albania</option>
@@ -240,47 +315,99 @@ export default function EmailSignup() {
         <option value="ZW">Zimbabwe</option>
       </select>
 
-      <div className="space-y-2 text-sm">
-        <label className="flex items-center gap-2 cursor-pointer">
+      {/* Checkboxes */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 16 }}>
+        <label style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }}>
           <input
             type="checkbox"
             checked={jwb}
             onChange={(e) => setJwb(e.target.checked)}
-            className="accent-russet"
+            className="signup-checkbox"
           />
-          Jack Wharff Band
+          <span
+            style={{
+              fontFamily: "Arial, Helvetica, sans-serif",
+              fontSize: 14,
+              color: "#EEF0E2",
+            }}
+          >
+            Jack Wharff Band
+          </span>
         </label>
-        <label className="flex items-center gap-2 cursor-pointer">
+        <label style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }}>
           <input
             type="checkbox"
             checked={bmlg}
             onChange={(e) => setBmlg(e.target.checked)}
-            className="accent-russet"
+            className="signup-checkbox"
           />
-          Big Machine Label Group
+          <span
+            style={{
+              fontFamily: "Arial, Helvetica, sans-serif",
+              fontSize: 14,
+              color: "#EEF0E2",
+            }}
+          >
+            Big Machine Label Group
+          </span>
         </label>
       </div>
 
-      <p className="text-xs text-olive leading-relaxed">
+      {/* Privacy text */}
+      <p
+        style={{
+          fontFamily: "var(--font-serif-italic), serif",
+          fontStyle: "italic",
+          fontSize: 12,
+          lineHeight: 1.5,
+          color: "#797D68",
+          marginBottom: 24,
+        }}
+      >
         I understand emails will be sent by or on behalf of Big Machine Label
         Group. By submitting this form, you agree to the Big Machine Label Group{" "}
         <a
           href="https://bigmachinelabelgroup.com/privacy-policy"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-cream transition-colors"
+          style={{
+            color: "#EEF0E2",
+            textDecoration: "underline",
+            fontFamily: "var(--font-serif-italic), serif",
+            fontStyle: "italic",
+          }}
         >
           Privacy Policy
         </a>
         .
       </p>
 
-      <button
-        type="submit"
-        className="w-full bg-russet text-cream font-display uppercase tracking-wider text-sm py-2.5 transition-opacity hover:opacity-85"
-      >
-        Sign Up
-      </button>
+      {/* Submit button */}
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button
+          type="submit"
+          className="signup-submit"
+          style={{
+            maxWidth: 280,
+            width: "100%",
+            background: "#5B310D",
+            color: "#EEF0E2",
+            fontFamily: "var(--font-display), serif",
+            textTransform: "uppercase",
+            fontSize: 16,
+            letterSpacing: 2,
+            padding: "16px 48px",
+            border: "none",
+            borderRadius: 0,
+            cursor: "pointer",
+            transition: "background-color 300ms ease",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#4B3728")}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#5B310D")}
+        >
+          Sign Up
+        </button>
+      </div>
     </form>
   );
 }

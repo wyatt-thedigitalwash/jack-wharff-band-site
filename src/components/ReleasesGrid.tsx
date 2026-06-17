@@ -3,17 +3,20 @@ import Image from "next/image";
 const RELEASES = [
   {
     title: "Low Life",
+    subtitle: "lowlife",
     cover: "/covers/TJWB_LowLife_Cover.jpg",
     // TODO: Replace with Low Life smart link once available from BMLG
     href: "#",
   },
   {
     title: "Strange EP",
+    subtitle: "strange ep",
     cover: "/covers/TJWB_StrangeEP_Cover.jpg",
     href: "https://jackwharff.lnk.to/strangeEPWE",
   },
   {
     title: "Saved",
+    subtitle: "saved",
     cover: "/covers/TJWB_Saved_Cover.jpg",
     href: "https://jackwharff.lnk.to/savedWE",
   },
@@ -25,7 +28,7 @@ export default function ReleasesGrid() {
       className="w-full"
       style={{
         backgroundColor: "#EEF0E2",
-        padding: "clamp(20px, 4vw, 60px)",
+        padding: "clamp(20px, 4vw, 36px)",
       }}
     >
       <style>{`
@@ -37,7 +40,7 @@ export default function ReleasesGrid() {
       `}</style>
       <div
         className="grid grid-cols-1 md:grid-cols-3"
-        style={{ gap: "clamp(20px, 4vw, 60px)" }}
+        style={{ gap: "clamp(20px, 4vw, 36px)" }}
       >
         {RELEASES.map((release) => (
           <a
@@ -62,7 +65,7 @@ export default function ReleasesGrid() {
                 transition: "background-color 300ms ease",
               }}
             />
-            <div className="absolute inset-0 z-[2] flex items-center justify-center">
+            <div className="absolute inset-0 z-[2] flex flex-col items-center justify-center">
               <span
                 className="uppercase text-center"
                 style={{
@@ -73,6 +76,18 @@ export default function ReleasesGrid() {
                 }}
               >
                 Listen Now
+              </span>
+              <span
+                style={{
+                  fontFamily: "var(--font-serif-italic), serif",
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  fontSize: "clamp(16px, 1.4vw, 22px)",
+                  color: "#EEF0E2",
+                  marginTop: 12,
+                }}
+              >
+                {release.subtitle}
               </span>
             </div>
           </a>

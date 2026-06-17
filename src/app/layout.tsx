@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 // Placeholder for Bookends — swap to local @font-face when the real font file arrives
-import { Rye, Cormorant_Garamond } from "next/font/google";
+import { Rye, Cormorant_Garamond, Lora } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -21,6 +21,14 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const lora = Lora({
+  subsets: ["latin"],
+  style: ["italic"],
+  weight: ["400"],
+  variable: "--font-serif-italic",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "The Jack Wharff Band",
@@ -36,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${rye.variable} ${cormorant.variable} h-full antialiased`}>
+    <html lang="en" className={`${rye.variable} ${cormorant.variable} ${lora.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         {/* UMG Google Tag Manager — loads before widget so umgAAL.track is defined */}
         <Script

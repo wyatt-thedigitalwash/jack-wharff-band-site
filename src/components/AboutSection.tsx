@@ -6,17 +6,17 @@ export default function AboutSection() {
       className="w-full"
       style={{
         backgroundColor: "#EEF0E2",
-        padding: "clamp(20px, 4vw, 60px)",
+        padding: "clamp(20px, 4vw, 36px)",
         paddingTop: 0,
       }}
     >
       <div
         className="grid grid-cols-1 md:grid-cols-2"
-        style={{ gap: "clamp(20px, 4vw, 60px)" }}
+        style={{ gap: "clamp(20px, 4vw, 36px)" }}
       >
         {/* Left — text content */}
         <div
-          className="flex flex-col justify-center"
+          className="flex flex-col justify-center text-center md:text-left"
           style={{
             aspectRatio: "1 / 1",
             padding: "clamp(24px, 4vw, 48px)",
@@ -48,7 +48,7 @@ export default function AboutSection() {
         {/* Right — image */}
         <div className="relative" style={{ aspectRatio: "1 / 1" }}>
           <Image
-            src="/other/TJWB_AboutSquare.png"
+            src="/other/TJWB_About.jpg"
             alt="The Jack Wharff Band"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"

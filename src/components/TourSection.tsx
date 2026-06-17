@@ -23,7 +23,7 @@ function TourContent() {
         className="uppercase"
         style={{
           fontFamily: "var(--font-display), serif",
-          fontSize: "clamp(48px, 7vw, 96px)",
+          fontSize: "clamp(32px, 4vw, 64px)",
           color: "#EEF0E2",
           letterSpacing: "0.02em",
           marginBottom: 32,
@@ -61,7 +61,7 @@ function TourContent() {
           data-text-color="#EEF0E2"
           data-link-color="#EEF0E2"
           data-background-color="transparent"
-          data-display-limit="all"
+          data-display-limit="10"
           data-display-lineup="false"
           data-display-start-time="false"
           data-link-text-color="#4B3728"
@@ -77,6 +77,23 @@ function TourContent() {
           data-display-similar-artists="false"
         ></a>
       </div>
+
+      <a
+        href="/tour"
+        className="inline-block uppercase tour-track-cta"
+        style={{
+          fontFamily: "var(--font-display), serif",
+          fontSize: 14,
+          letterSpacing: 2,
+          color: "#EEF0E2",
+          border: "1px solid #EEF0E2",
+          padding: "12px 32px",
+          marginTop: 48,
+          transition: "opacity 300ms ease",
+        }}
+      >
+        See All Dates
+      </a>
     </div>
   );
 }
@@ -97,8 +114,8 @@ function TourWithParallax() {
     >
       <motion.div className="absolute inset-0 z-0" style={{ y: photoY }}>
         <Image
-          src="/other/TJWB_Photo1.png"
-          alt="The Jack Wharff Band in the Rock-Ola room"
+          src="/backgrounds/TheJackWharffBand_P_20260217_DPiersaul_BMLGowns_DSC05211_RetJFv1_FNL.jpg"
+          alt="The Jack Wharff Band"
           fill
           sizes="100vw"
           className="object-cover"
@@ -124,8 +141,8 @@ function TourStatic() {
     <section className="relative w-full overflow-hidden" style={{ minHeight: "100vh" }}>
       <div className="absolute inset-0 z-0">
         <Image
-          src="/other/TJWB_Photo1.png"
-          alt="The Jack Wharff Band in the Rock-Ola room"
+          src="/backgrounds/TheJackWharffBand_P_20260217_DPiersaul_BMLGowns_DSC05211_RetJFv1_FNL.jpg"
+          alt="The Jack Wharff Band"
           fill
           sizes="100vw"
           className="object-cover"
