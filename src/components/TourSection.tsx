@@ -271,7 +271,7 @@ export default function TourSection() {
         .tour-section .bit-show-more,
         .tour-section .bit-show-fewer,
         .tour-section .bit-see-more {
-          background-color: #D2CEB2 !important;
+          display: none !important;
           color: #4B3728 !important;
           font-family: var(--font-display), serif !important;
           text-transform: uppercase !important;

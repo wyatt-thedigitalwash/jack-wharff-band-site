@@ -34,7 +34,7 @@ export default function ReleasesGrid() {
       <style>{`
         @media (hover: hover) and (pointer: fine) {
           .release-card:hover .release-card-overlay {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.5) !important;
           }
         }
       `}</style>

@@ -76,8 +76,8 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+          {/* Desktop nav — right-aligned */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 ml-auto">
             {NAV_LINKS.map(({ href, label, external }) =>
               external ? (
                 <a
@@ -104,22 +104,6 @@ export default function Header() {
               )
             )}
           </nav>
-
-          {/* Desktop right side: socials */}
-          <div className="hidden md:flex items-center gap-3">
-            {HEADER_SOCIALS.map(({ href, label, Icon }) => (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="text-cream transition-colors hover:text-russet"
-              >
-                <Icon className="w-4 h-4" />
-              </a>
-            ))}
-          </div>
 
           {/* Mobile hamburger */}
           <button
