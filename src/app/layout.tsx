@@ -115,10 +115,6 @@ export default function RootLayout({
           src="https://www.googletagmanager.com/gtm.js?id=GTM-M2J3BMQD"
           strategy="afterInteractive"
         />
-        <Script
-          src="https://widget.bandsintown.com/main.min.js"
-          strategy="lazyOnload"
-        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-darkgreen focus:text-cream focus:px-4 focus:py-2 focus:text-sm focus:outline-none"
