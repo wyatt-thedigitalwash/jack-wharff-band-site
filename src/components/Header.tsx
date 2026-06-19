@@ -39,30 +39,54 @@ const HEADER_SOCIALS = [
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const alwaysBg = pathname === "/contact" || pathname === "/videos";
+  const scrollBg = pathname === "/about";
   const [logoVisible, setLogoVisible] = useState(pathname !== "/");
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
   useEffect(() => {
     if (pathname !== "/") {
       setLogoVisible(true);
-      return;
     }
 
-    const onScroll = () => {
-      setLogoVisible(window.scrollY > window.innerHeight * 0.8);
-    };
+    if (pathname === "/") {
+      const onScroll = () => {
+        setLogoVisible(window.scrollY > window.innerHeight * 0.8);
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    }
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [pathname]);
+    if (scrollBg) {
+      const onScroll = () => {
+        const hero = document.querySelector("[data-about-hero]");
+        if (hero) {
+          setScrolledPastHero(window.scrollY > hero.clientHeight - 60);
+        }
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    }
+  }, [pathname, scrollBg]);
+
+  const showBg = alwaysBg || (scrollBg && scrolledPastHero);
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+      <header
+        className="fixed top-0 left-0 right-0 z-50"
+        style={{
+          backgroundColor: showBg ? "#181912" : "transparent",
+          transition: "background-color 300ms ease",
+        }}
+      >
         <div className="mx-auto flex items-center justify-between px-4 py-3 md:px-6 lg:px-8">
           {/* Logo */}
           <Link
             href="/"
+            aria-label="The Jack Wharff Band - Home"
             className="shrink-0 transition-opacity duration-300"
             style={{ opacity: logoVisible ? 1 : 0, pointerEvents: logoVisible ? "auto" : "none" }}
           >
@@ -77,7 +101,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop nav — right-aligned */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8 ml-auto">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-6 lg:gap-8 ml-auto">
             {NAV_LINKS.map(({ href, label, external }) =>
               external ? (
                 <a
@@ -85,18 +109,17 @@ export default function Header() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs lg:text-sm uppercase tracking-widest text-cream hover:text-russet transition-colors"
+                  className="display-heading text-xs lg:text-sm uppercase tracking-widest text-cream hover:text-russet transition-colors"
                 >
                   {label}
+                  <span className="sr-only"> (opens in new tab)</span>
                 </a>
               ) : (
                 <Link
                   key={href}
                   href={href}
-                  className={`text-xs lg:text-sm uppercase tracking-widest transition-colors ${
-                    pathname === href
-                      ? "text-russet"
-                      : "text-cream hover:text-russet"
+                  className={`display-heading text-xs lg:text-sm uppercase tracking-widest text-cream ${
+                    pathname === href ? "underline underline-offset-4" : ""
                   }`}
                 >
                   {label}
@@ -109,8 +132,9 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            className="md:hidden text-cream p-1"
+            className="md:hidden text-cream p-3"
             aria-label="Open menu"
+            aria-expanded={menuOpen}
           >
             <svg
               viewBox="0 0 24 24"

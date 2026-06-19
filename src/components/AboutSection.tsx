@@ -3,6 +3,7 @@ import Image from "next/image";
 export default function AboutSection() {
   return (
     <section
+      aria-label="About the band"
       className="w-full"
       style={{
         backgroundColor: "#EEF0E2",
@@ -45,8 +46,8 @@ export default function AboutSection() {
           </p>
         </div>
 
-        {/* Right — image */}
-        <div className="relative" style={{ aspectRatio: "1 / 1" }}>
+        {/* Right — image (hidden on mobile) */}
+        <div className="relative hidden md:block" style={{ aspectRatio: "1 / 1" }}>
           <Image
             src="/other/TJWB_About.jpg"
             alt="The Jack Wharff Band"

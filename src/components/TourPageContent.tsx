@@ -201,11 +201,12 @@ export default function TourPageContent() {
           <div className="w-1/2 relative">
             <div className="sticky top-0 h-screen overflow-hidden">
               <video
-                src="/videos/TJWB_Videos.m4v"
+                src="https://res.cloudinary.com/dgbiatexy/video/upload/f_auto,q_auto/v1781871954/TJWB_Videos_sy3ubl.mp4"
                 autoPlay
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
@@ -217,11 +218,12 @@ export default function TourPageContent() {
           {/* Video hero */}
           <div className="relative w-full" style={{ aspectRatio: "1 / 1" }}>
             <video
-              src="/videos/TJWB_Videos.m4v"
+              src="https://res.cloudinary.com/dgbiatexy/video/upload/f_auto,q_auto/v1781871954/TJWB_Videos_sy3ubl.mp4"
               autoPlay
               muted
               loop
               playsInline
+              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover"
             />
           </div>

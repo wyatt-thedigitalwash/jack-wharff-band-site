@@ -46,6 +46,7 @@ export default function VideoMarquee() {
         muted
         loop
         playsInline
+        preload="metadata"
         onCanPlay={() => setReady(true)}
       >
         {mounted && <source src={src} type="video/mp4" />}

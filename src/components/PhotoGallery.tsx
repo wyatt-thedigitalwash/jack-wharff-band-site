@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useInView } from "@/hooks/useInView";
 
 const PHOTOS = [
-  { src: "/other/TJWB_Photo1.png", width: 678, height: 444 },
-  { src: "/other/TJWB_Photo3.png", width: 918, height: 602 },
-  { src: "/other/TJWB_Photo2.png", width: 634, height: 796 },
-  { src: "/other/TJWB_Photo4.png", width: 974, height: 656 },
-  { src: "/other/TJWB_Photo5.png", width: 1020, height: 718 },
+  { src: "/other/TJWB_Photo1.webp", width: 678, height: 444 },
+  { src: "/other/TJWB_Photo3.webp", width: 918, height: 602 },
+  { src: "/other/TJWB_Photo2.webp", width: 634, height: 796 },
+  { src: "/other/TJWB_Photo4.webp", width: 974, height: 656 },
+  { src: "/other/TJWB_Photo5.webp", width: 1020, height: 718 },
 ];
 
 const SHADOW =

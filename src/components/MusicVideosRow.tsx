@@ -1,13 +1,14 @@
 import Link from "next/link";
 
 const CARDS = [
-  { title: "Music", subtitle: "the catalog", href: "/music", video: "/videos/TJWB_Videos.m4v" },
-  { title: "Videos", subtitle: "the live cuts", href: "/videos", video: "/videos/TJWB_Music.m4v" },
+  { title: "Music", subtitle: "the catalog", href: "/music", video: "https://res.cloudinary.com/dgbiatexy/video/upload/f_auto,q_auto/v1781871954/TJWB_Videos_sy3ubl.mp4" },
+  { title: "Videos", subtitle: "the live cuts", href: "/videos", video: "https://res.cloudinary.com/dgbiatexy/video/upload/f_auto,q_auto/v1781871953/TJWB_Music_hpts7g.mp4" },
 ];
 
 export default function MusicVideosRow() {
   return (
     <section
+      aria-label="Music and Videos"
       className="w-full"
       style={{
         backgroundColor: "#EEF0E2",
@@ -32,6 +33,7 @@ export default function MusicVideosRow() {
               muted
               loop
               playsInline
+              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             />
             <div

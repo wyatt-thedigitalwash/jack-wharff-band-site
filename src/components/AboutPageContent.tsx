@@ -11,13 +11,23 @@ export default function AboutPageContent() {
   return (
     <div style={{ backgroundColor: "#EEF0E2", minHeight: "100vh" }}>
       {/* Hero image */}
-      <div className="relative w-full" style={{ height: "70vh", minHeight: 400 }}>
+      <div data-about-hero className="relative w-full" style={{ height: "70vh", minHeight: 400 }}>
+        {/* Mobile photo */}
         <Image
-          src="/backgrounds/TJWB_AboutHeader.jpg"
+          src="/other/TJWB_About.jpg"
           alt="The Jack Wharff Band"
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-cover md:hidden"
+          priority
+        />
+        {/* Desktop photo */}
+        <Image
+          src="/backgrounds/TJWB_AboutHeader.webp"
+          alt="The Jack Wharff Band"
+          fill
+          sizes="100vw"
+          className="object-cover hidden md:block"
           priority
         />
         <div

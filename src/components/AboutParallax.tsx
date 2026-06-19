@@ -22,7 +22,7 @@ function ParallaxContent() {
       {/* Background photo with parallax */}
       <motion.div className="absolute inset-0 z-0" style={{ y: photoY }}>
         <Image
-          src="/other/TJWB_Photo2.png"
+          src="/other/TJWB_Photo2.webp"
           alt="The Jack Wharff Band in a hallway"
           fill
           sizes="100vw"
@@ -55,7 +55,7 @@ function StaticContent() {
       {/* Background photo (no parallax) */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/other/TJWB_Photo2.png"
+          src="/other/TJWB_Photo2.webp"
           alt="The Jack Wharff Band in a hallway"
           fill
           sizes="100vw"

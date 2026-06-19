@@ -34,6 +34,7 @@ export default function SquareVideoClip({
           muted
           loop
           playsInline
+          preload="metadata"
         >
           <source src={videoPath} type="video/mp4" />
         </video>

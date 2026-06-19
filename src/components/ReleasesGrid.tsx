@@ -25,6 +25,7 @@ const RELEASES = [
 export default function ReleasesGrid() {
   return (
     <section
+      aria-label="Latest releases"
       className="w-full"
       style={{
         backgroundColor: "#EEF0E2",

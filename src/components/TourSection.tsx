@@ -1,15 +1,49 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import Image from "next/image";
+
+function useHideBitShowAll() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const hideButtons = useCallback(() => {
+    if (!containerRef.current) return;
+    const buttons = containerRef.current.querySelectorAll("a, button, div");
+    buttons.forEach((el) => {
+      const text = el.textContent?.trim().toLowerCase() ?? "";
+      if (
+        text === "show all dates" ||
+        text === "show more" ||
+        text === "show fewer" ||
+        text === "see more"
+      ) {
+        (el as HTMLElement).style.display = "none";
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node) return;
+    hideButtons();
+    const observer = new MutationObserver(hideButtons);
+    observer.observe(node, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [hideButtons]);
+
+  return containerRef;
+}
 
 const TRACK_URL =
   "https://www.bandsintown.com/a/15538346?app_id=umg_bigmachinelabelgroup_thejackwharffband&came_from=267&trigger=track&affil_code=umg_us";
 
 function TourContent() {
+  const containerRef = useHideBitShowAll();
+
   return (
     <div
+      ref={containerRef}
       className="relative z-[2] mx-auto text-center"
       style={{
         maxWidth: 1400,
@@ -114,7 +148,7 @@ function TourWithParallax() {
     >
       <motion.div className="absolute inset-0 z-0" style={{ y: photoY }}>
         <Image
-          src="/backgrounds/TheJackWharffBand_P_20260217_DPiersaul_BMLGowns_DSC05211_RetJFv1_FNL.jpg"
+          src="/backgrounds/TheJackWharffBand_P_20260217_DPiersaul_BMLGowns_DSC05211_RetJFv1_FNL.webp"
           alt="The Jack Wharff Band"
           fill
           sizes="100vw"
@@ -141,7 +175,7 @@ function TourStatic() {
     <section className="relative w-full overflow-hidden" style={{ minHeight: "100vh" }}>
       <div className="absolute inset-0 z-0">
         <Image
-          src="/backgrounds/TheJackWharffBand_P_20260217_DPiersaul_BMLGowns_DSC05211_RetJFv1_FNL.jpg"
+          src="/backgrounds/TheJackWharffBand_P_20260217_DPiersaul_BMLGowns_DSC05211_RetJFv1_FNL.webp"
           alt="The Jack Wharff Band"
           fill
           sizes="100vw"
@@ -270,15 +304,16 @@ export default function TourSection() {
         }
         .tour-section .bit-show-more,
         .tour-section .bit-show-fewer,
-        .tour-section .bit-see-more {
+        .tour-section .bit-see-more,
+        .tour-section .bit-top-track-button,
+        .tour-section .bit-show-more-container,
+        .tour-section [class*="show-more"],
+        .tour-section [class*="show-fewer"],
+        .tour-section [class*="see-more"],
+        .tour-section [class*="ShowAll"],
+        .tour-section [class*="show-all"],
+        .tour-section [class*="ShowMore"] {
           display: none !important;
-          color: #4B3728 !important;
-          font-family: var(--font-display), serif !important;
-          text-transform: uppercase !important;
-          letter-spacing: 1px !important;
-          border-radius: 0 !important;
-          border: none !important;
-          font-size: 14px !important;
         }
         .tour-section .bit-play-my-city a {
           color: rgba(238, 240, 226, 0.5) !important;

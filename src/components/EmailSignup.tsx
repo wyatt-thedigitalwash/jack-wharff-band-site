@@ -17,18 +17,59 @@ const inputStyle: React.CSSProperties = {
 
 export default function EmailSignup() {
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [zip, setZip] = useState("");
   const [country, setCountry] = useState("US");
+  const [website, setWebsite] = useState(""); // honeypot
   const [jwb, setJwb] = useState(true);
   const [bmlg, setBmlg] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // TODO: Wire to BMLG email capture submission endpoint
+    setStatus("submitting");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, phone, zip, country, website }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.ok) {
+        setStatus("success");
+        setEmail("");
+        setPhone("");
+        setZip("");
+        setCountry("US");
+      } else {
+        setStatus("error");
+        setErrorMsg(data.error || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg("Something went wrong. Please try again.");
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} noValidate>
+      {/* Honeypot — hidden from real users */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
+
       <style>{`
         .signup-input::placeholder {
           color: rgba(238, 240, 226, 0.5);
@@ -92,29 +133,57 @@ export default function EmailSignup() {
           marginBottom: 16,
         }}
       >
-        <input
-          type="email"
-          required
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="signup-input"
-          style={inputStyle}
-        />
-        <input
-          type="text"
-          placeholder="Zip Code"
-          value={zip}
-          onChange={(e) => setZip(e.target.value)}
-          className="signup-input"
-          style={inputStyle}
-        />
+        <div>
+          <label htmlFor="signup-email" className="sr-only">Email</label>
+          <input
+            id="signup-email"
+            type="email"
+            required
+            aria-required="true"
+            aria-invalid={status === "error" ? "true" : undefined}
+            aria-describedby={status === "error" ? "signup-error" : undefined}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="signup-input"
+            style={inputStyle}
+          />
+        </div>
+        <div>
+          <label htmlFor="signup-zip" className="sr-only">Zip Code</label>
+          <input
+            id="signup-zip"
+            type="text"
+            required
+            aria-required="true"
+            placeholder="Zip Code"
+            value={zip}
+            onChange={(e) => setZip(e.target.value)}
+            className="signup-input"
+            style={inputStyle}
+          />
+        </div>
       </div>
 
+      {/* Phone (optional) */}
+      <label htmlFor="signup-phone" className="sr-only">Phone (optional)</label>
+      <input
+        id="signup-phone"
+        type="tel"
+        placeholder="Phone (optional)"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        className="signup-input"
+        style={{ ...inputStyle, marginBottom: 16 }}
+      />
+
       {/* Country */}
+      <label htmlFor="signup-country" className="sr-only">Country</label>
       <select
+        id="signup-country"
         value={country}
         onChange={(e) => setCountry(e.target.value)}
+        aria-required="true"
         className="signup-input signup-select"
         style={{ ...inputStyle, marginBottom: 24 }}
       >
@@ -382,10 +451,44 @@ export default function EmailSignup() {
         .
       </p>
 
+      {/* Status messages */}
+      {status === "success" && (
+        <p
+          role="status"
+          aria-live="polite"
+          style={{
+            fontFamily: "Arial, Helvetica, sans-serif",
+            fontSize: 14,
+            color: "#EEF0E2",
+            textAlign: "center",
+            marginBottom: 16,
+          }}
+        >
+          You&apos;re in! Thanks for signing up.
+        </p>
+      )}
+      {status === "error" && (
+        <p
+          id="signup-error"
+          role="alert"
+          aria-live="assertive"
+          style={{
+            fontFamily: "Arial, Helvetica, sans-serif",
+            fontSize: 14,
+            color: "#e57373",
+            textAlign: "center",
+            marginBottom: 16,
+          }}
+        >
+          {errorMsg}
+        </p>
+      )}
+
       {/* Submit button */}
       <div style={{ display: "flex", justifyContent: "center" }}>
         <button
           type="submit"
+          disabled={status === "submitting"}
           className="signup-submit"
           style={{
             maxWidth: 280,
@@ -399,13 +502,14 @@ export default function EmailSignup() {
             padding: "16px 48px",
             border: "none",
             borderRadius: 0,
-            cursor: "pointer",
-            transition: "background-color 300ms ease",
+            cursor: status === "submitting" ? "not-allowed" : "pointer",
+            opacity: status === "submitting" ? 0.6 : 1,
+            transition: "background-color 300ms ease, opacity 300ms ease",
           }}
           onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#4B3728")}
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#5B310D")}
         >
-          Sign Up
+          {status === "submitting" ? "Submitting..." : "Sign Up"}
         </button>
       </div>
     </form>

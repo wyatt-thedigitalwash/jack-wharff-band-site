@@ -48,70 +48,70 @@ const RELEASES: {
     title: "Moonshine Man",
     displayTitle: "moonshine man",
     year: "2025",
-    cover: null,
+    cover: "/covers/TJWB_MoonshineMan_Cover.jpg",
     href: "https://music.apple.com/us/album/moonshine-man-single/1825767418",
   },
   {
     title: "Richmond's Most Wanted EP",
     displayTitle: "richmond's most wanted ep",
     year: "2025",
-    cover: null,
+    cover: "/covers/TJWB_RichmondsMostWantedEP_Cover.jpg",
     href: "https://music.apple.com/us/album/richmonds-most-wanted-ep/1818195046",
   },
   {
     title: "Richmond's Most Wanted",
     displayTitle: "richmond's most wanted",
     year: "2025",
-    cover: null,
+    cover: "/covers/TJWB_RichmondsMostWanted_Cover.jpg",
     href: "https://open.spotify.com/artist/7Hw6prEoT6M58ChR8A1Rlz", // TODO: single link
   },
   {
     title: "Washed",
     displayTitle: "washed",
     year: "2025",
-    cover: null,
+    cover: "/covers/TJWB_Washed_Cover.jpg",
     href: "https://open.spotify.com/track/0bgijbvBSiTi4slIRi1OwC",
   },
   {
     title: "Messed Up Kid",
     displayTitle: "messed up kid",
     year: "2024",
-    cover: null,
+    cover: "/covers/TJWB_MessedUpKid_Cover.jpg",
     href: "https://open.spotify.com/artist/7Hw6prEoT6M58ChR8A1Rlz", // TODO: single link
   },
   {
     title: "Picture Perfect",
     displayTitle: "picture perfect",
     year: "2024",
-    cover: null,
+    cover: "/covers/TJWB_PicturePerfect_Cover.jpg",
     href: "https://open.spotify.com/artist/7Hw6prEoT6M58ChR8A1Rlz", // TODO: single link
   },
   {
     title: "Burnin' It Down",
     displayTitle: "burnin' it down",
     year: "2024",
-    cover: null,
+    cover: "/covers/TJWB_BurninItDown_Cover.jpg",
     href: "https://open.spotify.com/artist/7Hw6prEoT6M58ChR8A1Rlz", // TODO: single link
   },
   {
     title: "Richmond City Jail",
     displayTitle: "richmond city jail",
     year: "2024",
-    cover: null,
+    cover: "/covers/TJWB_RichmondCityJail_Cover.jpg",
     href: "https://music.apple.com/us/album/richmond-city-jail-single/1746722507",
   },
   {
     title: "Tulips & Roses",
     displayTitle: "tulips & roses",
     year: "2023",
-    cover: null,
+    cover: "/covers/TJWB_TulipsRoses_Cover.jpg",
     href: "https://music.apple.com/us/album/stay/1666946750",
   },
   {
     title: "All Mine",
     displayTitle: "all mine",
     year: "2023",
-    cover: null,
+    cover: "/covers/TJWB_AllMine_Cover.jpg",
     href: "https://music.apple.com/us/album/all-mine-single/1708013709",
   },
 ];
@@ -292,11 +292,12 @@ export default function MusicPageContent() {
         <div className="w-1/2 relative">
           <div className="sticky top-0 h-screen overflow-hidden">
             <video
-              src="/videos/TJWB_Music.m4v"
+              src="https://res.cloudinary.com/dgbiatexy/video/upload/f_auto,q_auto/v1781871953/TJWB_Music_hpts7g.mp4"
               autoPlay
               muted
               loop
               playsInline
+              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
@@ -308,7 +309,7 @@ export default function MusicPageContent() {
         {/* Video hero */}
         <div className="relative w-full" style={{ aspectRatio: "1 / 1" }}>
           <video
-            src="/videos/TJWB_Music.m4v"
+            src="https://res.cloudinary.com/dgbiatexy/video/upload/f_auto,q_auto/v1781871953/TJWB_Music_hpts7g.mp4"
             autoPlay
             muted
             loop

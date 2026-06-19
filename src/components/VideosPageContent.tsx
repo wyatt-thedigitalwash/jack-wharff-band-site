@@ -53,30 +53,12 @@ function ScaleVideo({ embedId }: { embedId: string }) {
 export default function VideosPageContent() {
   return (
     <div style={{ backgroundColor: "#EEF0E2", minHeight: "100vh" }}>
-      {/* Hero video banner */}
-      <div
-        className="w-full flex justify-center"
-        style={{
-          backgroundColor: "#181912",
-          paddingTop: 0,
-        }}
-      >
-        <video
-          src="/videos/JackWharff_BannerDesktop.m4v"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-auto"
-        />
-      </div>
-
       {/* Videos grid */}
       <div
         className="mx-auto px-6 md:px-8"
         style={{
           maxWidth: 1200,
-          paddingTop: "8vh",
+          paddingTop: "clamp(100px, 14vh, 160px)",
           paddingBottom: "8vh",
         }}
       >

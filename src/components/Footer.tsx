@@ -52,8 +52,8 @@ export default function Footer() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={label}
-              className="text-cream transition-colors hover:text-russet"
+              aria-label={`${label} (opens in new tab)`}
+              className="text-cream transition-colors hover:text-russet p-2"
             >
               <Icon className="w-5 h-5" aria-hidden="true" />
             </a>
@@ -61,7 +61,7 @@ export default function Footer() {
         </div>
 
         {/* Legal row */}
-        <div className="border-t border-olive pt-6 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-olive">
+        <div className="border-t border-olive pt-6 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs" style={{ color: "#8D917C" }}>
           <span>&copy; {currentYear} Big Machine Label Group</span>
           <a
             href="https://www.bigmachinelabelgroup.com/terms/"

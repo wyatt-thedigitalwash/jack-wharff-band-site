@@ -19,16 +19,19 @@ const DIRECTORY = [
 
 export default function ContactPageContent() {
   return (
-    <div style={{ backgroundColor: "#EEF0E2", minHeight: "100vh" }}>
-
+    <div
+      className="flex items-center justify-center"
+      style={{ backgroundColor: "#EEF0E2", minHeight: "100vh", paddingTop: 56 }}
+    >
       <div
         className="mx-auto px-6 md:px-8"
         style={{
-          maxWidth: 900,
-          paddingTop: "clamp(100px, 14vh, 160px)",
-          paddingBottom: "10vh",
+          maxWidth: 1100,
+          paddingTop: "6vh",
+          paddingBottom: "6vh",
         }}
       >
+        {/* Get in Touch heading */}
         <h1
           className="uppercase text-center"
           style={{
@@ -36,40 +39,14 @@ export default function ContactPageContent() {
             fontSize: "clamp(32px, 5vw, 64px)",
             color: "#4B3728",
             letterSpacing: "0.02em",
-            marginBottom: 16,
+            marginBottom: 32,
           }}
         >
-          Contact
+          Get in Touch
         </h1>
 
-        <p
-          className="text-center"
-          style={{
-            fontFamily: "var(--font-serif-italic), serif",
-            fontStyle: "italic",
-            fontSize: "clamp(16px, 1.4vw, 20px)",
-            color: "#797D68",
-            marginBottom: 56,
-          }}
-        >
-          stay connected, get in touch
-        </p>
-
-        {/* Get in Touch */}
+        {/* Email & DM */}
         <div className="text-center" style={{ marginBottom: 64 }}>
-          <h2
-            className="uppercase"
-            style={{
-              fontFamily: "var(--font-display), serif",
-              fontSize: "clamp(20px, 3vw, 32px)",
-              color: "#4B3728",
-              letterSpacing: "0.02em",
-              marginBottom: 24,
-            }}
-          >
-            Get in Touch
-          </h2>
-
           <div className="flex flex-col gap-4 items-center">
             <div>
               <p
@@ -127,7 +104,7 @@ export default function ContactPageContent() {
           </div>
         </div>
 
-        {/* Directory */}
+        {/* Management & Booking */}
         <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 48 }}>
           {DIRECTORY.map((group) => (
             <div key={group.category} className="text-center">
@@ -135,7 +112,7 @@ export default function ContactPageContent() {
                 className="uppercase"
                 style={{
                   fontFamily: "var(--font-display), serif",
-                  fontSize: "clamp(18px, 2vw, 24px)",
+                  fontSize: "clamp(24px, 3vw, 40px)",
                   color: "#4B3728",
                   letterSpacing: "0.02em",
                   marginBottom: 4,
@@ -147,19 +124,19 @@ export default function ContactPageContent() {
                 style={{
                   fontFamily: "var(--font-serif-italic), serif",
                   fontStyle: "italic",
-                  fontSize: 14,
+                  fontSize: "clamp(14px, 1.2vw, 16px)",
                   color: "#797D68",
-                  marginBottom: 16,
+                  marginBottom: 20,
                 }}
               >
                 {group.company}
               </p>
               {group.contacts.map((contact) => (
-                <div key={contact.email} style={{ marginBottom: 8 }}>
+                <div key={contact.email} style={{ marginBottom: 12 }}>
                   <p
                     style={{
                       fontFamily: "Arial, Helvetica, sans-serif",
-                      fontSize: 15,
+                      fontSize: 16,
                       color: "#4B3728",
                     }}
                   >
@@ -169,7 +146,7 @@ export default function ContactPageContent() {
                     href={`mailto:${contact.email}`}
                     style={{
                       fontFamily: "Arial, Helvetica, sans-serif",
-                      fontSize: 14,
+                      fontSize: 15,
                       color: "#5B310D",
                       textDecoration: "underline",
                     }}

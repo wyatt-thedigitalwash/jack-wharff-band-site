@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -31,6 +31,8 @@ export default function MobileMenu({
   navLinks,
   socials,
 }: MobileMenuProps) {
+  const menuRef = useRef<HTMLDivElement>(null);
+
   // Lock body scroll when open
   useEffect(() => {
     if (open) {
@@ -43,12 +45,59 @@ export default function MobileMenu({
     };
   }, [open]);
 
+  // Close on Escape
+  useEffect(() => {
+    if (!open) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [open, onClose]);
+
+  // Focus trap
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key !== "Tab" || !menuRef.current) return;
+
+      const focusable = menuRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    },
+    []
+  );
+
+  // Auto-focus close button when menu opens
+  useEffect(() => {
+    if (open && menuRef.current) {
+      const closeBtn = menuRef.current.querySelector<HTMLElement>("button");
+      closeBtn?.focus();
+    }
+  }, [open]);
+
   return (
     <div
+      ref={menuRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mobile menu"
       className={`fixed inset-0 z-[100] bg-darkgreen transition-opacity duration-300 ${
         open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
       aria-hidden={!open}
+      onKeyDown={handleKeyDown}
     >
       <div className="flex flex-col h-full px-6 py-4">
         {/* Close button */}
@@ -56,7 +105,7 @@ export default function MobileMenu({
           <button
             type="button"
             onClick={onClose}
-            className="text-cream p-1"
+            className="text-cream p-3"
             aria-label="Close menu"
           >
             <svg
@@ -84,7 +133,7 @@ export default function MobileMenu({
         </div>
 
         {/* Nav links */}
-        <nav className="flex flex-col items-center gap-5 mt-10">
+        <nav aria-label="Mobile navigation" className="flex flex-col items-center gap-5 mt-10">
           {navLinks.map(({ href, label, external }) =>
             external ? (
               <a
@@ -93,16 +142,17 @@ export default function MobileMenu({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={onClose}
-                className="font-display text-2xl uppercase tracking-wider text-cream hover:text-russet transition-colors"
+                className="display-heading text-2xl uppercase tracking-wider text-cream hover:text-russet transition-colors"
               >
                 {label}
+                <span className="sr-only"> (opens in new tab)</span>
               </a>
             ) : (
               <Link
                 key={href}
                 href={href}
                 onClick={onClose}
-                className={`font-display text-2xl uppercase tracking-wider transition-colors ${
+                className={`display-heading text-2xl uppercase tracking-wider transition-colors ${
                   pathname === href ? "text-russet" : "text-cream hover:text-russet"
                 }`}
               >
@@ -120,10 +170,10 @@ export default function MobileMenu({
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={label}
-              className="text-cream transition-colors hover:text-russet"
+              aria-label={`${label} (opens in new tab)`}
+              className="text-cream transition-colors hover:text-russet p-2"
             >
-              <Icon className="w-5 h-5" />
+              <Icon className="w-5 h-5" aria-hidden="true" />
             </a>
           ))}
         </div>

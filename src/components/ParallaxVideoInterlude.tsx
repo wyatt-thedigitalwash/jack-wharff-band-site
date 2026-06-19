@@ -15,6 +15,7 @@ export default function ParallaxVideoInterlude() {
         muted
         loop
         playsInline
+        preload="metadata"
         className="w-full h-auto"
       />
     </section>

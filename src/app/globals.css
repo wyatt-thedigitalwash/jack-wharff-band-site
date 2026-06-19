@@ -8,8 +8,7 @@
   --color-russet: #5B310D;
   --color-darkgreen: #181912;
 
-  /* Placeholder for Bookends — swap when the real font file arrives */
-  --font-display: "Rye", cursive;
+  --font-display: "Fraunces", Georgia, serif;
   --font-sans: Arial, Helvetica, sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
 }
@@ -18,6 +17,11 @@ body {
   background-color: var(--color-cream);
   color: var(--color-ashbrown);
   font-family: var(--font-sans);
+}
+
+.display-heading {
+  font-family: var(--font-display);
+  font-variation-settings: 'wght' 600;
 }
 
 /* Section Spacing Rule:
@@ -201,17 +205,21 @@ main a:not([class]):hover {
   fill: #4B3728 !important;
 }
 
-/* Show more / fewer buttons */
-.tour-widget-wrapper .bit-show-more,
-.tour-widget-wrapper .bit-show-fewer,
-.tour-widget-wrapper .bit-see-more {
-  background-color: #5B310D !important;
-  color: #EEF0E2 !important;
-  font-family: var(--font-display) !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-  border-radius: 3px !important;
-  border: none !important;
+/* Show more / fewer buttons — hidden since we have our own SEE ALL DATES link */
+.bit-show-more,
+.bit-show-fewer,
+.bit-see-more,
+.bit-top-track-button,
+.bit-show-more-container,
+[class*="show-more"],
+[class*="show-fewer"],
+[class*="see-more"],
+[class*="ShowAll"],
+[class*="show-all"],
+[class*="ShowMore"],
+[class*="showAll"],
+[class*="showMore"] {
+  display: none !important;
 }
 
 /* VIP indicator */
@@ -276,25 +284,26 @@ main a:not([class]):hover {
   }
 }
 
+/* Global focus-visible indicator */
+:focus-visible {
+  outline: 2px solid #EEF0E2;
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: light) {
+  :focus-visible {
+    outline-color: #4B3728;
+  }
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .video-entrance {
-    animation: none;
-    opacity: 1;
-    filter: none;
-    transform: none;
-  }
-  .photo-hidden {
-    opacity: 1;
-  }
-  .photo-enter {
-    animation: none;
-    opacity: 1;
-    filter: none;
-    transform: none;
-  }
-  .block-fade {
-    opacity: 1;
-    transition: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
