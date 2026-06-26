@@ -1,31 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const DESKTOP_PHOTOS = [
-  "/new/shutter/TJWB_DesktopHeroShutter_1.jpg",
-  "/new/shutter/TJWB_DesktopHeroShutter_2.jpg",
-  "/new/shutter/TJWB_DesktopHeroShutter_3.jpg",
-  "/new/shutter/TJWB_DesktopHeroShutter_4.jpg",
-];
-
-const MOBILE_PHOTOS = [
-  "/new/shutter/TJWB_MobileHeroShutter_1.jpg",
-  "/new/shutter/TJWB_MobileHeroShutter_2.jpg",
-  "/new/shutter/TJWB_MobileHeroShutter_3.jpg",
-  "/new/shutter/TJWB_MobileHeroShutter_4.jpg",
-];
-
-const SIZES = ["30%", "50%", "72%", "92%"];
-
 export default function OpeningShutter() {
-  const [photoOpacities, setPhotoOpacities] = useState([0, 0, 0, 0]);
-  const [logoOpacity, setLogoOpacity] = useState(0);
-  const [photo4Expanded, setPhoto4Expanded] = useState(false);
+  const [scaled, setScaled] = useState(false);
+  const [logoVisible, setLogoVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
-  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
@@ -34,101 +16,73 @@ export default function OpeningShutter() {
     setReducedMotion(motionQuery.matches);
 
     if (motionQuery.matches) {
-      setPhotoOpacities([0, 0, 0, 1]);
-      setPhoto4Expanded(true);
-      setLogoOpacity(1);
+      setScaled(true);
+      setLogoVisible(true);
       return;
     }
 
-    const timers: NodeJS.Timeout[] = [];
+    // Start the scale-up after a brief delay so the initial state is painted
+    const scaleTimer = setTimeout(() => setScaled(true), 100);
 
-    // Photo 1 fades in at 0ms
-    timers.push(setTimeout(() => {
-      setPhotoOpacities([1, 0, 0, 0]);
-    }, 0));
-
-    // Photo 2 fades in at 350ms, Photo 1 fades out
-    timers.push(setTimeout(() => {
-      setPhotoOpacities([0, 1, 0, 0]);
-    }, 350));
-
-    // Photo 3 fades in at 700ms, Photo 2 fades out
-    timers.push(setTimeout(() => {
-      setPhotoOpacities([0, 0, 1, 0]);
-    }, 700));
-
-    // Photo 4 fades in at 1050ms, Photo 3 fades out
-    timers.push(setTimeout(() => {
-      setPhotoOpacities([0, 0, 0, 1]);
-    }, 1050));
-
-    // 1650ms: Photo 4 expands to 100% + logo fades in simultaneously
-    timers.push(setTimeout(() => {
-      setPhoto4Expanded(true);
-      setLogoOpacity(1);
-    }, 1650));
-
-    timeoutsRef.current = timers;
+    // Logo fades in after the scale animation completes
+    const logoTimer = setTimeout(() => setLogoVisible(true), 1600);
 
     return () => {
-      timers.forEach(clearTimeout);
+      clearTimeout(scaleTimer);
+      clearTimeout(logoTimer);
     };
   }, []);
-
-  const photos = isMobile ? MOBILE_PHOTOS : DESKTOP_PHOTOS;
 
   return (
     <section
       className="relative w-full overflow-hidden"
-      style={{ height: "100vh", backgroundColor: "#EEF0E2" }}
+      style={{ height: "100vh", backgroundColor: "#0a0a0a" }}
     >
-      {photos.map((src, i) => {
-        const isPhoto4 = i === 3;
-        const size = isPhoto4 && photo4Expanded ? "100%" : SIZES[i];
+      {/* Media container — scales from 85% to 100% */}
+      <div
+        className="absolute inset-0"
+        style={{
+          transform: scaled ? "scale(1)" : "scale(0.85)",
+          transition: reducedMotion
+            ? "none"
+            : "transform 1500ms cubic-bezier(0.33, 1, 0.68, 1)",
+        }}
+      >
+        {/* Desktop: static image */}
+        <div className="hidden md:block absolute inset-0">
+          <Image
+            src="/backgrounds/TJWB_HomeHero.jpg"
+            alt="The Jack Wharff Band"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
 
-        return (
-          <div
-            key={i}
-            className="absolute inset-0 flex items-center justify-center"
-            style={{
-              opacity: photoOpacities[i],
-              transition: reducedMotion
-                ? "none"
-                : i === 0
-                  ? "opacity 50ms ease"
-                  : "opacity 80ms ease",
-            }}
+        {/* Mobile: video */}
+        <div className="block md:hidden absolute inset-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            poster="/backgrounds/TJWB_AboutHeader.webp"
           >
-            <div
-              className="relative overflow-hidden"
-              style={{
-                width: size,
-                height: size,
-                transition:
-                  isPhoto4 && !reducedMotion
-                    ? "width 700ms cubic-bezier(0.33, 1, 0.68, 1), height 700ms cubic-bezier(0.33, 1, 0.68, 1)"
-                    : "none",
-              }}
-            >
-              <Image
-                src={src}
-                alt="The Jack Wharff Band"
-                fill
-                sizes="100vw"
-                className="object-cover"
-                priority={i === 0}
-                loading={i === 0 ? "eager" : "lazy"}
-              />
-            </div>
-          </div>
-        );
-      })}
+            <source
+              src="https://res.cloudinary.com/dgbiatexy/video/upload/v1782481528/TJWB_MobileHero_hbhucz.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+      </div>
 
-      {/* Logo overlay — centered on viewport, sized relative to viewport width */}
+      {/* Logo overlay */}
       <div
         className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
         style={{
-          opacity: logoOpacity,
+          opacity: logoVisible ? 1 : 0,
           transition: reducedMotion ? "none" : "opacity 700ms ease-in-out",
         }}
       >
