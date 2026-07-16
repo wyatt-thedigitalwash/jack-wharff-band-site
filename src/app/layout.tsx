@@ -71,6 +71,10 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://use.typekit.net/xek3xzy.css" />
+
+        {/* Evidon (Crownpeak) consent management — account 7155. Scripts are
+            rendered via next/script below; preconnect stays here. */}
+        <link rel="preconnect" href="https://c.evidon.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-full flex flex-col">
         <script
@@ -106,11 +110,33 @@ export default function RootLayout({
             }),
           }}
         />
-        {/* UMG Google Tag Manager — loads before widget so umgAAL.track is defined */}
-        <Script
-          src="https://www.googletagmanager.com/gtm.js?id=GTM-M2J3BMQD"
-          strategy="afterInteractive"
-        />
+        {/* Evidon (Crownpeak) consent management — account 7155. Loads before GTM so
+            consent governs downstream tags. Order mirrors the label's WordPress setup;
+            all config lives server-side. strategy=beforeInteractive dedupes by id. */}
+        <Script id="evidon-settings" strategy="beforeInteractive" src="https://c.evidon.com/sitenotice/7155/thejackwharffband/settings.js" />
+        <Script id="evidon-themes" strategy="beforeInteractive" src="https://c.evidon.com/sitenotice/7155/snthemes.js" />
+        <Script id="evidon-location" strategy="beforeInteractive" src="https://c.evidon.com/geo/country.js" />
+        <Script id="evidon-notice" strategy="beforeInteractive" src="https://c.evidon.com/sitenotice/evidon-sitenotice-tag.js" />
+
+        {/* Google Tag Manager (GTM-M2J3BMQD) — master container; fires the label's
+            analytics tags. Full official bootstrap so dataLayer initializes. */}
+        <Script id="gtm-bootstrap" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M2J3BMQD');`}
+        </Script>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-M2J3BMQD"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+          />
+        </noscript>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-darkgreen focus:text-cream focus:px-4 focus:py-2 focus:text-sm focus:outline-none"
