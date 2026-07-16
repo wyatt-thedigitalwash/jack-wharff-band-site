@@ -59,11 +59,10 @@ export default function MusicVideosRow() {
                 className="text-center"
                 style={{
                   fontFamily: "var(--font-serif-italic), serif",
-                  fontStyle: "italic",
                   fontWeight: 400,
                   fontSize: "clamp(16px, 1.4vw, 22px)",
                   color: "#EEF0E2",
-                  marginTop: 12,
+                  marginTop: 6,
                 }}
               >
                 {card.subtitle}

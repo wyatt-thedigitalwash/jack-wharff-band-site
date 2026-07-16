@@ -23,7 +23,7 @@ export default function MusicSection() {
         </h2>
         <p
           style={{
-            fontFamily: "Arial, Helvetica, sans-serif",
+            fontFamily: "var(--font-sans)",
             fontSize: 16,
             color: "#797D68",
           }}

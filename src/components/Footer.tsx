@@ -23,71 +23,80 @@ const FOOTER_SOCIALS = [
 ];
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="bg-darkgreen text-cream">
-      <div className="mx-auto max-w-5xl px-6 py-12 md:py-16">
-        {/* Stacked logo */}
-        <div className="flex justify-center mb-8">
-          <Image
-            src="/branding/TJWB_LogoWhite.png"
-            alt="The Jack Wharff Band"
-            width={200}
-            height={200}
-            className="h-24 md:h-32 w-auto"
-          />
-        </div>
+      <div className="px-6 py-12 md:py-16">
+        <div className="mx-auto max-w-5xl">
+          {/* Stacked logo */}
+          <div className="flex justify-center mb-8">
+            <Image
+              src="/branding/TJWB_LogoWhite.png"
+              alt="The Jack Wharff Band"
+              width={200}
+              height={200}
+              className="h-24 md:h-32 w-auto"
+            />
+          </div>
 
-        {/* Email signup */}
-        <div className="max-w-md mx-auto mb-12">
-          <EmailSignup />
-        </div>
+          {/* Email signup */}
+          <div className="max-w-md mx-auto mb-12">
+            <EmailSignup />
+          </div>
 
-        {/* Social row */}
-        <div className="flex justify-center gap-4 mb-10">
-          {FOOTER_SOCIALS.map(({ href, label, Icon }) => (
-            <a
-              key={href}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${label} (opens in new tab)`}
-              className="text-cream transition-colors hover:text-russet p-2"
-            >
-              <Icon className="w-5 h-5" aria-hidden="true" />
-            </a>
-          ))}
+          {/* Social row */}
+          <div className="flex justify-center gap-4 mb-10">
+            {FOOTER_SOCIALS.map(({ href, label, Icon }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${label} (opens in new tab)`}
+                className="text-cream transition-colors hover:text-russet p-2"
+              >
+                <Icon className="w-5 h-5" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Legal row */}
-        <div className="border-t border-olive pt-6 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs" style={{ color: "#8D917C" }}>
-          <span>&copy; {currentYear} Big Machine Label Group</span>
-          <a
-            href="https://www.bigmachinelabelgroup.com/terms/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-cream transition-colors"
-          >
-            Terms
-          </a>
-          <a
-            href="https://www.bigmachinelabelgroup.com/privacy-notice/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-cream transition-colors"
-          >
-            Privacy
-          </a>
-          <a
-            href="https://www.bigmachinelabelgroup.com/privacy-notice/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-cream transition-colors"
-          >
-            Do Not Sell My Personal Information
-          </a>
-          <span>Cookie Choices</span>
+        <div className="mx-auto max-w-7xl border-t border-olive pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-y-3 text-xs text-center md:text-left" style={{ color: "#8D917C" }}>
+          <span>&copy; Borchetta Entertainment Group, LLC d/b/a Big Machine Records</span>
+          <div className="flex flex-wrap justify-center md:justify-end gap-x-4 gap-y-1">
+            <a
+              href="https://www.bigmachinerecords.com/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cream transition-colors"
+            >
+              Terms
+            </a>
+            <a
+              href="https://www.bigmachinerecords.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cream transition-colors"
+            >
+              Privacy
+            </a>
+            <a
+              href="https://www.bigmachinerecords.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cream transition-colors"
+            >
+              Do Not Sell My Personal Information
+            </a>
+            <a
+              href="https://www.bigmachinerecords.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cream transition-colors"
+            >
+              Cookie Choices
+            </a>
+          </div>
         </div>
       </div>
     </footer>

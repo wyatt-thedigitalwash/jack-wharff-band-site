@@ -51,7 +51,9 @@ export default function Header() {
 
     if (pathname === "/") {
       const onScroll = () => {
-        setLogoVisible(window.scrollY > window.innerHeight * 0.8);
+        const pastHero = window.scrollY > window.innerHeight * 0.8;
+        setLogoVisible(pastHero);
+        setScrolledPastHero(pastHero);
       };
       onScroll();
       window.addEventListener("scroll", onScroll, { passive: true });
@@ -69,9 +71,12 @@ export default function Header() {
       window.addEventListener("scroll", onScroll, { passive: true });
       return () => window.removeEventListener("scroll", onScroll);
     }
+
+    // Pages with no scroll-driven background: ensure it stays off
+    setScrolledPastHero(false);
   }, [pathname, scrollBg]);
 
-  const showBg = alwaysBg || (scrollBg && scrolledPastHero);
+  const showBg = alwaysBg || scrolledPastHero;
 
   return (
     <>

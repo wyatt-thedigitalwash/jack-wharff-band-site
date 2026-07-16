@@ -8,7 +8,7 @@ const inputStyle: React.CSSProperties = {
   borderRadius: 0,
   color: "#EEF0E2",
   padding: "14px 16px",
-  fontFamily: "Arial, Helvetica, sans-serif",
+  fontFamily: "var(--font-sans)",
   fontSize: 16,
   outline: "none",
   width: "100%",
@@ -73,7 +73,7 @@ export default function EmailSignup() {
       <style>{`
         .signup-input::placeholder {
           color: rgba(238, 240, 226, 0.5);
-          font-family: Arial, Helvetica, sans-serif;
+          font-family: var(--font-sans);
           font-style: normal;
         }
         .signup-input:focus {
@@ -395,7 +395,7 @@ export default function EmailSignup() {
           />
           <span
             style={{
-              fontFamily: "Arial, Helvetica, sans-serif",
+              fontFamily: "var(--font-sans)",
               fontSize: 14,
               color: "#EEF0E2",
             }}
@@ -412,12 +412,12 @@ export default function EmailSignup() {
           />
           <span
             style={{
-              fontFamily: "Arial, Helvetica, sans-serif",
+              fontFamily: "var(--font-sans)",
               fontSize: 14,
               color: "#EEF0E2",
             }}
           >
-            Big Machine Label Group
+            Big Machine Records
           </span>
         </label>
       </div>
@@ -426,24 +426,22 @@ export default function EmailSignup() {
       <p
         style={{
           fontFamily: "var(--font-serif-italic), serif",
-          fontStyle: "italic",
           fontSize: 12,
           lineHeight: 1.5,
           color: "#797D68",
           marginBottom: 24,
         }}
       >
-        I understand emails will be sent by or on behalf of Big Machine Label
-        Group. By submitting this form, you agree to the Big Machine Label Group{" "}
+        I understand emails will be sent by or on behalf of Big Machine
+        Records. By submitting this form, you agree to the Big Machine Records{" "}
         <a
-          href="https://bigmachinelabelgroup.com/privacy-policy"
+          href="https://www.bigmachinerecords.com/privacy"
           target="_blank"
           rel="noopener noreferrer"
           style={{
             color: "#EEF0E2",
             textDecoration: "underline",
             fontFamily: "var(--font-serif-italic), serif",
-            fontStyle: "italic",
           }}
         >
           Privacy Policy
@@ -457,7 +455,7 @@ export default function EmailSignup() {
           role="status"
           aria-live="polite"
           style={{
-            fontFamily: "Arial, Helvetica, sans-serif",
+            fontFamily: "var(--font-sans)",
             fontSize: 14,
             color: "#EEF0E2",
             textAlign: "center",
@@ -473,7 +471,7 @@ export default function EmailSignup() {
           role="alert"
           aria-live="assertive"
           style={{
-            fontFamily: "Arial, Helvetica, sans-serif",
+            fontFamily: "var(--font-sans)",
             fontSize: 14,
             color: "#e57373",
             textAlign: "center",

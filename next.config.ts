@@ -20,8 +20,8 @@ const nextConfig: NextConfig = {
             value: [
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "font-src 'self' https://fonts.gstatic.com",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net",
+              "font-src 'self' https://fonts.gstatic.com https://use.typekit.net",
               "img-src 'self' data: https: blob:",
               "media-src 'self' https://res.cloudinary.com",
               "frame-src https://www.youtube-nocookie.com https://www.youtube.com",

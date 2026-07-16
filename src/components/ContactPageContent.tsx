@@ -51,7 +51,7 @@ export default function ContactPageContent() {
             <div>
               <p
                 style={{
-                  fontFamily: "Arial, Helvetica, sans-serif",
+                  fontFamily: "var(--font-sans)",
                   fontSize: 14,
                   color: "#797D68",
                   textTransform: "uppercase",
@@ -64,7 +64,7 @@ export default function ContactPageContent() {
               <a
                 href="mailto:jackwharffbooking@gmail.com"
                 style={{
-                  fontFamily: "Arial, Helvetica, sans-serif",
+                  fontFamily: "var(--font-sans)",
                   fontSize: 16,
                   color: "#5B310D",
                   textDecoration: "underline",
@@ -77,7 +77,7 @@ export default function ContactPageContent() {
             <div>
               <p
                 style={{
-                  fontFamily: "Arial, Helvetica, sans-serif",
+                  fontFamily: "var(--font-sans)",
                   fontSize: 14,
                   color: "#797D68",
                   textTransform: "uppercase",
@@ -92,7 +92,7 @@ export default function ContactPageContent() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  fontFamily: "Arial, Helvetica, sans-serif",
+                  fontFamily: "var(--font-sans)",
                   fontSize: 16,
                   color: "#5B310D",
                   textDecoration: "underline",
@@ -123,7 +123,6 @@ export default function ContactPageContent() {
               <p
                 style={{
                   fontFamily: "var(--font-serif-italic), serif",
-                  fontStyle: "italic",
                   fontSize: "clamp(14px, 1.2vw, 16px)",
                   color: "#797D68",
                   marginBottom: 20,
@@ -135,7 +134,7 @@ export default function ContactPageContent() {
                 <div key={contact.email} style={{ marginBottom: 12 }}>
                   <p
                     style={{
-                      fontFamily: "Arial, Helvetica, sans-serif",
+                      fontFamily: "var(--font-sans)",
                       fontSize: 16,
                       color: "#4B3728",
                     }}
@@ -145,7 +144,7 @@ export default function ContactPageContent() {
                   <a
                     href={`mailto:${contact.email}`}
                     style={{
-                      fontFamily: "Arial, Helvetica, sans-serif",
+                      fontFamily: "var(--font-sans)",
                       fontSize: 15,
                       color: "#5B310D",
                       textDecoration: "underline",

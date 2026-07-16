@@ -27,7 +27,7 @@ export default function AboutTeaser() {
         <p
           className="text-center"
           style={{
-            fontFamily: "Arial, Helvetica, sans-serif",
+            fontFamily: "var(--font-sans)",
             fontSize: "clamp(16px, 1.5vw, 18px)",
             lineHeight: 1.6,
             color: "#4B3728",

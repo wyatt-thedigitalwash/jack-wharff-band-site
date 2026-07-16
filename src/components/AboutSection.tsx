@@ -36,8 +36,8 @@ export default function AboutSection() {
           </h2>
           <p
             style={{
-              fontFamily: "Arial, Helvetica, sans-serif",
-              fontSize: "clamp(14px, 1.2vw, 17px)",
+              fontFamily: "var(--font-sans)",
+              fontSize: "18px",
               lineHeight: 1.6,
               color: "#4B3728",
             }}

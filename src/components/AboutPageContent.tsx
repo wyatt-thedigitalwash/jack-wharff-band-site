@@ -64,8 +64,8 @@ export default function AboutPageContent() {
         <p
           className="text-center"
           style={{
-            fontFamily: "Arial, Helvetica, sans-serif",
-            fontSize: "clamp(16px, 1.4vw, 18px)",
+            fontFamily: "var(--font-sans)",
+            fontSize: "18px",
             lineHeight: 1.7,
             color: "#4B3728",
           }}
@@ -112,7 +112,6 @@ export default function AboutPageContent() {
               <p
                 style={{
                   fontFamily: "var(--font-serif-italic), serif",
-                  fontStyle: "italic",
                   fontSize: "clamp(13px, 1.2vw, 16px)",
                   color: "#797D68",
                 }}

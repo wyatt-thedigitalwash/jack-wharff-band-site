@@ -43,7 +43,7 @@ export default function InlineEmailSignup() {
             role="status"
             aria-live="polite"
             style={{
-              fontFamily: "Arial, Helvetica, sans-serif",
+              fontFamily: "var(--font-sans)",
               fontSize: 16,
               color: "#EEF0E2",
             }}

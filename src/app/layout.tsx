@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Cormorant_Garamond, Lora } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  axes: ["opsz", "SOFT", "WONK"],
+const momsTypewriter = localFont({
+  src: "../../public/fonts/MomsTypewriter.ttf",
   variable: "--font-display",
   display: "swap",
 });
@@ -17,14 +17,6 @@ const cormorant = Cormorant_Garamond({
   style: "italic",
   subsets: ["latin"],
   variable: "--font-serif",
-  display: "swap",
-});
-
-const lora = Lora({
-  subsets: ["latin"],
-  style: ["italic"],
-  weight: ["400"],
-  variable: "--font-serif-italic",
   display: "swap",
 });
 
@@ -75,7 +67,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${cormorant.variable} ${lora.variable} h-full antialiased`}>
+    <html lang="en" className={`${momsTypewriter.variable} ${cormorant.variable} h-full antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
+        <link rel="stylesheet" href="https://use.typekit.net/xek3xzy.css" />
+      </head>
       <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"

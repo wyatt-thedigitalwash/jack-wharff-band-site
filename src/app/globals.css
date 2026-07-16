@@ -8,9 +8,10 @@
   --color-russet: #5B310D;
   --color-darkgreen: #181912;
 
-  --font-display: "Fraunces", Georgia, serif;
-  --font-sans: Arial, Helvetica, sans-serif;
+  --font-display: "MomsTypewriter", "Courier New", monospace;
+  --font-sans: "caraque-solid", Arial, Helvetica, sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-serif-italic: "caraque-solid", Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -121,7 +122,7 @@ main a:not([class]):hover {
 /* ── Bandsintown widget brand overrides ── */
 .tour-widget-wrapper .bit-widget {
   background: transparent !important;
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: var(--font-sans) !important;
 }
 
 .tour-widget-wrapper .bit-event {
@@ -144,7 +145,7 @@ main a:not([class]):hover {
 /* Venue name */
 .tour-widget-wrapper .bit-venue,
 .tour-widget-wrapper .bit-event .bit-venue {
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: var(--font-sans) !important;
   color: #4B3728 !important;
   font-weight: 500 !important;
 }
@@ -152,7 +153,7 @@ main a:not([class]):hover {
 /* City / location */
 .tour-widget-wrapper .bit-location,
 .tour-widget-wrapper .bit-event .bit-location {
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: var(--font-sans) !important;
   color: #797D68 !important;
   font-size: 0.8125rem !important;
 }
@@ -235,13 +236,13 @@ main a:not([class]):hover {
 .tour-widget-wrapper .bit-no-dates,
 .tour-widget-wrapper .bit-no-events {
   color: rgba(75, 55, 40, 0.6) !important;
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: var(--font-sans) !important;
 }
 
 /* Play My City */
 .tour-widget-wrapper .bit-play-my-city a {
   color: #797D68 !important;
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: var(--font-sans) !important;
 }
 
 /* Bandsintown widget mobile layout override. Class names below are not a public API;

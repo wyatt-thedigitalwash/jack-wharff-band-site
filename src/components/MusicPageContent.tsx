@@ -167,7 +167,6 @@ function ReleaseCard({ release }: { release: (typeof RELEASES)[number] }) {
         <p
           style={{
             fontFamily: "var(--font-serif-italic), serif",
-            fontStyle: "italic",
             fontSize: "clamp(14px, 1.4vw, 18px)",
             color: "#EEF0E2",
             marginBottom: 2,
@@ -177,7 +176,7 @@ function ReleaseCard({ release }: { release: (typeof RELEASES)[number] }) {
         </p>
         <p
           style={{
-            fontFamily: "Arial, Helvetica, sans-serif",
+            fontFamily: "var(--font-sans)",
             fontSize: "clamp(11px, 1vw, 13px)",
             color: "rgba(238, 240, 226, 0.5)",
           }}
@@ -211,7 +210,7 @@ export default function MusicPageContent() {
               fontSize: "clamp(32px, 4vw, 64px)",
               color: "#EEF0E2",
               letterSpacing: "0.02em",
-              marginBottom: 16,
+              marginBottom: 8,
             }}
           >
             Music
@@ -221,7 +220,6 @@ export default function MusicPageContent() {
             className="text-center"
             style={{
               fontFamily: "var(--font-serif-italic), serif",
-              fontStyle: "italic",
               fontSize: "clamp(16px, 1.4vw, 20px)",
               color: "rgba(238, 240, 226, 0.5)",
               marginBottom: 48,
@@ -334,7 +332,7 @@ export default function MusicPageContent() {
               fontSize: "clamp(32px, 8vw, 64px)",
               color: "#EEF0E2",
               letterSpacing: "0.02em",
-              marginBottom: 16,
+              marginBottom: 8,
             }}
           >
             Music
@@ -344,7 +342,6 @@ export default function MusicPageContent() {
             className="text-center"
             style={{
               fontFamily: "var(--font-serif-italic), serif",
-              fontStyle: "italic",
               fontSize: 16,
               color: "rgba(238, 240, 226, 0.5)",
               marginBottom: 40,

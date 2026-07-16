@@ -38,6 +38,12 @@ export default function ReleasesGrid() {
             background-color: rgba(0, 0, 0, 0.5) !important;
           }
         }
+        /* Mobile: match MusicVideosRow card title size (both are full-width squares) */
+        @media (max-width: 767px) {
+          .release-card-title {
+            font-size: 32px !important;
+          }
+        }
       `}</style>
       <div
         className="grid grid-cols-1 md:grid-cols-3"
@@ -68,7 +74,7 @@ export default function ReleasesGrid() {
             />
             <div className="absolute inset-0 z-[2] flex flex-col items-center justify-center">
               <span
-                className="uppercase text-center"
+                className="release-card-title uppercase text-center"
                 style={{
                   fontFamily: "var(--font-display), serif",
                   fontSize: "clamp(20px, 2.5vw, 36px)",
@@ -81,11 +87,10 @@ export default function ReleasesGrid() {
               <span
                 style={{
                   fontFamily: "var(--font-serif-italic), serif",
-                  fontStyle: "italic",
                   fontWeight: 400,
                   fontSize: "clamp(16px, 1.4vw, 22px)",
                   color: "#EEF0E2",
-                  marginTop: 12,
+                  marginTop: 6,
                 }}
               >
                 {release.subtitle}
