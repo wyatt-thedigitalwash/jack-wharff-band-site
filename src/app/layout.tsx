@@ -5,6 +5,9 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AnchorScroll from "@/components/shared/AnchorScroll";
+import CookieConsent from "@/components/consent/CookieConsent";
+import TermsGate from "@/components/consent/TermsGate";
 
 const momsTypewriter = localFont({
   src: "../../public/fonts/MomsTypewriter.ttf",
@@ -143,9 +146,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         >
           Skip to main content
         </a>
+        <AnchorScroll />
         <Header />
         <div id="main-content" className="flex-1">{children}</div>
         <Footer />
+        {/* Cookie consent banner. Shows once per new visitor, persisted in
+            localStorage; injects nothing before consent is granted. */}
+        <CookieConsent />
+        {/* Arbitration / class-action notice, shown once right after the cookie
+            decision so it is never buried only in the footer. */}
+        <TermsGate />
       </body>
     </html>
   );

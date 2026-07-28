@@ -12,6 +12,27 @@
   --font-sans: "caraque-solid", Arial, Helvetica, sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-serif-italic: "caraque-solid", Arial, Helvetica, sans-serif;
+
+  /* Aliases so the ported legal / consent components resolve to this site's
+     warm palette. Light surfaces (cream / beige) with ashbrown text and russet
+     accent, mirroring the site's content pages. */
+  --color-background-primary: var(--background-primary);
+  --color-background-alt: var(--background-alt);
+  --color-text-header: var(--text-header);
+  --color-text-body: var(--text-body);
+  --color-text-accent: var(--text-accent);
+  --font-body: "caraque-solid", Arial, Helvetica, sans-serif;
+}
+
+/* Design tokens consumed by the legal / consent components. Mapped to the
+   Jack Wharff Band palette: cream page surface, beige panels, ashbrown text,
+   russet accent for links and buttons. */
+:root {
+  --background-primary: #EEF0E2; /* cream */
+  --background-alt: #D2CEB2;     /* beige panels: banner, modal, pill */
+  --text-header: #4B3728;        /* ashbrown, strongest */
+  --text-body: #4B3728;          /* ashbrown, borders/dividers */
+  --text-accent: #4B3728;        /* ashbrown, headings + body copy */
 }
 
 body {
@@ -307,4 +328,69 @@ main a:not([class]):hover {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ─── Legal / Policy Pages ───
+   Hyperlinks inside legal copy use the site's russet accent, underlined, to
+   match the link treatment on the site's content pages. */
+.legal-prose a {
+  color: var(--color-russet);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: opacity 200ms;
+  word-break: break-word;
+}
+.legal-prose a:hover {
+  opacity: 0.7;
+}
+
+/* ─── Legal / policy pages: clean, readable typography ───
+   The site's display faces (MomsTypewriter, caraque-solid) are decorative and
+   hard to read across long policy text. Legal pages opt out with .legal-typeset,
+   which forces the brand's plain body face (Arial) on every element while the
+   rest of the site keeps its display type. Headings stay bold for hierarchy. */
+.legal-typeset,
+.legal-typeset * {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.legal-typeset h1,
+.legal-typeset h2,
+.legal-typeset h3 {
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* ─── Cookie Consent / Terms Gate Buttons ───
+   Flat rectangular buttons matching .btn-primary: russet fill / cream text
+   primary, transparent / russet border ghost. */
+.cc-btn {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-family: var(--font-display);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-align: center;
+  border: 1px solid var(--color-russet);
+  transition: all 200ms;
+  cursor: pointer;
+}
+.cc-btn-primary {
+  background: var(--color-russet);
+  color: var(--color-cream);
+  border-color: var(--color-russet);
+}
+.cc-btn-primary:hover {
+  background: transparent;
+  color: var(--color-russet);
+}
+.cc-btn-ghost {
+  background: transparent;
+  color: var(--color-russet);
+}
+.cc-btn-ghost:hover {
+  background: var(--color-russet);
+  color: var(--color-cream);
 }

@@ -39,7 +39,8 @@ const HEADER_SOCIALS = [
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const alwaysBg = pathname === "/contact" || pathname === "/videos";
+  const isLegal = pathname.startsWith("/legal");
+  const alwaysBg = pathname === "/contact" || pathname === "/videos" || isLegal;
   const scrollBg = pathname === "/about";
   const [logoVisible, setLogoVisible] = useState(pathname !== "/");
   const [scrolledPastHero, setScrolledPastHero] = useState(false);

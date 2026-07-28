@@ -1,5 +1,7 @@
 import Image from "next/image";
-import EmailSignup from "./EmailSignup";
+import Link from "next/link";
+import SubscribeForm from "./SubscribeForm";
+import CookieChoicesLink from "@/components/legal/CookieChoicesLink";
 import {
   FaInstagram,
   FaTiktok,
@@ -38,9 +40,9 @@ export default function Footer() {
             />
           </div>
 
-          {/* Email signup */}
+          {/* Email + SMS signup */}
           <div className="max-w-md mx-auto mb-12">
-            <EmailSignup />
+            <SubscribeForm />
           </div>
 
           {/* Social row */}
@@ -64,38 +66,25 @@ export default function Footer() {
         <div className="mx-auto max-w-7xl border-t border-olive pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-y-3 text-xs text-center md:text-left" style={{ color: "#8D917C" }}>
           <span>&copy; Borchetta Entertainment Group, LLC d/b/a Big Machine Records</span>
           <div className="flex flex-wrap justify-center md:justify-end gap-x-4 gap-y-1">
-            <a
-              href="https://www.bigmachinerecords.com/terms"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-cream transition-colors"
-            >
+            <Link href="/legal/terms" className="hover:text-cream transition-colors">
               Terms
-            </a>
-            <a
-              href="https://www.bigmachinerecords.com/privacy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-cream transition-colors"
-            >
+            </Link>
+            <Link href="/legal/privacy" className="hover:text-cream transition-colors">
               Privacy
-            </a>
-            <a
-              href="https://www.bigmachinerecords.com/privacy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-cream transition-colors"
-            >
+            </Link>
+            <Link href="/legal/dmca" className="hover:text-cream transition-colors">
+              Copyright (DMCA)
+            </Link>
+            <Link href="/legal/cybersecurity" className="hover:text-cream transition-colors">
+              Cybersecurity
+            </Link>
+            <Link href="/legal/tcpa" className="hover:text-cream transition-colors">
+              TCPA
+            </Link>
+            <Link href="/legal/privacy#s10-2" className="hover:text-cream transition-colors">
               Do Not Sell My Personal Information
-            </a>
-            <a
-              href="https://www.bigmachinerecords.com/privacy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-cream transition-colors"
-            >
-              Cookie Choices
-            </a>
+            </Link>
+            <CookieChoicesLink className="hover:text-cream transition-colors" />
           </div>
         </div>
       </div>
