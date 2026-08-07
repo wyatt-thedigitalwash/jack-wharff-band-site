@@ -9,12 +9,20 @@ const RELEASES: {
   cover: string | null;
   href: string;
 }[] = [
+  // Reverse-chronological, so the current single leads.
+  {
+    title: "Small Town Heart",
+    displayTitle: "small town heart",
+    year: "2026",
+    cover: "/covers/TheJackWharffBand_SmallTownHeart_Cover.jpg",
+    href: "https://jackwharffband.ffm.to/smalltownheart.OWE",
+  },
   {
     title: "Low Life",
     displayTitle: "low life",
     year: "2026",
     cover: "/covers/TJWB_LowLife_Cover.jpg",
-    href: "#", // TODO: replace with smart link
+    href: "https://thejackwharffband.ffm.to/lowlife.OWE",
   },
   {
     title: "Strange EP",

@@ -1,24 +1,26 @@
 import Image from "next/image";
 
+// Leads with the current single, which is also what the splash promotes. Keep
+// these two in step: if the campaign moves on, the splash and this grid should
+// change together rather than pointing at different releases.
 const RELEASES = [
+  {
+    title: "Small Town Heart",
+    subtitle: "small town heart",
+    cover: "/covers/TheJackWharffBand_SmallTownHeart_Cover.jpg",
+    href: "https://jackwharffband.ffm.to/smalltownheart.OWE",
+  },
   {
     title: "Low Life",
     subtitle: "lowlife",
     cover: "/covers/TJWB_LowLife_Cover.jpg",
-    // TODO: Replace with Low Life smart link once available from BMLG
-    href: "#",
+    href: "https://thejackwharffband.ffm.to/lowlife.OWE",
   },
   {
     title: "Strange EP",
     subtitle: "strange ep",
     cover: "/covers/TJWB_StrangeEP_Cover.jpg",
     href: "https://jackwharff.lnk.to/strangeEPWE",
-  },
-  {
-    title: "Saved",
-    subtitle: "saved",
-    cover: "/covers/TJWB_Saved_Cover.jpg",
-    href: "https://jackwharff.lnk.to/savedWE",
   },
 ];
 

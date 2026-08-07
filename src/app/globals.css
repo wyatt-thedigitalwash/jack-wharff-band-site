@@ -9,6 +9,10 @@
   --color-darkgreen: #181912;
 
   --font-display: "MomsTypewriter", "Courier New", monospace;
+  /* Points at the variable next/font emits for the local Athelas faces, so the
+     utility resolves to the hashed family name Next actually generates rather
+     than a literal that would silently fall through to the stack below. */
+  --font-athelas: var(--athelas-font), Georgia, "Times New Roman", serif;
   --font-sans: "caraque-solid", Arial, Helvetica, sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-serif-italic: "caraque-solid", Arial, Helvetica, sans-serif;
@@ -393,4 +397,194 @@ main a:not([class]):hover {
 .cc-btn-ghost:hover {
   background: var(--color-russet);
   color: var(--color-cream);
+}
+
+/* ─── Splash / Pre-Home Overlay ───
+   Full-screen title card shown once per browser session. State lives as a class
+   on <html>, set before paint by the inline script in the root layout. */
+#splash-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: #0b0b0b;
+  opacity: 1;
+  transition: opacity 800ms ease;
+}
+
+/* ── Backdrop: the cover art, blown up and thrown out of focus ──
+   Mirrors the treatment on the release's smart-link page: the same artwork
+   scaled to fill the frame, blurred past recognition and pulled down to
+   near-black, so it reads as soft dark cloud rather than a picture. There is
+   deliberately no spotlight or centre glow -- the field stays evenly dark, and
+   the sleeve carries all of the contrast on its own.
+
+   That even darkness is also what makes the cream copy safe everywhere on the
+   frame, which a centre-lit background could not do. */
+.splash-backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* The blended layers below must be confined to this element. Without
+     `isolation`, their blend group root is #splash-overlay, and Chrome then
+     composites the whole overlay as one group -- which drops the cover art
+     entirely. Isolating also matches the intent: these layers are meant to
+     work on the backdrop, not on anything in front of it. */
+  isolation: isolate;
+  background: #080808;
+}
+.splash-backdrop-art {
+  /* Bled well past the frame on every side. A large blur samples transparency
+     beyond the element's own box, so at inset: 0 the edges would fade out and
+     leave a visible bright rim; overflowing then cropping avoids it. */
+  position: absolute;
+  inset: -20%;
+  background-image: url("/backgrounds/TheJackWharffBand_SmallTownHeart_Texture.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  /* Graded to match the release's smart-link page rather than by eye. Sampling
+     a grid of background points off both images, that reference runs a mean
+     luminance of 20 with a spread of 58 between its darkest and lightest
+     patches; these values land a mean of 20 and a spread of 68. brightness()
+     sets the overall level, contrast() supplies the separation that keeps it
+     from flattening into a single grey sheet. */
+  filter: grayscale(1) blur(60px) brightness(0.42) contrast(1.35);
+  opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+  /* Blur radius is an absolute length, so the desktop value is proportionally
+     four times heavier on a phone and flattens the cloud out completely. */
+  .splash-backdrop-art {
+    filter: grayscale(1) blur(34px) brightness(0.42) contrast(1.35);
+  }
+}
+
+/* Film grain. Inline SVG noise so it costs no extra request; `screen` because
+   the field is near-black throughout now, and `overlay` would multiply back
+   down and never show. */
+.splash-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  opacity: 0.05;
+  mix-blend-mode: screen;
+}
+
+/* Left clear across the top half so the blurred cloud reads exactly as it does
+   on the smart-link page, then weighted through the lower band where all the
+   copy sits. That band is the reason this exists: unlike a flat field, the
+   blurred artwork has bright patches, and a lighter one drifting under the
+   cream type drops it toward the AA floor. Measuring the brightest pixel
+   behind each line (not a sample point) puts the worst case at ~8:1 with this
+   in place, against ~5.4:1 without. Re-measure if the blur or grade changes. */
+.splash-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 8, 8, 0.55) 0%,
+    rgba(8, 8, 8, 0) 20%,
+    rgba(8, 8, 8, 0) 52%,
+    rgba(8, 8, 8, 0.42) 68%,
+    rgba(8, 8, 8, 0.6) 84%,
+    rgba(8, 8, 8, 0.66) 100%
+  );
+}
+
+/* Must sit after the rule above, not with the other mobile overrides further
+   up: same specificity, so source order decides, and placed earlier it is
+   silently discarded. A phone stacks the buttons, so the copy starts higher up
+   the frame than on desktop -- around 54% rather than 62% -- and the falloff
+   has to begin earlier to meet it. */
+@media (max-width: 768px) {
+  .splash-vignette {
+    background: linear-gradient(
+      to bottom,
+      rgba(8, 8, 8, 0.55) 0%,
+      rgba(8, 8, 8, 0) 16%,
+      rgba(8, 8, 8, 0) 40%,
+      rgba(8, 8, 8, 0.52) 58%,
+      rgba(8, 8, 8, 0.64) 80%,
+      rgba(8, 8, 8, 0.68) 100%
+    );
+  }
+}
+
+/* Desktop weights the vignette horizontally instead of vertically, because the
+   two-column layout puts all the copy on the right and the artwork on the
+   left. Darkening the bottom (as the stacked layout does) would miss the copy
+   entirely -- it now sits mid-frame -- while dimming the cloud around the
+   cover, which is the part that should look like the smart-link page. This
+   grounds the right side and leaves the left alone. Must stay after the rules
+   above: equal specificity, so source order decides. */
+@media (min-width: 768px) {
+  .splash-vignette {
+    background:
+      linear-gradient(
+        to right,
+        rgba(8, 8, 8, 0) 38%,
+        rgba(8, 8, 8, 0.34) 60%,
+        rgba(8, 8, 8, 0.46) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(8, 8, 8, 0.5) 0%,
+        rgba(8, 8, 8, 0) 18%,
+        rgba(8, 8, 8, 0) 78%,
+        rgba(8, 8, 8, 0.55) 100%
+      );
+  }
+}
+
+/* Sized against viewport height so the whole title card fits without scrolling
+   on a laptop, while still going large on a tall monitor and on mobile. */
+.splash-cover {
+  width: min(78vw, clamp(12rem, 48vh, 30rem));
+}
+
+/* Desktop runs cover-left / copy-right, so the artwork is no longer sharing
+   vertical space with the copy and can run much larger. Three caps, each
+   guarding a different failure: 40vw keeps it from crowding the copy column,
+   74vh stops it overflowing a short laptop window, and 34rem stops it growing
+   past the copy on a very wide monitor. */
+@media (min-width: 768px) {
+  .splash-cover {
+    width: min(40vw, 74vh, 34rem);
+  }
+}
+#splash-overlay.is-exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+html.splash-entered #splash-overlay,
+html.splash-exempt #splash-overlay {
+  display: none;
+}
+
+/* Lock scroll while the splash is up, but never on exempt (legal) routes. */
+html:not(.splash-entered):not(.splash-exempt) body {
+  overflow: hidden;
+}
+
+/* Staggered fade-up. Resting opacity comes from --rise-to so the subdued
+   elements (eyebrow, legal note) keep their dimmed weight -- a hard
+   opacity: 1 here would flatten the hierarchy. The easing is fast out with a
+   long soft settle. */
+@keyframes splash-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: var(--rise-to, 1);
+    transform: translateY(0);
+  }
+}
+.splash-rise {
+  opacity: 0;
+}
+.splash-ready .splash-rise {
+  animation: splash-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }

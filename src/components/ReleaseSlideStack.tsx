@@ -16,8 +16,7 @@ const RELEASES: Release[] = [
     title: "Low Life",
     desktopBanner: "/new/banners/TJWB_LowLife_DesktopBanner.jpg",
     mobileBanner: "/new/banners/TJWB_LowLife_MobileBanner.jpg",
-    // TODO: Replace with Low Life smart link once available from BMLG
-    href: "#",
+    href: "https://thejackwharffband.ffm.to/lowlife.OWE",
   },
   {
     title: "Strange EP",

@@ -8,6 +8,12 @@ import Footer from "@/components/Footer";
 import AnchorScroll from "@/components/shared/AnchorScroll";
 import CookieConsent from "@/components/consent/CookieConsent";
 import TermsGate from "@/components/consent/TermsGate";
+import Splash from "@/components/Splash";
+
+// Keep in sync with SPLASH_KEY in src/components/Splash.tsx. Read before paint
+// so a visitor who already entered this session never sees the splash flash.
+const SPLASH_KEY = "jw_splash_smalltownheart";
+const splashScript = `try{var e=document.documentElement;if(sessionStorage.getItem('${SPLASH_KEY}')){e.classList.add('splash-entered')}else if(location.pathname.indexOf('/legal')===0){e.classList.add('splash-exempt')}}catch(err){}`;
 
 const momsTypewriter = localFont({
   src: "../../public/fonts/MomsTypewriter.ttf",
@@ -20,6 +26,22 @@ const cormorant = Cormorant_Garamond({
   style: "italic",
   subsets: ["latin"],
   variable: "--font-serif",
+  display: "swap",
+});
+
+// Splash-only face. Extracted from the supplied Athelas.ttc collection and
+// converted to woff2 -- next/font/local does not accept .ttc, and this single
+// face is 128K against the collection's 3.1MB.
+// Regular only, by request. Anything asking for bold or italic on the splash
+// is therefore synthesised by the browser rather than loaded, so prefer real
+// weight/style changes here over `font-semibold` or `italic` utilities.
+// The variable is deliberately named differently from the Tailwind theme key
+// (--font-athelas) so the theme entry can point at it without self-reference.
+const athelas = localFont({
+  src: "../../public/fonts/Athelas-Regular.woff2",
+  weight: "400",
+  style: "normal",
+  variable: "--athelas-font",
   display: "swap",
 });
 
@@ -70,8 +92,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${momsTypewriter.variable} ${cormorant.variable} h-full antialiased`}>
+    // suppressHydrationWarning: the splash script below mutates the class list
+    // before React hydrates, so server and client markup intentionally differ.
+    <html
+      lang="en"
+      className={`${momsTypewriter.variable} ${cormorant.variable} ${athelas.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: splashScript }} />
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://use.typekit.net/xek3xzy.css" />
 
@@ -80,6 +109,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://c.evidon.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-full flex flex-col">
+        {/* Splash must be an early child of <body> so it exists on first
+            paint. Shown once per browser session; never on /legal routes. */}
+        <Splash />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -4,11 +4,11 @@ import MusicPageContent from "@/components/MusicPageContent";
 export const metadata: Metadata = {
   title: "Music",
   description:
-    "Stream music from The Jack Wharff Band. Listen to Low Life, Strange EP, Saved, and the full catalog on Spotify, Apple Music, and more.",
+    "Stream music from The Jack Wharff Band. Listen to Small Town Heart, Low Life, Strange EP, and the full catalog on Spotify, Apple Music, and more.",
   openGraph: {
     title: "Music | The Jack Wharff Band",
     description:
-      "Stream music from The Jack Wharff Band. Listen to Low Life, Strange EP, Saved, and the full catalog on Spotify, Apple Music, and more.",
+      "Stream music from The Jack Wharff Band. Listen to Small Town Heart, Low Life, Strange EP, and the full catalog on Spotify, Apple Music, and more.",
     url: "https://thejackwharffband.com/music",
     type: "website",
     siteName: "The Jack Wharff Band",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Music | The Jack Wharff Band",
     description:
-      "Stream music from The Jack Wharff Band. Listen to Low Life, Strange EP, Saved, and the full catalog on Spotify, Apple Music, and more.",
+      "Stream music from The Jack Wharff Band. Listen to Small Town Heart, Low Life, Strange EP, and the full catalog on Spotify, Apple Music, and more.",
     images: ["/og-image.png"],
   },
   alternates: { canonical: "https://thejackwharffband.com/music" },
