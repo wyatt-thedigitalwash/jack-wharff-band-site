@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -10,25 +9,19 @@ import { usePathname } from "next/navigation";
 // it should come back on a new session, not be dismissed forever.
 const SPLASH_KEY = "jw_splash_smalltownheart";
 const STREAM_LINK = "https://jackwharffband.ffm.to/smalltownheart.OWE";
-const COVER_SRC = "/covers/TheJackWharffBand_SmallTownHeart_Cover.jpg";
 
-// Hard ceiling on how long the cascade waits for the cover art. A slow
-// connection or a broken image must never leave "Enter Site" invisible.
-const REVEAL_TIMEOUT_MS = 1200;
+// Official-video cutdowns hosted on Cloudinary: a vertical 15s loop for
+// phones, the wide trailer for desktop. Both are the NoCTA "Web" encodes.
+const VIDEO_DESKTOP =
+  "https://res.cloudinary.com/dgbiatexy/video/upload/v1786645019/TheJackWharffBand_V_SmallTownHeart_OfficialVideo_YoutubeTrailer_Wide_17_NoCTA_V1_FNL_Web_tjx5ha.mp4";
+const VIDEO_MOBILE =
+  "https://res.cloudinary.com/dgbiatexy/video/upload/v1786645019/TheJackWharffBand_V_SmallTownHeart_OfficialVideo_Cutdowns_Vertical_15_NoCta_V1_FNL_Web_kbkqlv.mp4";
 
 // Must match the #splash-overlay opacity transition in globals.css.
 const EXIT_MS = 800;
 
 export default function Splash() {
   const pathname = usePathname();
-  const [coverLoaded, setCoverLoaded] = useState(false);
-  const [timedOut, setTimedOut] = useState(false);
-  const ready = timedOut || coverLoaded;
-
-  useEffect(() => {
-    const t = window.setTimeout(() => setTimedOut(true), REVEAL_TIMEOUT_MS);
-    return () => window.clearTimeout(t);
-  }, []);
 
   // The pre-paint script in the root layout handles the first paint. This
   // handles client-side navigation, e.g. clicking the Terms link on the splash
@@ -66,78 +59,82 @@ export default function Splash() {
       aria-modal="true"
       aria-label="Small Town Heart. New single from The Jack Wharff Band"
     >
-      {/* Decorative backdrop. Painted as a CSS background rather than a
-          next/image: it is purely decorative, it is scaled far past its own
-          resolution, and background-size/position give the art direction
-          direct control. The texture file is a downsampled copy of the cover
-          (40K) so the splash does not pay for the full-resolution asset
-          twice. See the splash-backdrop rules in globals.css. */}
+      {/* Decorative backdrop: the Small Town Heart video, muted and looping.
+          Two encodes swapped by breakpoint, hidden with CSS rather than
+          rendered conditionally so the server markup is right on first paint
+          (a window check would flash the wrong one before hydration). See the
+          splash-backdrop rules in globals.css. */}
       <div className="splash-backdrop" aria-hidden="true">
-        <div className="splash-backdrop-art" />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="splash-backdrop-video hidden md:block"
+        >
+          <source src={VIDEO_DESKTOP} type="video/mp4" />
+        </video>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="splash-backdrop-video block md:hidden"
+        >
+          <source src={VIDEO_MOBILE} type="video/mp4" />
+        </video>
         <div className="splash-grain" />
         <div className="splash-vignette" />
       </div>
 
-      <div
-        className={`${
-          ready ? "splash-ready " : ""
-        }relative h-full w-full flex items-center justify-center px-6 py-10 overflow-y-auto`}
-      >
-        {/* Desktop splits into cover-left / copy-right so the artwork can run
-            much larger than it can when stacked. Below md the original centred
-            column is kept exactly as it was. */}
-        <div className="flex flex-col md:flex-row items-center md:justify-center text-center md:text-left w-full max-w-5xl md:max-w-6xl md:gap-12 lg:gap-16">
-          {/* Cover art, also a link out. */}
-          <a
-            href={STREAM_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Small Town Heart cover art, pre-save (opens in new tab)"
-            className="splash-rise splash-cover relative aspect-square shrink-0 overflow-hidden hover:opacity-90 transition-opacity"
-            style={{ animationDelay: "0ms" }}
-          >
-            <Image
-              src={COVER_SRC}
-              alt="Small Town Heart single cover art"
-              fill
-              priority
-              sizes="(max-width: 768px) 78vw, 30rem"
-              className="object-cover"
-              // The ref check catches a browser-cached image that fires onLoad
-              // before React attaches the handler. onError reveals anyway --
-              // fail open, always.
-              ref={(img) => {
-                if (img?.complete) setCoverLoaded(true);
-              }}
-              onLoad={() => setCoverLoaded(true)}
-              onError={() => setCoverLoaded(true)}
-            />
-          </a>
-
-          <div className="flex flex-col items-center md:items-start mt-8 sm:mt-10 md:mt-0">
-            {/* The negative right margin cancels the trailing letter-space so
-                the tracked-out line stays optically centered. Keep it equal to
-                the tracking value if that changes. */}
-            <span
-              className="splash-rise font-athelas uppercase text-cream text-[11px] tracking-[0.2em] mr-[-0.2em]"
-              style={
-                {
-                  animationDelay: "180ms",
-                  "--rise-to": 0.75,
-                } as React.CSSProperties
-              }
+      {/* splash-ready is static now: with no cover art to wait on, the rise
+          cascade starts on load while the video streams in over the dark
+          base. */}
+      <div className="splash-ready relative h-full w-full flex items-center justify-center px-6 py-10 overflow-y-auto">
+        {/* Single centred column: the video is the artwork now, so the copy
+            sits alone over it at every breakpoint. */}
+        <div className="flex flex-col items-center text-center w-full max-w-5xl">
+          <div className="flex flex-col items-center">
+            {/* Band logo as the eyebrow: brand mark above, release title
+                below. The white PNG is used as a mask over a cream fill so
+                the mark matches the title color exactly; no cream variant of
+                the logo exists in /branding. */}
+            <div
+              className="splash-rise w-44 sm:w-52 md:w-60"
+              style={{ animationDelay: "0ms" }}
             >
-              The new single
-            </span>
+              <div
+                role="img"
+                aria-label="The Jack Wharff Band"
+                className="w-full bg-cream"
+                style={{
+                  aspectRatio: "2419 / 686",
+                  WebkitMaskImage:
+                    "url(/branding/TJWB_LogoWhite_Horizontal.png)",
+                  maskImage: "url(/branding/TJWB_LogoWhite_Horizontal.png)",
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  maskPosition: "center",
+                }}
+              />
+            </div>
 
             {/* Athelas roman, echoing the letterspaced serif on the cover
-                itself rather than the typewriter display face. */}
+                itself rather than the typewriter display face. Sized to own
+                the frame now that it carries the splash alone; the soft
+                shadow keeps it separated from bright passages in the video. */}
             <p
               className="splash-rise font-athelas text-cream tracking-[0.08em] leading-[1.05] mt-4"
               style={
                 {
-                  animationDelay: "300ms",
-                  fontSize: "clamp(2.5rem, 7vw, 4.25rem)",
+                  animationDelay: "140ms",
+                  fontSize: "clamp(3.25rem, 9vw, 7rem)",
+                  textShadow: "0 2px 28px rgba(8, 8, 8, 0.55)",
                 } as React.CSSProperties
               }
             >
@@ -146,7 +143,7 @@ export default function Splash() {
 
             <div
               className="splash-rise flex flex-col sm:flex-row gap-3 mt-10 w-full sm:w-auto"
-              style={{ animationDelay: "440ms" }}
+              style={{ animationDelay: "300ms" }}
             >
               <a
                 href={STREAM_LINK}
@@ -154,7 +151,7 @@ export default function Splash() {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto text-center bg-russet text-cream font-athelas uppercase tracking-[0.2em] text-xs px-10 py-4 hover:opacity-80 transition-opacity"
               >
-                Pre-Save
+                Listen Now
                 <span className="sr-only"> (opens in new tab)</span>
               </a>
               <button
@@ -173,7 +170,7 @@ export default function Splash() {
               className="splash-rise font-athelas text-cream text-[11px] leading-relaxed mt-8 max-w-[26rem]"
               style={
                 {
-                  animationDelay: "580ms",
+                  animationDelay: "460ms",
                   "--rise-to": 0.7,
                 } as React.CSSProperties
               }
