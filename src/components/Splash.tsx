@@ -10,12 +10,12 @@ import { usePathname } from "next/navigation";
 const SPLASH_KEY = "jw_splash_smalltownheart";
 const STREAM_LINK = "https://jackwharffband.ffm.to/smalltownheart.OWE";
 
-// Official-video cutdowns hosted on Cloudinary: a vertical 15s loop for
+// Official-video cutdowns hosted on media.thedigitalwash.com: a vertical 15s loop for
 // phones, the wide trailer for desktop. Both are the NoCTA "Web" encodes.
 const VIDEO_DESKTOP =
-  "https://res.cloudinary.com/dgbiatexy/video/upload/v1786645019/TheJackWharffBand_V_SmallTownHeart_OfficialVideo_YoutubeTrailer_Wide_17_NoCTA_V1_FNL_Web_tjx5ha.mp4";
+  "https://media.thedigitalwash.com/the-jack-wharff-band/TheJackWharffBand_V_SmallTownHeart_OfficialVideo_YoutubeTrailer_Wide_17_NoCTA_V1_FNL_Web_tjx5ha.mp4";
 const VIDEO_MOBILE =
-  "https://res.cloudinary.com/dgbiatexy/video/upload/v1786645019/TheJackWharffBand_V_SmallTownHeart_OfficialVideo_Cutdowns_Vertical_15_NoCta_V1_FNL_Web_kbkqlv.mp4";
+  "https://media.thedigitalwash.com/the-jack-wharff-band/TheJackWharffBand_V_SmallTownHeart_OfficialVideo_Cutdowns_Vertical_15_NoCta_V1_FNL_Web_kbkqlv.mp4";
 
 // Must match the #splash-overlay opacity transition in globals.css.
 const EXIT_MS = 800;

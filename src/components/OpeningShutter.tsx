@@ -71,7 +71,7 @@ export default function OpeningShutter() {
             poster="/backgrounds/TJWB_AboutHeader.webp"
           >
             <source
-              src="https://res.cloudinary.com/dgbiatexy/video/upload/v1782481528/TJWB_MobileHero_hbhucz.mp4"
+              src="https://media.thedigitalwash.com/the-jack-wharff-band/TJWB_MobileHero_hbhucz.mp4"
               type="video/mp4"
             />
           </video>

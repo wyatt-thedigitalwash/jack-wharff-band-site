@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net",
               "font-src 'self' https://fonts.gstatic.com https://use.typekit.net",
               "img-src 'self' data: https: blob:",
-              "media-src 'self' https://res.cloudinary.com",
+              "media-src 'self' https://media.thedigitalwash.com",
               "frame-src https://www.youtube-nocookie.com https://www.youtube.com https://www.googletagmanager.com",
               "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.evidon.com",
             ].join('; '),

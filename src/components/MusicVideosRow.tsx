@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 const CARDS = [
-  { title: "Music", subtitle: "the catalog", href: "/music", video: "https://res.cloudinary.com/dgbiatexy/video/upload/f_auto,q_auto/v1781871954/TJWB_Videos_sy3ubl.mp4" },
-  { title: "Videos", subtitle: "the live cuts", href: "/videos", video: "https://res.cloudinary.com/dgbiatexy/video/upload/f_auto,q_auto/v1781871953/TJWB_Music_hpts7g.mp4" },
+  { title: "Music", subtitle: "the catalog", href: "/music", video: "https://media.thedigitalwash.com/the-jack-wharff-band/TJWB_Videos_sy3ubl.mp4" },
+  { title: "Videos", subtitle: "the live cuts", href: "/videos", video: "https://media.thedigitalwash.com/the-jack-wharff-band/TJWB_Music_hpts7g.mp4" },
 ];
 
 export default function MusicVideosRow() {

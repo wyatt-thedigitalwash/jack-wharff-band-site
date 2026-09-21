@@ -72,7 +72,7 @@ export default async function TourPageContent() {
           <div className="w-1/2 relative">
             <div className="sticky top-0 h-screen overflow-hidden">
               <video
-                src="https://res.cloudinary.com/dgbiatexy/video/upload/f_auto,q_auto/v1781871954/TJWB_Videos_sy3ubl.mp4"
+                src="https://media.thedigitalwash.com/the-jack-wharff-band/TJWB_Videos_sy3ubl.mp4"
                 autoPlay
                 muted
                 loop
@@ -89,7 +89,7 @@ export default async function TourPageContent() {
           {/* Video hero */}
           <div className="relative w-full" style={{ aspectRatio: "1 / 1" }}>
             <video
-              src="https://res.cloudinary.com/dgbiatexy/video/upload/f_auto,q_auto/v1781871954/TJWB_Videos_sy3ubl.mp4"
+              src="https://media.thedigitalwash.com/the-jack-wharff-band/TJWB_Videos_sy3ubl.mp4"
               autoPlay
               muted
               loop
