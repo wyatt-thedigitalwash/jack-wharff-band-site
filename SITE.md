@@ -72,7 +72,7 @@ The site opens cinematically. Four photos quick-cut at increasing sizes, the las
 - Apple Music: https://music.apple.com/us/artist/jack-wharff/1627355124
 - Amazon Music: https://music.amazon.com/artists/B0B31QWLLY/jack-wharff
 - Pandora: https://pandora.app.link/rmPezVCuFOb
-- YouTube: https://www.youtube.com/@JackWharff
+- YouTube: https://www.youtube.com/@thejackwharffband
 - TikTok: https://www.tiktok.com/@jackwharffband
 - Instagram: https://www.instagram.com/jackwharffband/
 - Facebook: https://www.facebook.com/TheJackWharffBand/

@@ -131,7 +131,7 @@ export default function RootLayout({
               sameAs: [
                 "https://open.spotify.com/artist/7Hw6prEoT6M58ChR8A1Rlz",
                 "https://music.apple.com/us/artist/jack-wharff/1627355124",
-                "https://www.youtube.com/@JackWharff",
+                "https://www.youtube.com/@thejackwharffband",
                 "https://www.instagram.com/jackwharffband/",
                 "https://www.tiktok.com/@jackwharffband",
                 "https://www.facebook.com/TheJackWharffBand/",

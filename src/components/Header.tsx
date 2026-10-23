@@ -29,7 +29,7 @@ const HEADER_SOCIALS = [
   { href: "https://www.instagram.com/jackwharffband/", label: "Instagram", Icon: FaInstagram },
   { href: "https://www.tiktok.com/@jackwharffband", label: "TikTok", Icon: FaTiktok },
   { href: "https://www.facebook.com/jackwharffband", label: "Facebook", Icon: FaFacebookF },
-  { href: "https://www.youtube.com/@JackWharff", label: "YouTube", Icon: FaYoutube },
+  { href: "https://www.youtube.com/@thejackwharffband", label: "YouTube", Icon: FaYoutube },
   { href: "https://open.spotify.com/artist/7Hw6prEoT6M58ChR8A1Rlz", label: "Spotify", Icon: FaSpotify },
   { href: "https://music.apple.com/us/artist/jack-wharff-band/1555651498", label: "Apple Music", Icon: FaItunes },
   { href: "https://music.amazon.com/artists/B08ZYRHWJT/jack-wharff-band", label: "Amazon Music", Icon: FaAmazon },

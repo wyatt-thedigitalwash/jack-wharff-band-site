@@ -18,7 +18,7 @@ const FOOTER_SOCIALS = [
   { href: "https://music.apple.com/us/artist/jack-wharff/1627355124", label: "Apple Music", Icon: FaItunes },
   { href: "https://music.amazon.com/artists/B0B31QWLLY/jack-wharff", label: "Amazon Music", Icon: FaAmazon },
   { href: "https://pandora.app.link/rmPezVCuFOb", label: "Pandora", Icon: SiPandora },
-  { href: "https://www.youtube.com/@JackWharff", label: "YouTube", Icon: FaYoutube },
+  { href: "https://www.youtube.com/@thejackwharffband", label: "YouTube", Icon: FaYoutube },
   { href: "https://www.tiktok.com/@jackwharffband", label: "TikTok", Icon: FaTiktok },
   { href: "https://www.instagram.com/jackwharffband/", label: "Instagram", Icon: FaInstagram },
   { href: "https://www.facebook.com/TheJackWharffBand/", label: "Facebook", Icon: FaFacebookF },
