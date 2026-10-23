@@ -3,7 +3,21 @@ import Image from "next/image";
 // Leads with the current single, which is also what the splash promotes. Keep
 // these two in step: if the campaign moves on, the splash and this grid should
 // change together rather than pointing at different releases.
-const RELEASES = [
+const RELEASES: {
+  title: string;
+  subtitle: string;
+  cover: string;
+  href: string;
+  cta?: string;
+}[] = [
+  {
+    title: "Torn Up Sweater",
+    subtitle: "torn up sweater",
+    cover: "/covers/TheJackWharffBand_TornUpSweater_Cover.jpg",
+    href: "https://thejackwharffband.ffm.to/tornupsweater.OWE",
+    // Pre-release until November 3rd; drop this once it is out.
+    cta: "Pre-Save",
+  },
   {
     title: "Small Town Heart",
     subtitle: "small town heart",
@@ -15,12 +29,6 @@ const RELEASES = [
     subtitle: "lowlife",
     cover: "/covers/TJWB_LowLife_Cover.jpg",
     href: "https://thejackwharffband.ffm.to/lowlife.OWE",
-  },
-  {
-    title: "Strange EP",
-    subtitle: "strange ep",
-    cover: "/covers/TJWB_StrangeEP_Cover.jpg",
-    href: "https://jackwharff.lnk.to/strangeEPWE",
   },
 ];
 
@@ -84,7 +92,7 @@ export default function ReleasesGrid() {
                   color: "#EEF0E2",
                 }}
               >
-                Listen Now
+                {release.cta ?? "Listen Now"}
               </span>
               <span
                 style={{

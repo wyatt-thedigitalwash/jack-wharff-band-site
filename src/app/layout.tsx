@@ -12,7 +12,7 @@ import Splash from "@/components/Splash";
 
 // Keep in sync with SPLASH_KEY in src/components/Splash.tsx. Read before paint
 // so a visitor who already entered this session never sees the splash flash.
-const SPLASH_KEY = "jw_splash_smalltownheart";
+const SPLASH_KEY = "jw_splash_tornupsweater";
 const splashScript = `try{var e=document.documentElement;if(sessionStorage.getItem('${SPLASH_KEY}')){e.classList.add('splash-entered')}else if(location.pathname.indexOf('/legal')===0){e.classList.add('splash-exempt')}}catch(err){}`;
 
 const momsTypewriter = localFont({

@@ -1,21 +1,24 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 // Versioned so a new campaign re-shows the splash to everyone automatically.
 // Bump the suffix when the release changes. sessionStorage, not localStorage:
 // it should come back on a new session, not be dismissed forever.
-const SPLASH_KEY = "jw_splash_smalltownheart";
-const STREAM_LINK = "https://jackwharffband.ffm.to/smalltownheart.OWE";
+const SPLASH_KEY = "jw_splash_tornupsweater";
+const STREAM_LINK = "https://thejackwharffband.ffm.to/tornupsweater.OWE";
 
-// Official-video cutdowns hosted on media.thedigitalwash.com: a vertical 15s loop for
-// phones, the wide trailer for desktop. Both are the NoCTA "Web" encodes.
-const VIDEO_DESKTOP =
-  "https://media.thedigitalwash.com/the-jack-wharff-band/TheJackWharffBand_V_SmallTownHeart_OfficialVideo_YoutubeTrailer_Wide_17_NoCTA_V1_FNL_Web_tjx5ha.mp4";
-const VIDEO_MOBILE =
-  "https://media.thedigitalwash.com/the-jack-wharff-band/TheJackWharffBand_V_SmallTownHeart_OfficialVideo_Cutdowns_Vertical_15_NoCta_V1_FNL_Web_kbkqlv.mp4";
+// The photo is the backdrop only, requested small since it is blurred beyond
+// recognition anyway. The cover art is the sharp square.
+const PHOTO = "/backgrounds/TheJackWharffBand_TornUpSweater_Photo.JPG";
+const COVER = "/covers/TheJackWharffBand_TornUpSweater_Cover.jpg";
+
+// Neutral grotesque for this campaign, matching the lowercase lockup on the
+// Torn Up Sweater cover. System faces only, so nothing extra loads.
+const LOCKUP_FONT = '"Helvetica Neue", Helvetica, Arial, sans-serif';
 
 // Must match the #splash-overlay opacity transition in globals.css.
 const EXIT_MS = 800;
@@ -57,121 +60,90 @@ export default function Splash() {
       id="splash-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label="Small Town Heart. New single from The Jack Wharff Band"
+      aria-label="Torn Up Sweater. New single from The Jack Wharff Band, out November 3rd"
     >
-      {/* Decorative backdrop: the Small Town Heart video, muted and looping.
-          Two encodes swapped by breakpoint, hidden with CSS rather than
-          rendered conditionally so the server markup is right on first paint
-          (a window check would flash the wrong one before hydration). See the
-          splash-backdrop rules in globals.css. */}
+      {/* Decorative backdrop: the Torn Up Sweater photo, blown up, blurred
+          and dimmed so the sharp cover art reads as the focal point.
+          See the splash-backdrop rules in globals.css. */}
       <div className="splash-backdrop" aria-hidden="true">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="splash-backdrop-video hidden md:block"
-        >
-          <source src={VIDEO_DESKTOP} type="video/mp4" />
-        </video>
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="splash-backdrop-video block md:hidden"
-        >
-          <source src={VIDEO_MOBILE} type="video/mp4" />
-        </video>
+        <Image
+          src={PHOTO}
+          alt=""
+          fill
+          loading="eager"
+          sizes="50vw"
+          className="splash-backdrop-photo"
+        />
         <div className="splash-grain" />
-        <div className="splash-vignette" />
       </div>
 
-      {/* splash-ready is static now: with no cover art to wait on, the rise
-          cascade starts on load while the video streams in over the dark
-          base. */}
-      <div className="splash-ready relative h-full w-full flex items-center justify-center px-6 py-10 overflow-y-auto">
-        {/* Single centred column: the video is the artwork now, so the copy
-            sits alone over it at every breakpoint. */}
-        <div className="flex flex-col items-center text-center w-full max-w-5xl">
-          <div className="flex flex-col items-center">
-            {/* Band logo as the eyebrow: brand mark above, release title
-                below. The white PNG is used as a mask over a cream fill so
-                the mark matches the title color exactly; no cream variant of
-                the logo exists in /branding. */}
+      <div className="splash-ready relative h-full w-full flex items-center justify-center px-6 py-10 md:px-12 overflow-y-auto">
+        {/* Desktop: copy on the left, cover art large on the right. Mobile:
+            cover stacks on top. The DOM keeps the copy first so screen
+            readers hear the title before the image. */}
+        <div
+          className="flex flex-col-reverse md:flex-row items-center justify-center gap-8 md:gap-[5vw] w-full max-w-6xl text-white"
+          style={{ fontFamily: LOCKUP_FONT }}
+        >
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <div
-              className="splash-rise w-44 sm:w-52 md:w-60"
-              style={{ animationDelay: "0ms" }}
+              className="splash-rise"
+              style={{
+                animationDelay: "140ms",
+                textShadow: "0 1px 18px rgba(0, 0, 0, 0.35)",
+              }}
             >
-              <div
-                role="img"
-                aria-label="The Jack Wharff Band"
-                className="w-full bg-cream"
-                style={{
-                  aspectRatio: "2419 / 686",
-                  WebkitMaskImage:
-                    "url(/branding/TJWB_LogoWhite_Horizontal.png)",
-                  maskImage: "url(/branding/TJWB_LogoWhite_Horizontal.png)",
-                  WebkitMaskSize: "contain",
-                  maskSize: "contain",
-                  WebkitMaskRepeat: "no-repeat",
-                  maskRepeat: "no-repeat",
-                  WebkitMaskPosition: "center",
-                  maskPosition: "center",
-                }}
-              />
+              <p
+                className="font-semibold lowercase leading-none tracking-[-0.015em] whitespace-nowrap"
+                style={{ fontSize: "clamp(1.9rem, 3vw, 3.75rem)" }}
+              >
+                Torn Up Sweater
+              </p>
+              <p
+                className="font-semibold lowercase leading-tight tracking-[-0.01em] mt-1.5"
+                style={{ fontSize: "clamp(1rem, 1.35vw, 1.75rem)" }}
+              >
+                The Jack Wharff Band
+              </p>
+              <p
+                className="font-medium lowercase tracking-[0.02em] mt-5 md:mt-6 opacity-80"
+                style={{ fontSize: "clamp(0.85rem, 0.95vw, 1.1rem)" }}
+              >
+                Out November 3rd
+              </p>
             </div>
 
-            {/* Athelas roman, echoing the letterspaced serif on the cover
-                itself rather than the typewriter display face. Sized to own
-                the frame now that it carries the splash alone; the soft
-                shadow keeps it separated from bright passages in the video. */}
-            <p
-              className="splash-rise font-athelas text-cream tracking-[0.08em] leading-[1.05] mt-4"
-              style={
-                {
-                  animationDelay: "140ms",
-                  fontSize: "clamp(3.25rem, 9vw, 7rem)",
-                  textShadow: "0 2px 28px rgba(8, 8, 8, 0.55)",
-                } as React.CSSProperties
-              }
-            >
-              Small Town Heart
-            </p>
-
             <div
-              className="splash-rise flex flex-col sm:flex-row gap-3 mt-10 w-full sm:w-auto"
+              className="splash-rise flex flex-col sm:flex-row gap-3 mt-8 md:mt-10 w-full sm:w-auto"
               style={{ animationDelay: "300ms" }}
             >
               <a
                 href={STREAM_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto text-center bg-russet text-cream font-athelas uppercase tracking-[0.2em] text-xs px-10 py-4 hover:opacity-80 transition-opacity"
+                className="w-full sm:w-auto text-center bg-white text-black font-semibold lowercase text-sm px-10 py-3.5 hover:opacity-80 transition-opacity"
               >
-                Listen Now
+                Pre-Save
                 <span className="sr-only"> (opens in new tab)</span>
               </a>
               <button
                 type="button"
                 onClick={enterSite}
-                className="w-full sm:w-auto text-center border border-cream bg-transparent text-cream font-athelas uppercase tracking-[0.2em] text-xs px-10 py-4 cursor-pointer hover:opacity-70 transition-opacity"
+                className="w-full sm:w-auto text-center border border-white bg-transparent text-white font-semibold lowercase text-sm px-10 py-3.5 cursor-pointer hover:opacity-70 transition-opacity"
               >
                 Enter Site
               </button>
             </div>
 
             {/* Arbitration / class-action notice, directly under the entry
-                buttons so no visitor can claim they had no notice of it. Each
-                of the three phrases deep-links to its own section. */}
+              buttons so no visitor can claim they had no notice of it. Each
+              of the three phrases deep-links to its own section. */}
             <p
-              className="splash-rise font-athelas text-cream text-[11px] leading-relaxed mt-8 max-w-[26rem]"
+              className="splash-rise text-white text-[11px] leading-relaxed mt-8 max-w-[24rem]"
               style={
                 {
                   animationDelay: "460ms",
-                  "--rise-to": 0.7,
+                  "--rise-to": 0.8,
                 } as React.CSSProperties
               }
             >
@@ -198,6 +170,22 @@ export default function Splash() {
               </Link>
               .
             </p>
+          </div>
+
+          {/* Sized off both axes so the art stays as large as possible
+              without pushing the copy column off a short laptop screen. */}
+          <div
+            className="splash-rise relative shrink-0 aspect-square w-[min(72vw,340px)] md:w-[min(40vw,68vh,640px)] shadow-[0_16px_50px_rgba(0,0,0,0.4)]"
+            style={{ animationDelay: "0ms" }}
+          >
+            <Image
+              src={COVER}
+              alt="Torn Up Sweater cover art: a torn sweater caught on a wire above a dumpster in a sunlit alley"
+              fill
+              loading="eager"
+              sizes="(max-width: 768px) 72vw, 640px"
+              className="object-cover"
+            />
           </div>
         </div>
       </div>

@@ -11,6 +11,13 @@ const RELEASES: {
 }[] = [
   // Reverse-chronological, so the current single leads.
   {
+    title: "Torn Up Sweater",
+    displayTitle: "torn up sweater",
+    year: "2026",
+    cover: "/covers/TheJackWharffBand_TornUpSweater_Cover.jpg",
+    href: "https://thejackwharffband.ffm.to/tornupsweater.OWE",
+  },
+  {
     title: "Small Town Heart",
     displayTitle: "small town heart",
     year: "2026",

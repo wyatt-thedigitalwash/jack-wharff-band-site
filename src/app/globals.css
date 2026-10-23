@@ -411,61 +411,40 @@ main a:not([class]):hover {
   transition: opacity 800ms ease;
 }
 
-/* ── Backdrop: the Small Town Heart official video, muted and looping ──
-   The dark base paints first while the video streams in, so the frame never
+/* ── Backdrop: the Torn Up Sweater photo, blurred and dimmed ──
+   The dark base paints first while the image loads, so the frame never
    flashes light. */
 .splash-backdrop {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  /* The blended layers below must be confined to this element. Without
-     `isolation`, their blend group root is #splash-overlay, and Chrome then
+  /* The blended grain layer must be confined to this element. Without
+     `isolation`, its blend group root is #splash-overlay, and Chrome then
      composites the whole overlay as one group -- which drops the backdrop
-     entirely. Isolating also matches the intent: these layers are meant to
-     work on the backdrop, not on anything in front of it. */
+     entirely. */
   isolation: isolate;
   background: #080808;
 }
-.splash-backdrop-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.splash-backdrop-photo {
   object-fit: cover;
-  /* Pulled down a step so the cream copy keeps its contrast over the
-     footage's bright passages; the vignette below does the targeted work in
-     the bands where the copy actually sits. */
-  filter: brightness(0.8);
+  /* Heavy blur so the sharp square in the middle reads as the artwork, and
+     dimmed so the white lockup holds contrast over the bright wall on the
+     left of the frame. The scale pushes the blur's soft, see-through edge
+     out past the viewport. */
+  filter: blur(12px) brightness(0.58);
+  transform: scale(1.15);
 }
 
-/* Film grain. Inline SVG noise so it costs no extra request; `screen` because
-   the field is near-black throughout now, and `overlay` would multiply back
-   down and never show. */
+/* Film grain. Inline SVG noise so it costs no extra request. */
 .splash-grain {
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
-  opacity: 0.05;
+  opacity: 0.06;
   mix-blend-mode: screen;
 }
 
-/* The copy sits centred over live footage now, so this is a scrim rather than
-   an edge vignette: a steady mid-frame band holds the title and buttons at a
-   readable contrast wherever the video drifts bright, with heavier top and
-   bottom edges to frame the card. Works with the brightness(0.8) pull on the
-   video itself. */
-.splash-vignette {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(8, 8, 8, 0.55) 0%,
-    rgba(8, 8, 8, 0.3) 30%,
-    rgba(8, 8, 8, 0.3) 65%,
-    rgba(8, 8, 8, 0.62) 100%
-  );
-}
 #splash-overlay.is-exiting {
   opacity: 0;
   pointer-events: none;
