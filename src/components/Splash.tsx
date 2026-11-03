@@ -60,7 +60,7 @@ export default function Splash() {
       id="splash-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label="Torn Up Sweater. New single from The Jack Wharff Band, out November 3rd"
+      aria-label="Torn Up Sweater. New single from The Jack Wharff Band, out now"
     >
       {/* Decorative backdrop: the Torn Up Sweater photo, blown up, blurred
           and dimmed so the sharp cover art reads as the focal point.
@@ -109,7 +109,7 @@ export default function Splash() {
                 className="font-medium lowercase tracking-[0.02em] mt-5 md:mt-6 opacity-80"
                 style={{ fontSize: "clamp(0.85rem, 0.95vw, 1.1rem)" }}
               >
-                Out November 3rd
+                Out Now
               </p>
             </div>
 
@@ -123,7 +123,7 @@ export default function Splash() {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto text-center bg-white text-black font-semibold lowercase text-sm px-10 py-3.5 hover:opacity-80 transition-opacity"
               >
-                Pre-Save
+                Listen Now
                 <span className="sr-only"> (opens in new tab)</span>
               </a>
               <button

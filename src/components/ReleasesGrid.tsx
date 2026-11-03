@@ -15,8 +15,6 @@ const RELEASES: {
     subtitle: "torn up sweater",
     cover: "/covers/TheJackWharffBand_TornUpSweater_Cover.jpg",
     href: "https://thejackwharffband.ffm.to/tornupsweater.OWE",
-    // Pre-release until November 3rd; drop this once it is out.
-    cta: "Pre-Save",
   },
   {
     title: "Small Town Heart",
