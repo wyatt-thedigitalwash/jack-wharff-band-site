@@ -12,7 +12,7 @@ import Splash from "@/components/Splash";
 
 // Keep in sync with SPLASH_KEY in src/components/Splash.tsx. Read before paint
 // so a visitor who already entered this session never sees the splash flash.
-const SPLASH_KEY = "jw_splash_tornupsweater";
+const SPLASH_KEY = "jw_splash_cominghome";
 const splashScript = `try{var e=document.documentElement;if(sessionStorage.getItem('${SPLASH_KEY}')){e.classList.add('splash-entered')}else if(location.pathname.indexOf('/legal')===0){e.classList.add('splash-exempt')}}catch(err){}`;
 
 const momsTypewriter = localFont({
@@ -29,19 +29,18 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-// Splash-only face. Extracted from the supplied Athelas.ttc collection and
-// converted to woff2 -- next/font/local does not accept .ttc, and this single
-// face is 128K against the collection's 3.1MB.
-// Regular only, by request. Anything asking for bold or italic on the splash
-// is therefore synthesised by the browser rather than loaded, so prefer real
-// weight/style changes here over `font-semibold` or `italic` utilities.
+// Splash-only face for the Coming Home campaign. Extracted from the supplied
+// Tamil Sangam MN.ttc collection (next/font/local does not accept .ttc) and
+// subset to Latin, since the splash copy never needs the Tamil glyphs. That
+// takes it from 365K to 14K. Regular only, so prefer real weight changes over
+// `font-semibold`, which the browser would synthesise.
 // The variable is deliberately named differently from the Tailwind theme key
-// (--font-athelas) so the theme entry can point at it without self-reference.
-const athelas = localFont({
-  src: "../../public/fonts/Athelas-Regular.woff2",
+// (--font-sangam) so the theme entry can point at it without self-reference.
+const sangam = localFont({
+  src: "../../public/fonts/TamilSangamMN-Regular.woff2",
   weight: "400",
   style: "normal",
-  variable: "--athelas-font",
+  variable: "--sangam-font",
   display: "swap",
 });
 
@@ -96,7 +95,7 @@ export default function RootLayout({
     // before React hydrates, so server and client markup intentionally differ.
     <html
       lang="en"
-      className={`${momsTypewriter.variable} ${cormorant.variable} ${athelas.variable} h-full antialiased`}
+      className={`${momsTypewriter.variable} ${cormorant.variable} ${sangam.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

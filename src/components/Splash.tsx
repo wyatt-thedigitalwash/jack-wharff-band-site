@@ -8,17 +8,13 @@ import { usePathname } from "next/navigation";
 // Versioned so a new campaign re-shows the splash to everyone automatically.
 // Bump the suffix when the release changes. sessionStorage, not localStorage:
 // it should come back on a new session, not be dismissed forever.
-const SPLASH_KEY = "jw_splash_tornupsweater";
-const STREAM_LINK = "https://thejackwharffband.ffm.to/tornupsweater.OWE";
+const SPLASH_KEY = "jw_splash_cominghome";
+const PRESAVE_LINK = "https://thejackwharffband.ffm.to/cominghome.OWE";
 
-// The photo is the backdrop only, requested small since it is blurred beyond
-// recognition anyway. The cover art is the sharp square.
-const PHOTO = "/backgrounds/TheJackWharffBand_TornUpSweater_Photo.JPG";
-const COVER = "/covers/TheJackWharffBand_TornUpSweater_Cover.jpg";
-
-// Neutral grotesque for this campaign, matching the lowercase lockup on the
-// Torn Up Sweater cover. System faces only, so nothing extra loads.
-const LOCKUP_FONT = '"Helvetica Neue", Helvetica, Arial, sans-serif';
+// The album cover photo without its type. The lockup is laid over it
+// separately so it stays sharp at any size and the photo can crop freely.
+const PHOTO = "/backgrounds/TheJackWharffBand_ComingHome_Photo.jpg";
+const LOCKUP = "/branding/TheJackWharffBand_ComingHome_Lockup.png";
 
 // Must match the #splash-overlay opacity transition in globals.css.
 const EXIT_MS = 800;
@@ -60,89 +56,90 @@ export default function Splash() {
       id="splash-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label="Torn Up Sweater. New single from The Jack Wharff Band, out now"
+      aria-label="Coming Home. New album from The Jack Wharff Band, out December 4"
     >
-      {/* Decorative backdrop: the Torn Up Sweater photo, blown up, blurred
-          and dimmed so the sharp cover art reads as the focal point.
-          See the splash-backdrop rules in globals.css. */}
       <div className="splash-backdrop" aria-hidden="true">
         <Image
           src={PHOTO}
           alt=""
           fill
           loading="eager"
-          sizes="50vw"
+          sizes="100vw"
           className="splash-backdrop-photo"
         />
-        <div className="splash-grain" />
       </div>
 
-      <div className="splash-ready relative h-full w-full flex items-center justify-center px-6 py-10 md:px-12 overflow-y-auto">
-        {/* Desktop: copy on the left, cover art large on the right. Mobile:
-            cover stacks on top. The DOM keeps the copy first so screen
-            readers hear the title before the image. */}
-        <div
-          className="flex flex-col-reverse md:flex-row items-center justify-center gap-8 md:gap-[5vw] w-full max-w-6xl text-white"
-          style={{ fontFamily: LOCKUP_FONT }}
-        >
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+      {/* Lockup and date over the roofline, sitting right of centre as on
+          the cover; pre-save and entry at the foot. On phones the photo is
+          always cropped to full height, so the roof sits at a fixed point and
+          the lockup is pinned just below it. Wider screens split the free
+          height 2:1 instead. Either way the column scrolls rather than
+          overlapping on short screens. */}
+      <div className="splash-ready relative h-full w-full overflow-y-auto">
+        <div className="min-h-full flex flex-col items-center px-6 pb-[4vh] text-white font-sangam">
+          <div className="shrink-0 h-[48svh] md:h-auto md:shrink md:flex-[2] md:min-h-16" />
+
+          {/* Lockup and release date move as one, so the date stays centred
+              under the lockup's offset rather than the screen. */}
+          <div className="flex flex-col items-center w-[64vw] md:w-[min(41vw,900px)] translate-x-[10vw] md:translate-x-[6.5vw]">
             <div
-              className="splash-rise"
+              className="splash-rise relative w-full"
+              style={{ aspectRatio: "3262 / 606", animationDelay: "0ms" }}
+            >
+              <Image
+                src={LOCKUP}
+                alt="Coming Home, The Jack Wharff Band"
+                fill
+                loading="eager"
+                sizes="(max-width: 768px) 64vw, 41vw"
+                className="object-contain"
+              />
+            </div>
+            <p
+              className="splash-rise mt-4 md:mt-[1.6vw]"
               style={{
-                animationDelay: "140ms",
-                textShadow: "0 1px 18px rgba(0, 0, 0, 0.35)",
+                animationDelay: "160ms",
+                fontSize: "clamp(16px, 1.5vw, 28px)",
+                textShadow: "0 1px 14px rgba(0, 0, 0, 0.5)",
               }}
             >
-              <p
-                className="font-semibold lowercase leading-none tracking-[-0.015em] whitespace-nowrap"
-                style={{ fontSize: "clamp(1.9rem, 3vw, 3.75rem)" }}
-              >
-                Torn Up Sweater
-              </p>
-              <p
-                className="font-semibold lowercase leading-tight tracking-[-0.01em] mt-1.5"
-                style={{ fontSize: "clamp(1rem, 1.35vw, 1.75rem)" }}
-              >
-                The Jack Wharff Band
-              </p>
-              <p
-                className="font-medium lowercase tracking-[0.02em] mt-5 md:mt-6 opacity-80"
-                style={{ fontSize: "clamp(0.85rem, 0.95vw, 1.1rem)" }}
-              >
-                Out Now
-              </p>
-            </div>
+              out december 4
+            </p>
+          </div>
 
+          <div className="flex-1 min-h-10" />
+
+          <div className="flex flex-col items-center text-center">
             <div
-              className="splash-rise flex flex-col sm:flex-row gap-3 mt-8 md:mt-10 w-full sm:w-auto"
+              className="splash-rise flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
               style={{ animationDelay: "300ms" }}
             >
               <a
-                href={STREAM_LINK}
+                href={PRESAVE_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto text-center bg-white text-black font-semibold lowercase text-sm px-10 py-3.5 hover:opacity-80 transition-opacity"
+                className="w-full sm:w-auto text-center bg-white text-black border border-white text-sm tracking-[0.04em] px-8 py-3 hover:opacity-80 transition-opacity"
               >
-                Listen Now
+                pre-save/pre-order now
                 <span className="sr-only"> (opens in new tab)</span>
               </a>
               <button
                 type="button"
                 onClick={enterSite}
-                className="w-full sm:w-auto text-center border border-white bg-transparent text-white font-semibold lowercase text-sm px-10 py-3.5 cursor-pointer hover:opacity-70 transition-opacity"
+                className="w-full sm:w-auto text-center border border-white/70 text-sm tracking-[0.04em] px-8 py-3 cursor-pointer hover:bg-white hover:text-black transition-colors"
               >
-                Enter Site
+                enter site
               </button>
             </div>
 
             {/* Arbitration / class-action notice, directly under the entry
-              buttons so no visitor can claim they had no notice of it. Each
-              of the three phrases deep-links to its own section. */}
+                button so no visitor can claim they had no notice of it. Each
+                of the three phrases deep-links to its own section. */}
             <p
-              className="splash-rise text-white text-[11px] leading-relaxed mt-8 max-w-[24rem]"
+              className="splash-rise text-[11px] leading-relaxed mt-5 max-w-[24rem]"
               style={
                 {
-                  animationDelay: "460ms",
+                  animationDelay: "440ms",
                   "--rise-to": 0.8,
                 } as React.CSSProperties
               }
@@ -150,42 +147,26 @@ export default function Splash() {
               By entering, you consent to our{" "}
               <Link
                 href="/legal/terms"
-                className="font-semibold underline underline-offset-2 hover:opacity-70"
+                className="underline underline-offset-2 hover:opacity-70"
               >
                 Terms &amp; Conditions
               </Link>
               , including{" "}
               <Link
                 href="/legal/terms#section-17"
-                className="font-semibold underline underline-offset-2 hover:opacity-70"
+                className="underline underline-offset-2 hover:opacity-70"
               >
                 binding arbitration
               </Link>{" "}
               and a{" "}
               <Link
                 href="/legal/terms#class-action-waiver"
-                className="font-semibold underline underline-offset-2 hover:opacity-70"
+                className="underline underline-offset-2 hover:opacity-70"
               >
                 waiver of class action rights
               </Link>
               .
             </p>
-          </div>
-
-          {/* Sized off both axes so the art stays as large as possible
-              without pushing the copy column off a short laptop screen. */}
-          <div
-            className="splash-rise relative shrink-0 aspect-square w-[min(72vw,340px)] md:w-[min(40vw,68vh,640px)] shadow-[0_16px_50px_rgba(0,0,0,0.4)]"
-            style={{ animationDelay: "0ms" }}
-          >
-            <Image
-              src={COVER}
-              alt="Torn Up Sweater cover art: a torn sweater caught on a wire above a dumpster in a sunlit alley"
-              fill
-              loading="eager"
-              sizes="(max-width: 768px) 72vw, 640px"
-              className="object-cover"
-            />
           </div>
         </div>
       </div>

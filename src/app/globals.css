@@ -9,10 +9,10 @@
   --color-darkgreen: #181912;
 
   --font-display: "MomsTypewriter", "Courier New", monospace;
-  /* Points at the variable next/font emits for the local Athelas faces, so the
+  /* Points at the variable next/font emits for the local Tamil Sangam MN face, so the
      utility resolves to the hashed family name Next actually generates rather
      than a literal that would silently fall through to the stack below. */
-  --font-athelas: var(--athelas-font), Georgia, "Times New Roman", serif;
+  --font-sangam: var(--sangam-font), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-sans: "caraque-solid", Arial, Helvetica, sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-serif-italic: "caraque-solid", Arial, Helvetica, sans-serif;
@@ -411,38 +411,25 @@ main a:not([class]):hover {
   transition: opacity 800ms ease;
 }
 
-/* ── Backdrop: the Torn Up Sweater photo, blurred and dimmed ──
+/* ── Backdrop: the Coming Home cover photo, full bleed and untouched ──
    The dark base paints first while the image loads, so the frame never
-   flashes light. */
+   flashes light. The photo is portrait (4:5), so landscape screens crop top
+   and bottom: biasing below centre keeps the roofline, where the lockup sits,
+   and the lit windows in frame at the cost of some sky. */
 .splash-backdrop {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  /* The blended grain layer must be confined to this element. Without
-     `isolation`, its blend group root is #splash-overlay, and Chrome then
-     composites the whole overlay as one group -- which drops the backdrop
-     entirely. */
-  isolation: isolate;
   background: #080808;
 }
 .splash-backdrop-photo {
   object-fit: cover;
-  /* Heavy blur so the sharp square in the middle reads as the artwork, and
-     dimmed so the white lockup holds contrast over the bright wall on the
-     left of the frame. The scale pushes the blur's soft, see-through edge
-     out past the viewport. */
-  filter: blur(12px) brightness(0.58);
-  transform: scale(1.15);
+  object-position: center 50%;
 }
-
-/* Film grain. Inline SVG noise so it costs no extra request. */
-.splash-grain {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: 160px 160px;
-  opacity: 0.06;
-  mix-blend-mode: screen;
+@media (min-width: 768px) {
+  .splash-backdrop-photo {
+    object-position: center 68%;
+  }
 }
 
 #splash-overlay.is-exiting {
