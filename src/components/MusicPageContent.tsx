@@ -9,7 +9,14 @@ const RELEASES: {
   cover: string | null;
   href: string;
 }[] = [
-  // Reverse-chronological, so the current single leads.
+  // Reverse-chronological, so the current release leads.
+  {
+    title: "Coming Home",
+    displayTitle: "coming home",
+    year: "2026",
+    cover: "/covers/TheJackWharffBand_ComingHome_Cover.jpg",
+    href: "https://thejackwharffband.ffm.to/cominghome.OWE",
+  },
   {
     title: "Torn Up Sweater",
     displayTitle: "torn up sweater",
