@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 
 const VIDEOS = [
+  { embedId: "y03zp4mhhw4" },
   { embedId: "PZ_IveCpQFg" },
   { embedId: "m2sfsBC82ic" },
   { embedId: "SxB1zpzQFdE" },
