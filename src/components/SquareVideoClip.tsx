@@ -19,8 +19,8 @@ export default function SquareVideoClip({
 
   return (
     <section
-      data-bg={isDark ? "dark" : "light"}
-      className={`${isDark ? "bg-darkgreen" : "bg-cream"} py-16 md:py-24 px-6`}
+      data-bg="dark"
+      className={`${isDark ? "bg-brand-black" : "bg-brand-black"} py-16 md:py-24 px-6`}
     >
       <div
         ref={parallaxRef}

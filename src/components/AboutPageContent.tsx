@@ -9,32 +9,22 @@ const MEMBERS = [
 
 export default function AboutPageContent() {
   return (
-    <div style={{ backgroundColor: "#EEF0E2", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "var(--brand-black)", minHeight: "100vh" }}>
       {/* Hero image */}
       <div data-about-hero className="relative w-full" style={{ height: "70vh", minHeight: 400 }}>
-        {/* Mobile photo */}
         <Image
-          src="/other/TJWB_About.jpg"
-          alt="The Jack Wharff Band"
+          src="/other/TJWB_About_2026.jpg"
+          alt="The Jack Wharff Band standing in an alley beside a brick building at night"
           fill
           sizes="100vw"
-          className="object-cover md:hidden"
-          priority
-        />
-        {/* Desktop photo */}
-        <Image
-          src="/backgrounds/TJWB_AboutHeader.webp"
-          alt="The Jack Wharff Band"
-          fill
-          sizes="100vw"
-          className="object-cover hidden md:block"
+          className="object-cover"
           priority
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(24, 25, 18, 0.3) 0%, rgba(24, 25, 18, 0) 40%, rgba(24, 25, 18, 0.4) 100%)",
+              "linear-gradient(to bottom, rgba(35, 31, 32, 0.3) 0%, rgba(35, 31, 32, 0) 40%, rgba(35, 31, 32, 0.4) 100%)",
           }}
         />
       </div>
@@ -53,7 +43,7 @@ export default function AboutPageContent() {
           style={{
             fontFamily: "var(--font-display), serif",
             fontSize: "clamp(32px, 5vw, 64px)",
-            color: "#4B3728",
+            color: "var(--brand-red)",
             letterSpacing: "0.02em",
             marginBottom: 40,
           }}
@@ -67,7 +57,7 @@ export default function AboutPageContent() {
             fontFamily: "var(--font-sans)",
             fontSize: "18px",
             lineHeight: 1.7,
-            color: "#4B3728",
+            color: "var(--brand-yellow)",
           }}
         >
           Hailing from Richmond, Virginia, The Jack Wharff Band play a strikingly unique blend of bluegrass, Country and rock. Known for their electric live performances, masterful instrumentation, and their ability to make music that consistently defies the confines of genre, the young band burst onto the scene last year with snippets of jaw-dropping original songs posted to TikTok and Reels. Comprised of vocalist/frontman Jack Wharff, drummer Garrett Howell, bassist Ryan Atchison and guitarist Evan Novoa, the salt of the earth four-piece have quickly captivated audiences with their infectious energy and unrelenting passion for the craft. The band has taken everything that has come their way in stride – viral videos of their original songs, a record deal with Big Machine Records, a move to Music City and more – earning a loyal following along the way. With an unparalleled ability to command an audience with vibrant stage presence far beyond their years and toe-tapping anthems that beg to be sung along to, it's clear that this is just the beginning for The Jack Wharff Band.
@@ -87,7 +77,7 @@ export default function AboutPageContent() {
           style={{
             fontFamily: "var(--font-display), serif",
             fontSize: "clamp(20px, 3vw, 32px)",
-            color: "#4B3728",
+            color: "var(--brand-red)",
             letterSpacing: "0.02em",
             marginBottom: 32,
           }}
@@ -103,7 +93,7 @@ export default function AboutPageContent() {
                 style={{
                   fontFamily: "var(--font-display), serif",
                   fontSize: "clamp(14px, 1.4vw, 18px)",
-                  color: "#4B3728",
+                  color: "var(--brand-yellow)",
                   marginBottom: 4,
                 }}
               >
@@ -113,7 +103,7 @@ export default function AboutPageContent() {
                 style={{
                   fontFamily: "var(--font-serif-italic), serif",
                   fontSize: "clamp(13px, 1.2vw, 16px)",
-                  color: "#797D68",
+                  color: "rgba(212, 183, 115, 0.7)",
                 }}
               >
                 {member.role}

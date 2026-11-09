@@ -162,7 +162,7 @@ export default function CookieConsent() {
               type="button"
               onClick={closeModal}
               aria-label="Close cookie preferences"
-              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-text-accent/70 transition-colors hover:bg-ashbrown/10 hover:text-text-accent"
+              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-text-accent/70 transition-colors hover:bg-brand-black/10 hover:text-text-accent"
             >
               <span aria-hidden="true" className="text-xl leading-none">
                 &times;
@@ -199,11 +199,11 @@ export default function CookieConsent() {
                       aria-label={cat.label}
                       onClick={() => toggle(cat.key)}
                       className={`mt-1 flex h-6 w-11 shrink-0 items-center rounded-full px-0.5 transition-colors ${
-                        draft[cat.key] ? "bg-russet justify-end" : "bg-olive/40 justify-start"
+                        draft[cat.key] ? "bg-brand-yellow justify-end" : "bg-brand-yellow/30 justify-start"
                       }`}
                     >
                       <span
-                        className="h-5 w-5 rounded-full bg-cream"
+                        className="h-5 w-5 rounded-full bg-brand-black"
                       />
                     </button>
                   )}
@@ -215,7 +215,7 @@ export default function CookieConsent() {
             <div className="mt-6 min-h-[20px]">
               {dirty && (
                 <p className="flex items-center gap-2 font-body text-xs text-text-accent">
-                  <span className="inline-block h-2 w-2 shrink-0 rounded-full bg-russet" />
+                  <span className="inline-block h-2 w-2 shrink-0 rounded-full bg-brand-yellow" />
                   You have unsaved changes -- click Save Preferences to apply them.
                 </p>
               )}

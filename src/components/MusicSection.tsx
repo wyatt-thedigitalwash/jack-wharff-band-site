@@ -3,7 +3,7 @@ export default function MusicSection() {
     <section
       className="w-full"
       style={{
-        backgroundColor: "#181912",
+        backgroundColor: "var(--brand-black)",
         paddingTop: "12vh",
         paddingBottom: "12vh",
       }}
@@ -15,7 +15,7 @@ export default function MusicSection() {
           style={{
             fontFamily: "var(--font-display), serif",
             fontSize: "clamp(40px, 6vw, 72px)",
-            color: "#EEF0E2",
+            color: "var(--brand-yellow)",
             marginBottom: 16,
           }}
         >
@@ -25,7 +25,7 @@ export default function MusicSection() {
           style={{
             fontFamily: "var(--font-sans)",
             fontSize: 16,
-            color: "#797D68",
+            color: "rgba(212, 183, 115, 0.7)",
           }}
         >
           Listen on all major streaming platforms

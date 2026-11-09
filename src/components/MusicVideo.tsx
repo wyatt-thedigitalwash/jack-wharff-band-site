@@ -3,7 +3,7 @@ export default function MusicVideo() {
     <section
       className="w-full"
       style={{
-        backgroundColor: "#EEF0E2",
+        backgroundColor: "var(--brand-black)",
         paddingTop: "8vh",
         paddingBottom: "8vh",
       }}

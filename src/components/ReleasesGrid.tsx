@@ -37,7 +37,7 @@ export default function ReleasesGrid() {
       aria-label="Latest releases"
       className="w-full"
       style={{
-        backgroundColor: "#EEF0E2",
+        backgroundColor: "var(--brand-black)",
         padding: "clamp(20px, 4vw, 36px)",
       }}
     >
@@ -88,7 +88,7 @@ export default function ReleasesGrid() {
                   fontFamily: "var(--font-display), serif",
                   fontSize: "clamp(20px, 2.5vw, 36px)",
                   letterSpacing: 2,
-                  color: "#EEF0E2",
+                  color: "var(--brand-white)",
                 }}
               >
                 {release.cta ?? "Listen Now"}
@@ -98,7 +98,7 @@ export default function ReleasesGrid() {
                   fontFamily: "var(--font-serif-italic), serif",
                   fontWeight: 400,
                   fontSize: "clamp(16px, 1.4vw, 22px)",
-                  color: "#EEF0E2",
+                  color: "var(--brand-yellow)",
                   marginTop: 6,
                 }}
               >

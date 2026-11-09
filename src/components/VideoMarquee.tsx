@@ -34,7 +34,7 @@ export default function VideoMarquee() {
     : "/videos/JackWharff_BannerDesktop.m4v";
 
   return (
-    <section data-bg="light">
+    <section data-bg="dark">
       <video
         ref={videoRef}
         className={`w-full h-auto block ${ready ? "video-entrance" : ""}`}

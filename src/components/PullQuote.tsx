@@ -12,19 +12,19 @@ export default function PullQuote({
   const isSerif = style === "italic-serif";
 
   return (
-    <section data-bg="light" className="bg-cream py-20 md:py-32 px-6">
+    <section data-bg="dark" className="bg-brand-black py-20 md:py-32 px-6">
       <div className="mx-auto max-w-3xl text-center">
         <blockquote
           className={
             isSerif
-              ? "font-serif italic text-ashbrown leading-snug"
-              : "font-display uppercase tracking-wide text-ashbrown leading-snug"
+              ? "font-serif italic text-brand-yellow leading-snug"
+              : "font-display uppercase tracking-wide text-brand-yellow leading-snug"
           }
           style={{ fontSize: isSerif ? "clamp(28px, 4vw, 48px)" : "clamp(26px, 3.5vw, 44px)" }}
         >
           &ldquo;{quote}&rdquo;
         </blockquote>
-        <p className="text-sm text-olive mt-6 tracking-wide">
+        <p className="text-sm text-brand-yellow/70 mt-6 tracking-wide">
           {attribution}
         </p>
       </div>

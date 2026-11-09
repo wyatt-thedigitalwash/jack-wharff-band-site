@@ -31,7 +31,7 @@ export default function PhotoDiptych({
   const ref2 = useParallax(0.14);
 
   return (
-    <section data-bg="light" className="bg-cream py-16 md:py-24 px-6">
+    <section data-bg="dark" className="bg-brand-black py-16 md:py-24 px-6">
       {/* Desktop: side by side */}
       <div className="hidden md:flex items-start justify-center gap-8 lg:gap-10 mx-auto max-w-5xl">
         <div

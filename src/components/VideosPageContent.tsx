@@ -54,7 +54,7 @@ function ScaleVideo({ embedId }: { embedId: string }) {
 
 export default function VideosPageContent() {
   return (
-    <div style={{ backgroundColor: "#EEF0E2", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "var(--brand-black)", minHeight: "100vh" }}>
       {/* Videos grid */}
       <div
         className="mx-auto px-6 md:px-8"
@@ -69,7 +69,7 @@ export default function VideosPageContent() {
           style={{
             fontFamily: "var(--font-display), serif",
             fontSize: "clamp(32px, 4vw, 64px)",
-            color: "#4B3728",
+            color: "var(--brand-red)",
             letterSpacing: "0.02em",
             marginBottom: 48,
           }}

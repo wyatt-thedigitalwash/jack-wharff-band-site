@@ -21,7 +21,7 @@ export default function ContactPageContent() {
   return (
     <div
       className="flex items-center justify-center"
-      style={{ backgroundColor: "#EEF0E2", minHeight: "100vh", paddingTop: 56 }}
+      style={{ backgroundColor: "var(--brand-black)", minHeight: "100vh", paddingTop: 56 }}
     >
       <div
         className="mx-auto px-6 md:px-8"
@@ -37,7 +37,7 @@ export default function ContactPageContent() {
           style={{
             fontFamily: "var(--font-display), serif",
             fontSize: "clamp(32px, 5vw, 64px)",
-            color: "#4B3728",
+            color: "var(--brand-red)",
             letterSpacing: "0.02em",
             marginBottom: 32,
           }}
@@ -53,7 +53,7 @@ export default function ContactPageContent() {
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: 14,
-                  color: "#797D68",
+                  color: "rgba(212, 183, 115, 0.7)",
                   textTransform: "uppercase",
                   letterSpacing: 1,
                   marginBottom: 4,
@@ -66,7 +66,7 @@ export default function ContactPageContent() {
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: 16,
-                  color: "#5B310D",
+                  color: "var(--brand-yellow)",
                   textDecoration: "underline",
                 }}
               >
@@ -79,7 +79,7 @@ export default function ContactPageContent() {
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: 14,
-                  color: "#797D68",
+                  color: "rgba(212, 183, 115, 0.7)",
                   textTransform: "uppercase",
                   letterSpacing: 1,
                   marginBottom: 4,
@@ -94,7 +94,7 @@ export default function ContactPageContent() {
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: 16,
-                  color: "#5B310D",
+                  color: "var(--brand-yellow)",
                   textDecoration: "underline",
                 }}
               >
@@ -113,7 +113,7 @@ export default function ContactPageContent() {
                 style={{
                   fontFamily: "var(--font-display), serif",
                   fontSize: "clamp(24px, 3vw, 40px)",
-                  color: "#4B3728",
+                  color: "var(--brand-red)",
                   letterSpacing: "0.02em",
                   marginBottom: 4,
                 }}
@@ -124,7 +124,7 @@ export default function ContactPageContent() {
                 style={{
                   fontFamily: "var(--font-serif-italic), serif",
                   fontSize: "clamp(14px, 1.2vw, 16px)",
-                  color: "#797D68",
+                  color: "rgba(212, 183, 115, 0.7)",
                   marginBottom: 20,
                 }}
               >
@@ -136,7 +136,7 @@ export default function ContactPageContent() {
                     style={{
                       fontFamily: "var(--font-sans)",
                       fontSize: 16,
-                      color: "#4B3728",
+                      color: "var(--brand-yellow)",
                     }}
                   >
                     {contact.name}
@@ -146,7 +146,7 @@ export default function ContactPageContent() {
                     style={{
                       fontFamily: "var(--font-sans)",
                       fontSize: 15,
-                      color: "#5B310D",
+                      color: "var(--brand-yellow)",
                       textDecoration: "underline",
                     }}
                   >

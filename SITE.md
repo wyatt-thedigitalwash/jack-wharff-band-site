@@ -12,24 +12,22 @@ Rebuild of the official website for The Jack Wharff Band, a four-piece country, 
 ## Positioning
 Richmond kids who went viral on TikTok, got signed to Big Machine, and moved to Music City while keeping their salt-of-the-earth, dive-bar soul. The site tells that arc through lo-fi nostalgia, Appalachian roots, and honky-tonk warmth.
 
-## Brand colors
-- Cream #EEF0E2: primary light background
-- Beige #D2CEB2: secondary light background, panels
-- Dusty Olive #797D68: muted accent, borders, secondary text on light
-- Ash Brown #4B3728: warm dark, body text on light, dark panels
-- Russet #5B310D: primary accent, links, buttons
-- Dark Green #181912: near-black, primary dark background and text
+## Brand colors (Coming Home era, Nov 2026)
+Defined as CSS variables in src/app/globals.css (`--brand-*`, Tailwind `brand-*`).
+- Black #231F20: every background
+- Yellow #D4B773 (PMS 4023 C): sub-heads, body copy, borders, tour dates, Tour heading
+- Red #C24833 (PMS 7619 C): headlines and decoration (underlines, hovers)
+- White #FFFFFF: client call for the hero and header wordmark, nav, home card titles, tour listings and buttons
+Red only reaches 3.3:1 on black, so keep it to large text (24px+, or 18.66px+ bold). Small links stay yellow with a red underline. Buttons are yellow fill with black text.
 There is no purple in this brand. Ignore any reference to purple.
 
 ## Typography
-- Display and headlines: Bookends, a rough hand-drawn display face. This is the logo and headline identity. The font file will be provided.
-- Body: Arial. A deliberate plain foil to the rough display, the way vintage honky-tonk flyers pair a wild headline with plain fine print.
+- Tamil Sangam MN everywhere. Bold drives `--font-display` (headlines, nav, buttons); Regular drives body copy.
+- Files: public/fonts/TamilSangamMN-{Regular,Bold}.woff2, extracted from the supplied .ttc, subset to Latin, and with vertical metrics rewritten (ascent 1815, descent -420, line gap 0 at 2048 upm) so Latin text centers in its line box. The stock metrics leave a large gap under the text in buttons. Re-apply the fix if the files are ever regenerated.
 
 ## Logos
-- Horizontal logo: header
-- Stacked logo: footer and mobile menu
-Both are on placeholder until the real files arrive.
-Wood logo: reserved for the About page on a cream background, where the wooden tones come alive.
+- Wordmark: "the jack wharff band", traced to SVG from TheJackWharffBand_A_LOGO_ComingHome_Name_1cBlack_2026.10.22_FNL.png. Use the `Wordmark` component (fills with currentColor, so any text color class recolors it). Static copy: public/branding/TJWB_Wordmark.svg.
+- Used in the hero, header, footer and mobile menu.
 
 ## Tone of voice
 Plainspoken, warm, a little mythologizing. Never corporate, never hype-y, no exclamation-point energy. Let the story and the music carry it. No em dashes anywhere in any copy.

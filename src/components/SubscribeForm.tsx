@@ -10,13 +10,13 @@ type ErrorField = "email" | "phone" | "";
 const DEFAULT_SUCCESS =
   "You're subscribed. Check your phone for a text and reply to confirm SMS updates.";
 
-// JWB design system (from SITE.md): Cream #EEF0E2 text, Russet #5B310D accent,
-// Dark Green #181912 dark bg, Dusty Olive #797D68 muted, Ash Brown #4B3728.
+// JWB design system (from SITE.md): Cream var(--brand-yellow) text, Russet var(--brand-yellow) accent,
+// Dark Green var(--brand-yellow) dark bg, Dusty Olive rgba(212, 183, 115, 0.7) muted, Ash Brown var(--brand-yellow).
 const inputStyle: React.CSSProperties = {
   background: "transparent",
-  border: "1px solid #EEF0E2",
+  border: "1px solid var(--brand-yellow)",
   borderRadius: 0,
-  color: "#EEF0E2",
+  color: "var(--brand-yellow)",
   padding: "14px 16px",
   fontFamily: "var(--font-sans)",
   fontSize: 16,
@@ -107,7 +107,7 @@ export default function SubscribeForm() {
           fontFamily: "var(--font-sans)",
           fontSize: 15,
           lineHeight: 1.6,
-          color: "#EEF0E2",
+          color: "var(--brand-yellow)",
           textAlign: "center",
         }}
       >
@@ -121,7 +121,7 @@ export default function SubscribeForm() {
   const borderFor = (f: ErrorField): React.CSSProperties =>
     errorField && errorField === f
       ? { borderColor: "#e57373" }
-      : { borderColor: "#EEF0E2" };
+      : { borderColor: "var(--brand-yellow)" };
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -140,9 +140,9 @@ export default function SubscribeForm() {
       </div>
 
       <style>{`
-        .subscribe-input::placeholder { color: rgba(238,240,226,0.5); font-family: var(--font-sans); }
+        .subscribe-input::placeholder { color: rgba(212, 183, 115,0.5); font-family: var(--font-sans); }
         .subscribe-input:focus { border-width: 2px; }
-        .subscribe-select option { background: #181912; color: #EEF0E2; }
+        .subscribe-select option { background: var(--brand-black); color: var(--brand-yellow); }
       `}</style>
 
       <div className="grid" style={{ gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
@@ -176,7 +176,7 @@ export default function SubscribeForm() {
         {isNorthAmerica && (
           <span aria-hidden="true" style={{
             position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)",
-            color: "rgba(238,240,226,0.5)", fontFamily: "var(--font-sans)", fontSize: 16,
+            color: "rgba(212, 183, 115,0.5)", fontFamily: "var(--font-sans)", fontSize: 16,
             pointerEvents: "none",
           }}>+1</span>
         )}
@@ -220,15 +220,21 @@ export default function SubscribeForm() {
 
       <div style={{ display: "flex", justifyContent: "center" }}>
         <button type="submit" disabled={status === "loading"} style={{
-          maxWidth: 280, width: "100%", background: "#5B310D", color: "#EEF0E2",
+          maxWidth: 280, width: "100%", background: "var(--brand-yellow)", color: "var(--brand-black)",
           fontFamily: "var(--font-display), serif", textTransform: "uppercase",
-          fontSize: 16, letterSpacing: 2, padding: "16px 48px", border: "none",
+          fontSize: 16, letterSpacing: 2, padding: "16px 48px", border: "1px solid var(--brand-yellow)",
           borderRadius: 0, cursor: status === "loading" ? "not-allowed" : "pointer",
           opacity: status === "loading" ? 0.6 : 1,
-          transition: "background-color 300ms ease, opacity 300ms ease",
+          transition: "background-color 300ms ease, color 300ms ease, opacity 300ms ease",
         }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#4B3728")}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#5B310D")}>
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "transparent";
+            e.currentTarget.style.color = "var(--brand-yellow)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "var(--brand-yellow)";
+            e.currentTarget.style.color = "var(--brand-black)";
+          }}>
           {status === "loading" ? "Submitting..." : "Subscribe"}
         </button>
       </div>
@@ -236,15 +242,15 @@ export default function SubscribeForm() {
       {/* Consent line -- legally required because we collect phone for SMS via Laylo */}
       <p style={{
         fontFamily: "var(--font-sans)", fontSize: 11, lineHeight: 1.5,
-        color: "#797D68", textAlign: "center", marginTop: 16,
+        color: "rgba(212, 183, 115, 0.7)", textAlign: "center", marginTop: 16,
       }}>
         By subscribing you agree to receive email and recurring automated marketing text
         messages. We will text you once to confirm your number, reply to opt in. Consent is
         not a condition of purchase. Message and data rates may apply. See Laylo&apos;s{" "}
         <a href="https://laylo.com/terms" target="_blank" rel="noopener noreferrer"
-          style={{ color: "#EEF0E2", textDecoration: "underline" }}>Terms</a>{" and "}
+          style={{ color: "var(--brand-yellow)", textDecoration: "underline" }}>Terms</a>{" and "}
         <a href="https://laylo.com/privacy" target="_blank" rel="noopener noreferrer"
-          style={{ color: "#EEF0E2", textDecoration: "underline" }}>Privacy Policy</a>.
+          style={{ color: "var(--brand-yellow)", textDecoration: "underline" }}>Privacy Policy</a>.
       </p>
     </form>
   );

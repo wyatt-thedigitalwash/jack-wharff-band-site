@@ -41,7 +41,7 @@ export default function LegalHubPage() {
   return (
     <section data-bg="primary" className="legal-typeset bg-background-primary px-5 pt-32 pb-20 md:pb-28 lg:px-12">
       <div className="mx-auto max-w-[820px]">
-        <h1 className="text-[30px] md:text-[44px]" style={{ color: "var(--text-accent)" }}>
+        <h1 className="text-[30px] md:text-[44px]" style={{ color: "var(--text-header)" }}>
           Legal &amp; Policies
         </h1>
         <p className="mt-4 font-body text-text-accent/80">

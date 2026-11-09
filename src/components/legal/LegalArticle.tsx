@@ -85,7 +85,7 @@ function BlockView({ block }: { block: Block }) {
         <h2
           id={block.id}
           className="mt-12 text-[24px] md:text-[28px]"
-          style={{ color: "var(--text-accent)", scrollMarginTop: "7rem" }}
+          style={{ color: "var(--text-header)", scrollMarginTop: "7rem" }}
         >
           {block.text}
         </h2>
@@ -159,7 +159,7 @@ export default function LegalArticle({
           <Link href="/legal" className="font-body text-sm text-text-accent/70 hover:text-text-header">
             &larr; All Policies
           </Link>
-          <h1 className="mt-6 text-[30px] md:text-[44px]" style={{ color: "var(--text-accent)" }}>
+          <h1 className="mt-6 text-[30px] md:text-[44px]" style={{ color: "var(--text-header)" }}>
             {title}
           </h1>
           {intro ? <p className="mt-3 font-body text-sm text-text-accent/70">{intro}</p> : null}

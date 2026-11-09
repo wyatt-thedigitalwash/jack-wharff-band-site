@@ -22,7 +22,7 @@ export default function PhotoGallery() {
   const { ref, inView } = useInView(0.25);
 
   return (
-    <section data-bg="light" className="bg-cream pt-0 pb-20 md:py-28 px-0 md:px-6">
+    <section data-bg="dark" className="bg-brand-black pt-0 pb-20 md:py-28 px-0 md:px-6">
       {/* Desktop: asymmetric scatter */}
       <div
         ref={ref}

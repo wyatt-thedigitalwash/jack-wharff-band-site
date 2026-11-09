@@ -56,11 +56,11 @@ export default function JukeboxStrip({
       {/* NEW badge */}
       {isNew && (
         <span
-          className="absolute font-display uppercase text-cream text-sm tracking-wider px-3 py-1 rounded-[2px]"
+          className="absolute font-display uppercase text-brand-yellow text-sm tracking-wider px-3 py-1 rounded-[2px]"
           style={{
             top: -8,
             right: -8,
-            backgroundColor: "#5B310D",
+            backgroundColor: "var(--brand-yellow)",
             transform: "rotate(5deg)",
             boxShadow: "0 2px 6px rgba(0, 0, 0, 0.4)",
             zIndex: 10,
@@ -72,7 +72,7 @@ export default function JukeboxStrip({
 
       {/* Code chip */}
       <span
-        className="shrink-0 flex items-center justify-center bg-russet text-cream font-display rounded-[3px] w-[50px] h-[50px] text-2xl md:w-[60px] md:h-[60px] md:text-[30px] transition-all duration-250 group-hover:brightness-85"
+        className="shrink-0 flex items-center justify-center bg-brand-yellow text-brand-black font-display rounded-[3px] w-[50px] h-[50px] text-2xl md:w-[60px] md:h-[60px] md:text-[30px] transition-all duration-250 group-hover:brightness-85"
       >
         {code}
       </span>
@@ -95,16 +95,16 @@ export default function JukeboxStrip({
 
       {/* Title stack */}
       <div className="flex-1 min-w-0">
-        <p className="font-display text-[22px] md:text-[28px] uppercase tracking-wide text-cream truncate leading-tight">
+        <p className="font-display text-[22px] md:text-[28px] uppercase tracking-wide text-brand-yellow truncate leading-tight">
           {title}
         </p>
-        <p className="text-[13px] md:text-sm text-olive mt-0.5 truncate">
+        <p className="text-[13px] md:text-sm text-brand-yellow/70 mt-0.5 truncate">
           {subtitle}
         </p>
       </div>
 
       {/* Selection arrow */}
-      <ChevronRight className="shrink-0 w-[22px] h-[22px] text-olive transition-colors duration-250 group-hover:text-russet" />
+      <ChevronRight className="shrink-0 w-[22px] h-[22px] text-brand-yellow/70 transition-colors duration-250 group-hover:text-brand-yellow" />
     </a>
   );
 }

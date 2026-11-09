@@ -41,7 +41,7 @@ export default async function MinimalTourPreview() {
   const shows = await getUpcomingShows();
 
   return (
-    <section data-bg="dark" className="bg-ashbrown text-cream py-16 md:py-24 px-6">
+    <section data-bg="dark" className="bg-brand-black text-brand-yellow py-16 md:py-24 px-6">
       <div className="mx-auto max-w-2xl">
         <h2 className="font-display text-3xl md:text-4xl uppercase tracking-wide mb-10">
           On the Road
@@ -57,7 +57,7 @@ export default async function MinimalTourPreview() {
                   href={ticketUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-display text-lg md:text-2xl tracking-wide text-cream hover:text-russet transition-colors"
+                  className="font-display text-lg md:text-2xl tracking-wide text-brand-yellow hover:text-brand-yellow transition-colors"
                 >
                   {formatDateLine(
                     show.datetime,
@@ -69,7 +69,7 @@ export default async function MinimalTourPreview() {
             })}
           </div>
         ) : (
-          <p className="text-cream/70 text-sm">
+          <p className="text-brand-yellow/70 text-sm">
             No upcoming dates right now. Check back soon.
           </p>
         )}
@@ -77,7 +77,7 @@ export default async function MinimalTourPreview() {
         <div className="mt-10">
           <Link
             href="/tour"
-            className="font-display uppercase text-sm tracking-wider text-russet hover:opacity-75 transition-opacity"
+            className="font-display uppercase text-sm tracking-wider text-brand-yellow hover:opacity-75 transition-opacity"
           >
             See All Dates
           </Link>

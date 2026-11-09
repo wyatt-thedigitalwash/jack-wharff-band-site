@@ -17,7 +17,7 @@ export default async function TourPageContent() {
         }
       `}</style>
 
-      <div className="tour-page" style={{ backgroundColor: "#181912" }}>
+      <div className="tour-page" style={{ backgroundColor: "var(--brand-black)" }}>
         {/* Desktop: side-by-side sticky video + scrolling dates */}
         <div className="hidden md:flex" style={{ minHeight: "100vh" }}>
           {/* Left: tour content */}
@@ -35,7 +35,7 @@ export default async function TourPageContent() {
               style={{
                 fontFamily: "var(--font-display), serif",
                 fontSize: "clamp(32px, 4vw, 64px)",
-                color: "#EEF0E2",
+                color: "var(--brand-red)",
                 letterSpacing: "0.02em",
                 marginBottom: 32,
               }}
@@ -52,8 +52,8 @@ export default async function TourPageContent() {
                 fontFamily: "var(--font-display), serif",
                 fontSize: 14,
                 letterSpacing: 2,
-                color: "#EEF0E2",
-                border: "1px solid #EEF0E2",
+                color: "var(--brand-yellow)",
+                border: "1px solid var(--brand-yellow)",
                 padding: "12px 32px",
                 marginBottom: 48,
                 transition: "opacity 300ms ease",
@@ -72,7 +72,7 @@ export default async function TourPageContent() {
           <div className="w-1/2 relative">
             <div className="sticky top-0 h-screen overflow-hidden">
               <video
-                src="https://media.thedigitalwash.com/the-jack-wharff-band/TJWB_Videos_sy3ubl.mp4"
+                src="https://media.thedigitalwash.com/the-jack-wharff-band/TheJackWharffBand_V_TornUpSweater_VisualizerOp3_Square_FNL.mp4"
                 autoPlay
                 muted
                 loop
@@ -89,7 +89,7 @@ export default async function TourPageContent() {
           {/* Video hero */}
           <div className="relative w-full" style={{ aspectRatio: "1 / 1" }}>
             <video
-              src="https://media.thedigitalwash.com/the-jack-wharff-band/TJWB_Videos_sy3ubl.mp4"
+              src="https://media.thedigitalwash.com/the-jack-wharff-band/TheJackWharffBand_V_TornUpSweater_VisualizerOp3_Square_FNL.mp4"
               autoPlay
               muted
               loop
@@ -114,7 +114,7 @@ export default async function TourPageContent() {
               style={{
                 fontFamily: "var(--font-display), serif",
                 fontSize: "clamp(32px, 4vw, 64px)",
-                color: "#EEF0E2",
+                color: "var(--brand-red)",
                 letterSpacing: "0.02em",
                 marginBottom: 32,
               }}
@@ -131,8 +131,8 @@ export default async function TourPageContent() {
                 fontFamily: "var(--font-display), serif",
                 fontSize: 14,
                 letterSpacing: 2,
-                color: "#EEF0E2",
-                border: "1px solid #EEF0E2",
+                color: "var(--brand-yellow)",
+                border: "1px solid var(--brand-yellow)",
                 padding: "12px 32px",
                 marginBottom: 48,
                 transition: "opacity 300ms ease",

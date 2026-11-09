@@ -3,7 +3,7 @@ export default function ParallaxVideoInterlude() {
     <section
       className="w-full"
       style={{
-        backgroundColor: "#EEF0E2",
+        backgroundColor: "var(--brand-black)",
         paddingLeft: "clamp(20px, 4vw, 60px)",
         paddingRight: "clamp(20px, 4vw, 60px)",
         paddingBottom: "clamp(20px, 4vw, 60px)",

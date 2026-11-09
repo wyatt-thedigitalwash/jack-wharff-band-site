@@ -12,10 +12,10 @@ interface BandPhotoFullBleedProps {
 }
 
 const BG_MAP = {
-  cream: "bg-cream",
-  darkgreen: "bg-darkgreen",
-  ashbrown: "bg-ashbrown",
-  fullbleed: "bg-cream",
+  cream: "bg-brand-black",
+  darkgreen: "bg-brand-black",
+  ashbrown: "bg-brand-black",
+  fullbleed: "bg-brand-black",
 } as const;
 
 const DATA_BG_MAP = {

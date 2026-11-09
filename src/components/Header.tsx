@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import MobileMenu from "./MobileMenu";
 import {
@@ -15,6 +14,7 @@ import {
   FaAmazon,
 } from "react-icons/fa";
 import { SiPandora } from "react-icons/si";
+import Wordmark from "./Wordmark";
 
 const NAV_LINKS = [
   { href: "/music", label: "Music" },
@@ -84,11 +84,11 @@ export default function Header() {
       <header
         className="fixed top-0 left-0 right-0 z-50"
         style={{
-          backgroundColor: showBg ? "#181912" : "transparent",
+          backgroundColor: showBg ? "var(--brand-black)" : "transparent",
           transition: "background-color 300ms ease",
         }}
       >
-        <div className="mx-auto flex items-center justify-between px-4 py-3 md:px-6 lg:px-8">
+        <div className="mx-auto flex items-center justify-between px-4 py-3 md:h-20 md:py-0 md:px-8 lg:px-10">
           {/* Logo */}
           <Link
             href="/"
@@ -96,14 +96,7 @@ export default function Header() {
             className="shrink-0 transition-opacity duration-300"
             style={{ opacity: logoVisible ? 1 : 0, pointerEvents: logoVisible ? "auto" : "none" }}
           >
-            <Image
-              src="/branding/TJWB_LogoWhite_Horizontal.png"
-              alt="The Jack Wharff Band"
-              width={160}
-              height={40}
-              className="h-9 md:h-10 w-auto"
-              priority
-            />
+            <Wordmark decorative className="h-[15px] md:h-[20px] w-auto text-brand-white" />
           </Link>
 
           {/* Desktop nav — right-aligned */}
@@ -115,7 +108,7 @@ export default function Header() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="display-heading text-xs lg:text-sm uppercase tracking-widest text-cream hover:text-russet transition-colors"
+                  className="display-heading text-xs lg:text-sm uppercase tracking-widest text-brand-white hover:text-brand-red transition-colors"
                 >
                   {label}
                   <span className="sr-only"> (opens in new tab)</span>
@@ -124,8 +117,8 @@ export default function Header() {
                 <Link
                   key={href}
                   href={href}
-                  className={`display-heading text-xs lg:text-sm uppercase tracking-widest text-cream ${
-                    pathname === href ? "underline underline-offset-4" : ""
+                  className={`display-heading text-xs lg:text-sm uppercase tracking-widest text-brand-white ${
+                    pathname === href ? "underline underline-offset-4 decoration-brand-red" : "hover:text-brand-red transition-colors"
                   }`}
                 >
                   {label}
@@ -138,7 +131,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            className="md:hidden text-cream p-3"
+            className="md:hidden text-brand-white p-3"
             aria-label="Open menu"
             aria-expanded={menuOpen}
           >

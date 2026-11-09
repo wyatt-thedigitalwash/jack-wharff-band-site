@@ -44,8 +44,8 @@ function EventButtons({
         style={{
           ...base,
           backgroundColor: "transparent",
-          color: "#EEF0E2",
-          border: "1px solid #EEF0E2",
+          color: "var(--brand-white)",
+          border: "1px solid var(--brand-white)",
         }}
       >
         RSVP
@@ -59,9 +59,9 @@ function EventButtons({
           className={fill ? "flex-1 text-center" : ""}
           style={{
             ...base,
-            backgroundColor: "#EEF0E2",
-            color: "#4B3728",
-            border: "1px solid #EEF0E2",
+            backgroundColor: "var(--brand-black)",
+            color: "var(--brand-white)",
+            border: "1px solid var(--brand-white)",
           }}
         >
           Tickets
@@ -81,7 +81,7 @@ export default function EventList({ events, limit, compact }: EventListProps) {
         className="uppercase text-center"
         style={{
           fontFamily: "var(--font-display), serif",
-          color: "rgba(238, 240, 226, 0.6)",
+          color: "rgba(255, 255, 255, 0.7)",
           letterSpacing: 1,
           padding: "24px 0",
         }}
@@ -99,7 +99,7 @@ export default function EventList({ events, limit, compact }: EventListProps) {
           style={{
             borderBottom:
               i < display.length - 1
-                ? "1px solid rgba(238, 240, 226, 0.3)"
+                ? "1px solid rgba(255, 255, 255, 0.2)"
                 : "none",
             padding: "18px 0",
           }}
@@ -111,7 +111,7 @@ export default function EventList({ events, limit, compact }: EventListProps) {
                 className="uppercase shrink-0"
                 style={{
                   fontFamily: "var(--font-display), serif",
-                  color: "#EEF0E2",
+                  color: "var(--brand-yellow)",
                   letterSpacing: 1,
                   fontSize: "1.125rem",
                   minWidth: 160,
@@ -123,7 +123,7 @@ export default function EventList({ events, limit, compact }: EventListProps) {
                 className="uppercase flex-1 truncate text-left"
                 style={{
                   fontFamily: "var(--font-display), serif",
-                  color: "#EEF0E2",
+                  color: "var(--brand-white)",
                   letterSpacing: 1,
                   paddingLeft: 32,
                   paddingRight: 16,
@@ -135,7 +135,7 @@ export default function EventList({ events, limit, compact }: EventListProps) {
                 className="uppercase shrink-0"
                 style={{
                   fontFamily: "var(--font-display), serif",
-                  color: "rgba(238, 240, 226, 0.7)",
+                  color: "rgba(255, 255, 255, 0.75)",
                   letterSpacing: 1,
                   paddingRight: 24,
                 }}
@@ -154,7 +154,7 @@ export default function EventList({ events, limit, compact }: EventListProps) {
                   className="uppercase shrink-0"
                   style={{
                     fontFamily: "var(--font-display), serif",
-                    color: "#EEF0E2",
+                    color: "var(--brand-yellow)",
                     letterSpacing: 1,
                     fontSize: "0.9rem",
                     fontWeight: 700,
@@ -166,7 +166,7 @@ export default function EventList({ events, limit, compact }: EventListProps) {
                   className="uppercase truncate"
                   style={{
                     fontFamily: "var(--font-display), serif",
-                    color: "#EEF0E2",
+                    color: "var(--brand-white)",
                     letterSpacing: 1,
                     fontSize: "0.9rem",
                   }}
@@ -179,7 +179,7 @@ export default function EventList({ events, limit, compact }: EventListProps) {
                   className="uppercase"
                   style={{
                     fontFamily: "var(--font-display), serif",
-                    color: "rgba(238, 240, 226, 0.7)",
+                    color: "rgba(255, 255, 255, 0.75)",
                     letterSpacing: 1,
                     fontSize: "0.75rem",
                   }}
@@ -197,7 +197,7 @@ export default function EventList({ events, limit, compact }: EventListProps) {
               className="uppercase"
               style={{
                 fontFamily: "var(--font-display), serif",
-                color: "#EEF0E2",
+                color: "var(--brand-yellow)",
                 letterSpacing: 1,
                 fontSize: "1.125rem",
                 marginBottom: 4,
@@ -209,7 +209,7 @@ export default function EventList({ events, limit, compact }: EventListProps) {
               className="uppercase"
               style={{
                 fontFamily: "var(--font-display), serif",
-                color: "#EEF0E2",
+                color: "var(--brand-white)",
                 letterSpacing: 1,
                 marginBottom: 2,
               }}
@@ -220,7 +220,7 @@ export default function EventList({ events, limit, compact }: EventListProps) {
               className="uppercase"
               style={{
                 fontFamily: "var(--font-display), serif",
-                color: "rgba(238, 240, 226, 0.7)",
+                color: "rgba(255, 255, 255, 0.75)",
                 letterSpacing: 1,
                 fontSize: "0.8125rem",
                 marginBottom: 16,

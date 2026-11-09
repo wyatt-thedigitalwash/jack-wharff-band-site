@@ -1,8 +1,20 @@
 import Link from "next/link";
 
+const MEDIA = "https://media.thedigitalwash.com/the-jack-wharff-band";
+
 const CARDS = [
-  { title: "Music", subtitle: "the catalog", href: "/music", video: "https://media.thedigitalwash.com/the-jack-wharff-band/TJWB_Videos_sy3ubl.mp4" },
-  { title: "Videos", subtitle: "the live cuts", href: "/videos", video: "https://media.thedigitalwash.com/the-jack-wharff-band/TJWB_Music_hpts7g.mp4" },
+  {
+    title: "Music",
+    subtitle: "the catalog",
+    href: "/music",
+    video: `${MEDIA}/TheJackWharffBand_V_TornUpSweater_VisualizerOp2_Square_FNL.mp4`,
+  },
+  {
+    title: "Videos",
+    subtitle: "the live cuts",
+    href: "/videos",
+    video: `${MEDIA}/TheJackWharffBand_V_TornUpSweater_VisualizerOp3_Square_FNL.mp4`,
+  },
 ];
 
 export default function MusicVideosRow() {
@@ -11,9 +23,8 @@ export default function MusicVideosRow() {
       aria-label="Music and Videos"
       className="w-full"
       style={{
-        backgroundColor: "#EEF0E2",
+        backgroundColor: "var(--brand-black)",
         padding: "clamp(20px, 4vw, 36px)",
-        paddingTop: "clamp(20px, 4vw, 36px)",
       }}
     >
       <div
@@ -34,12 +45,13 @@ export default function MusicVideosRow() {
               loop
               playsInline
               preload="metadata"
+              aria-hidden="true"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             />
             <div
               className="music-videos-card-overlay absolute inset-0 z-[1]"
               style={{
-                backgroundColor: "rgba(0, 0, 0, 0.35)",
+                backgroundColor: "rgba(35, 31, 32, 0.4)",
                 transition: "background-color 300ms ease",
               }}
             />
@@ -50,7 +62,7 @@ export default function MusicVideosRow() {
                   fontFamily: "var(--font-display), serif",
                   fontSize: "clamp(32px, 4vw, 64px)",
                   letterSpacing: 2,
-                  color: "#EEF0E2",
+                  color: "var(--brand-white)",
                 }}
               >
                 {card.title}
@@ -58,10 +70,9 @@ export default function MusicVideosRow() {
               <span
                 className="text-center"
                 style={{
-                  fontFamily: "var(--font-serif-italic), serif",
-                  fontWeight: 400,
-                  fontSize: "clamp(16px, 1.4vw, 22px)",
-                  color: "#EEF0E2",
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "clamp(16px, 1.3vw, 20px)",
+                  color: "var(--brand-yellow)",
                   marginTop: 6,
                 }}
               >
@@ -74,7 +85,7 @@ export default function MusicVideosRow() {
       <style>{`
         @media (hover: hover) and (pointer: fine) {
           .music-videos-card:hover .music-videos-card-overlay {
-            background-color: rgba(0, 0, 0, 0.5) !important;
+            background-color: rgba(35, 31, 32, 0.6) !important;
           }
         }
       `}</style>

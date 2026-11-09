@@ -20,7 +20,7 @@ function TourWithParallax({ children }: { children: React.ReactNode }) {
     >
       <motion.div className="absolute inset-0 z-0" style={{ y: photoY }}>
         <Image
-          src="/backgrounds/TheJackWharffBand_P_20260217_DPiersaul_BMLGowns_DSC05211_RetJFv1_FNL.webp"
+          src="/backgrounds/TheJackWharffBand_ComingHome_Photo.jpg"
           alt="The Jack Wharff Band"
           fill
           sizes="100vw"
@@ -32,8 +32,7 @@ function TourWithParallax({ children }: { children: React.ReactNode }) {
       <div
         className="absolute inset-0 z-[1]"
         style={{
-          backgroundColor: "rgba(91, 49, 13, 0.55)",
-          mixBlendMode: "multiply",
+          backgroundColor: "rgba(35, 31, 32, 0.45)",
         }}
       />
 
@@ -47,7 +46,7 @@ function TourStatic({ children }: { children: React.ReactNode }) {
     <section className="relative w-full overflow-hidden" style={{ minHeight: "100vh" }}>
       <div className="absolute inset-0 z-0">
         <Image
-          src="/backgrounds/TheJackWharffBand_P_20260217_DPiersaul_BMLGowns_DSC05211_RetJFv1_FNL.webp"
+          src="/backgrounds/TheJackWharffBand_ComingHome_Photo.jpg"
           alt="The Jack Wharff Band"
           fill
           sizes="100vw"
@@ -58,8 +57,7 @@ function TourStatic({ children }: { children: React.ReactNode }) {
       <div
         className="absolute inset-0 z-[1]"
         style={{
-          backgroundColor: "rgba(91, 49, 13, 0.55)",
-          mixBlendMode: "multiply",
+          backgroundColor: "rgba(35, 31, 32, 0.45)",
         }}
       />
 

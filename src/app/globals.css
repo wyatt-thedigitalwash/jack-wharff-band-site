@@ -1,53 +1,52 @@
 @import "tailwindcss";
 
+/* Brand palette (Coming Home era, 2026). Three colors, three roles:
+   black is every background, red is headlines and accents (links, buttons,
+   hovers), yellow is sub-heads, body copy, borders and nav. Plain CSS
+   variables so inline styles in components can use them too. */
+:root {
+  --brand-black: #231F20;
+  --brand-yellow: #D4B773;
+  --brand-red: #C24833;
+  --brand-white: #FFFFFF;  /* client call: hero logo, nav, card titles, tour listings */
+
+  /* Tokens consumed by the legal / consent components. */
+  --background-primary: var(--brand-black);
+  --background-alt: #2E292A;     /* raised panel: banner, modal, pill */
+  --text-header: var(--brand-red);
+  --text-body: var(--brand-yellow);
+  --text-accent: var(--brand-yellow);
+}
+
 @theme inline {
-  --color-cream: #EEF0E2;
-  --color-beige: #D2CEB2;
-  --color-olive: #797D68;
-  --color-ashbrown: #4B3728;
-  --color-russet: #5B310D;
-  --color-darkgreen: #181912;
+  --color-brand-black: var(--brand-black);
+  --color-brand-yellow: var(--brand-yellow);
+  --color-brand-red: var(--brand-red);
+  --color-brand-white: var(--brand-white);
 
-  --font-display: "MomsTypewriter", "Courier New", monospace;
-  /* Points at the variable next/font emits for the local Tamil Sangam MN face, so the
-     utility resolves to the hashed family name Next actually generates rather
-     than a literal that would silently fall through to the stack below. */
+  /* Tamil Sangam MN everywhere. Display resolves to the Bold-only family
+     next/font emits, so headlines always get the real bold cut. */
+  --font-display: var(--sangam-bold-font), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-sangam: var(--sangam-font), "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-sans: "caraque-solid", Arial, Helvetica, sans-serif;
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-serif-italic: "caraque-solid", Arial, Helvetica, sans-serif;
+  --font-sans: var(--sangam-font), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif-italic: var(--sangam-font), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: var(--sangam-font), "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  /* Aliases so the ported legal / consent components resolve to this site's
-     warm palette. Light surfaces (cream / beige) with ashbrown text and russet
-     accent, mirroring the site's content pages. */
   --color-background-primary: var(--background-primary);
   --color-background-alt: var(--background-alt);
   --color-text-header: var(--text-header);
   --color-text-body: var(--text-body);
   --color-text-accent: var(--text-accent);
-  --font-body: "caraque-solid", Arial, Helvetica, sans-serif;
-}
-
-/* Design tokens consumed by the legal / consent components. Mapped to the
-   Jack Wharff Band palette: cream page surface, beige panels, ashbrown text,
-   russet accent for links and buttons. */
-:root {
-  --background-primary: #EEF0E2; /* cream */
-  --background-alt: #D2CEB2;     /* beige panels: banner, modal, pill */
-  --text-header: #4B3728;        /* ashbrown, strongest */
-  --text-body: #4B3728;          /* ashbrown, borders/dividers */
-  --text-accent: #4B3728;        /* ashbrown, headings + body copy */
 }
 
 body {
-  background-color: var(--color-cream);
-  color: var(--color-ashbrown);
+  background-color: var(--brand-black);
+  color: var(--brand-yellow);
   font-family: var(--font-sans);
 }
 
 .display-heading {
   font-family: var(--font-display);
-  font-variation-settings: 'wght' 600;
 }
 
 /* Section Spacing Rule:
@@ -62,19 +61,19 @@ section[data-bg="light"] + section[data-bg="light"] {
 /* Global link styles for body content */
 main a:not([class]) {
   text-decoration: underline;
-  text-decoration-color: var(--color-russet);
+  text-decoration-color: var(--brand-red);
   text-underline-offset: 2px;
 }
 
 main a:not([class]):hover {
-  color: var(--color-russet);
+  text-decoration-thickness: 2px;
 }
 
 /* Global button base */
 .btn-primary {
   display: inline-block;
-  background-color: var(--color-russet);
-  color: var(--color-cream);
+  background-color: var(--brand-yellow);
+  color: var(--brand-black);
   font-family: var(--font-display);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -84,6 +83,50 @@ main a:not([class]):hover {
 
 .btn-primary:hover {
   opacity: 0.85;
+}
+
+/* Home hero CTAs: one solid primary, one quieter outline. Both carry a 1px
+   border so they are the same height side by side. */
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.5rem;
+  font-family: var(--font-display);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+  white-space: nowrap;
+  border: 1px solid;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+.hero-cta-primary {
+  background-color: var(--brand-white);
+  border-color: var(--brand-white);
+  color: var(--brand-black);
+}
+
+.hero-cta-primary:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-cta-secondary {
+  background-color: rgba(35, 31, 32, 0.35);
+  border-color: var(--brand-white);
+  color: var(--brand-white);
+}
+
+.hero-cta-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.hero-cta:focus-visible {
+  outline: 2px solid var(--brand-white);
+  outline-offset: 3px;
 }
 
 /* ── Cinematic entrance: Video Marquee ── */
@@ -151,7 +194,7 @@ main a:not([class]):hover {
 }
 
 .tour-widget-wrapper .bit-event {
-  border-bottom: 1px solid rgba(121, 125, 104, 0.3) !important;
+  border-bottom: 1px solid rgba(212, 183, 115, 0.3) !important;
   padding: 16px 0 !important;
 }
 
@@ -163,7 +206,7 @@ main a:not([class]):hover {
 .tour-widget-wrapper .bit-date,
 .tour-widget-wrapper .bit-event .bit-date {
   font-family: var(--font-display) !important;
-  color: #4B3728 !important;
+  color: var(--brand-yellow) !important;
   font-size: 1.125rem !important;
 }
 
@@ -171,7 +214,7 @@ main a:not([class]):hover {
 .tour-widget-wrapper .bit-venue,
 .tour-widget-wrapper .bit-event .bit-venue {
   font-family: var(--font-sans) !important;
-  color: #4B3728 !important;
+  color: var(--brand-yellow) !important;
   font-weight: 500 !important;
 }
 
@@ -179,7 +222,7 @@ main a:not([class]):hover {
 .tour-widget-wrapper .bit-location,
 .tour-widget-wrapper .bit-event .bit-location {
   font-family: var(--font-sans) !important;
-  color: #797D68 !important;
+  color: rgba(212, 183, 115, 0.7) !important;
   font-size: 0.8125rem !important;
 }
 
@@ -189,8 +232,8 @@ main a:not([class]):hover {
 .tour-widget-wrapper .buy-btn,
 .tour-widget-wrapper .bit-event a[class*="ticket"],
 .tour-widget-wrapper a.bit-evt-btn {
-  background-color: #5B310D !important;
-  color: #EEF0E2 !important;
+  background-color: var(--brand-yellow) !important;
+  color: var(--brand-black) !important;
   font-family: var(--font-display) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
@@ -209,8 +252,8 @@ main a:not([class]):hover {
 .tour-widget-wrapper .rsvp-btn,
 .tour-widget-wrapper a.bit-rsvp {
   background: transparent !important;
-  border: 1px solid #5B310D !important;
-  color: #5B310D !important;
+  border: 1px solid var(--brand-red) !important;
+  color: var(--brand-yellow) !important;
   font-family: var(--font-display) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
@@ -222,13 +265,13 @@ main a:not([class]):hover {
 .tour-widget-wrapper .bit-follow,
 .tour-widget-wrapper .track-link,
 .tour-widget-wrapper .bit-widget-footer {
-  color: #797D68 !important;
+  color: rgba(212, 183, 115, 0.7) !important;
   font-size: 0.75rem !important;
 }
 
 .tour-widget-wrapper .bit-track svg,
 .tour-widget-wrapper .bit-follow svg {
-  fill: #4B3728 !important;
+  fill: var(--brand-yellow) !important;
 }
 
 /* Show more / fewer buttons — hidden since we have our own SEE ALL DATES link */
@@ -251,7 +294,7 @@ main a:not([class]):hover {
 /* VIP indicator */
 .tour-widget-wrapper .bit-vip,
 .tour-widget-wrapper .bit-event .vip {
-  color: #5B310D !important;
+  color: var(--brand-yellow) !important;
   font-family: var(--font-display) !important;
   text-transform: uppercase !important;
   font-size: 0.75rem !important;
@@ -260,13 +303,13 @@ main a:not([class]):hover {
 /* No dates message */
 .tour-widget-wrapper .bit-no-dates,
 .tour-widget-wrapper .bit-no-events {
-  color: rgba(75, 55, 40, 0.6) !important;
+  color: rgba(212, 183, 115, 0.6) !important;
   font-family: var(--font-sans) !important;
 }
 
 /* Play My City */
 .tour-widget-wrapper .bit-play-my-city a {
-  color: #797D68 !important;
+  color: rgba(212, 183, 115, 0.7) !important;
   font-family: var(--font-sans) !important;
 }
 
@@ -312,14 +355,8 @@ main a:not([class]):hover {
 
 /* Global focus-visible indicator */
 :focus-visible {
-  outline: 2px solid #EEF0E2;
+  outline: 2px solid var(--brand-yellow);
   outline-offset: 2px;
-}
-
-@media (prefers-color-scheme: light) {
-  :focus-visible {
-    outline-color: #4B3728;
-  }
 }
 
 /* Respect reduced motion */
@@ -335,11 +372,13 @@ main a:not([class]):hover {
 }
 
 /* ─── Legal / Policy Pages ───
-   Hyperlinks inside legal copy use the site's russet accent, underlined, to
-   match the link treatment on the site's content pages. */
+   Hyperlinks inside legal copy: yellow text with a red underline, matching
+   the link treatment on the site's content pages. Red is kept off small text
+   because it only reaches 3.3:1 on the black background. */
 .legal-prose a {
-  color: var(--color-russet);
+  color: var(--brand-yellow);
   text-decoration: underline;
+  text-decoration-color: var(--brand-red);
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
   transition: opacity 200ms;
@@ -350,13 +389,12 @@ main a:not([class]):hover {
 }
 
 /* ─── Legal / policy pages: clean, readable typography ───
-   The site's display faces (MomsTypewriter, caraque-solid) are decorative and
-   hard to read across long policy text. Legal pages opt out with .legal-typeset,
-   which forces the brand's plain body face (Arial) on every element while the
-   rest of the site keeps its display type. Headings stay bold for hierarchy. */
+   .legal-typeset forces the brand's regular body face on every element so
+   long policy text never picks up the bold display cut. Headings stay bold
+   for hierarchy. */
 .legal-typeset,
 .legal-typeset * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 .legal-typeset h1,
 .legal-typeset h2,
@@ -366,8 +404,8 @@ main a:not([class]):hover {
 }
 
 /* ─── Cookie Consent / Terms Gate Buttons ───
-   Flat rectangular buttons matching .btn-primary: russet fill / cream text
-   primary, transparent / russet border ghost. */
+   Flat rectangular buttons matching .btn-primary: yellow fill / black text
+   primary, transparent / yellow border ghost. */
 .cc-btn {
   display: block;
   width: 100%;
@@ -377,26 +415,25 @@ main a:not([class]):hover {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   text-align: center;
-  border: 1px solid var(--color-russet);
+  border: 1px solid var(--brand-yellow);
   transition: all 200ms;
   cursor: pointer;
 }
 .cc-btn-primary {
-  background: var(--color-russet);
-  color: var(--color-cream);
-  border-color: var(--color-russet);
+  background: var(--brand-yellow);
+  color: var(--brand-black);
 }
 .cc-btn-primary:hover {
   background: transparent;
-  color: var(--color-russet);
+  color: var(--brand-yellow);
 }
 .cc-btn-ghost {
   background: transparent;
-  color: var(--color-russet);
+  color: var(--brand-yellow);
 }
 .cc-btn-ghost:hover {
-  background: var(--color-russet);
-  color: var(--color-cream);
+  background: var(--brand-yellow);
+  color: var(--brand-black);
 }
 
 /* ─── Splash / Pre-Home Overlay ───

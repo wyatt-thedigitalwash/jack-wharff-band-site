@@ -168,14 +168,14 @@ function ReleaseCard({ release }: { release: (typeof RELEASES)[number] }) {
         ) : (
           <div
             className="absolute inset-0 flex items-center justify-center p-6"
-            style={{ backgroundColor: "#5B310D" }}
+            style={{ backgroundColor: "var(--brand-yellow)" }}
           >
             <p
               className="text-center uppercase"
               style={{
                 fontFamily: "var(--font-display), serif",
                 fontSize: "clamp(14px, 1.8vw, 20px)",
-                color: "#EEF0E2",
+                color: "var(--brand-black)",
                 letterSpacing: "0.08em",
                 lineHeight: 1.2,
               }}
@@ -190,7 +190,7 @@ function ReleaseCard({ release }: { release: (typeof RELEASES)[number] }) {
           style={{
             fontFamily: "var(--font-serif-italic), serif",
             fontSize: "clamp(14px, 1.4vw, 18px)",
-            color: "#EEF0E2",
+            color: "var(--brand-yellow)",
             marginBottom: 2,
           }}
         >
@@ -200,7 +200,7 @@ function ReleaseCard({ release }: { release: (typeof RELEASES)[number] }) {
           style={{
             fontFamily: "var(--font-sans)",
             fontSize: "clamp(11px, 1vw, 13px)",
-            color: "rgba(238, 240, 226, 0.5)",
+            color: "rgba(212, 183, 115, 0.5)",
           }}
         >
           {release.year}
@@ -212,7 +212,7 @@ function ReleaseCard({ release }: { release: (typeof RELEASES)[number] }) {
 
 export default function MusicPageContent() {
   return (
-    <div style={{ backgroundColor: "#181912" }}>
+    <div style={{ backgroundColor: "var(--brand-black)" }}>
       {/* Desktop: sticky video left + scrolling content right */}
       <div className="hidden md:flex" style={{ minHeight: "100vh" }}>
         {/* Left: music content */}
@@ -230,7 +230,7 @@ export default function MusicPageContent() {
             style={{
               fontFamily: "var(--font-display), serif",
               fontSize: "clamp(32px, 4vw, 64px)",
-              color: "#EEF0E2",
+              color: "var(--brand-red)",
               letterSpacing: "0.02em",
               marginBottom: 8,
             }}
@@ -243,7 +243,7 @@ export default function MusicPageContent() {
             style={{
               fontFamily: "var(--font-serif-italic), serif",
               fontSize: "clamp(16px, 1.4vw, 20px)",
-              color: "rgba(238, 240, 226, 0.5)",
+              color: "rgba(212, 183, 115, 0.5)",
               marginBottom: 48,
             }}
           >
@@ -266,7 +266,7 @@ export default function MusicPageContent() {
               style={{
                 fontFamily: "var(--font-display), serif",
                 fontSize: "clamp(18px, 2.5vw, 28px)",
-                color: "#EEF0E2",
+                color: "var(--brand-yellow)",
                 letterSpacing: "0.02em",
                 marginBottom: 24,
               }}
@@ -286,19 +286,19 @@ export default function MusicPageContent() {
                     fontFamily: "var(--font-display), serif",
                     fontSize: 14,
                     letterSpacing: 2,
-                    color: "#EEF0E2",
-                    border: "1px solid #EEF0E2",
+                    color: "var(--brand-yellow)",
+                    border: "1px solid var(--brand-yellow)",
                     padding: "10px 24px",
                     textTransform: "uppercase",
                     transition: "background-color 300ms ease, color 300ms ease",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#EEF0E2";
-                    e.currentTarget.style.color = "#181912";
+                    e.currentTarget.style.backgroundColor = "var(--brand-yellow)";
+                    e.currentTarget.style.color = "var(--brand-black)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "#EEF0E2";
+                    e.currentTarget.style.color = "var(--brand-yellow)";
                   }}
                 >
                   {platform.label}
@@ -312,7 +312,7 @@ export default function MusicPageContent() {
         <div className="w-1/2 relative">
           <div className="sticky top-0 h-screen overflow-hidden">
             <video
-              src="https://media.thedigitalwash.com/the-jack-wharff-band/TJWB_Music_hpts7g.mp4"
+              src="https://media.thedigitalwash.com/the-jack-wharff-band/TheJackWharffBand_V_TornUpSweater_VisualizerOp2_Square_FNL.mp4"
               autoPlay
               muted
               loop
@@ -329,7 +329,7 @@ export default function MusicPageContent() {
         {/* Video hero */}
         <div className="relative w-full" style={{ aspectRatio: "1 / 1" }}>
           <video
-            src="https://media.thedigitalwash.com/the-jack-wharff-band/TJWB_Music_hpts7g.mp4"
+            src="https://media.thedigitalwash.com/the-jack-wharff-band/TheJackWharffBand_V_TornUpSweater_VisualizerOp2_Square_FNL.mp4"
             autoPlay
             muted
             loop
@@ -352,7 +352,7 @@ export default function MusicPageContent() {
             style={{
               fontFamily: "var(--font-display), serif",
               fontSize: "clamp(32px, 8vw, 64px)",
-              color: "#EEF0E2",
+              color: "var(--brand-red)",
               letterSpacing: "0.02em",
               marginBottom: 8,
             }}
@@ -365,7 +365,7 @@ export default function MusicPageContent() {
             style={{
               fontFamily: "var(--font-serif-italic), serif",
               fontSize: 16,
-              color: "rgba(238, 240, 226, 0.5)",
+              color: "rgba(212, 183, 115, 0.5)",
               marginBottom: 40,
             }}
           >
@@ -388,7 +388,7 @@ export default function MusicPageContent() {
               style={{
                 fontFamily: "var(--font-display), serif",
                 fontSize: "clamp(18px, 5vw, 28px)",
-                color: "#EEF0E2",
+                color: "var(--brand-yellow)",
                 letterSpacing: "0.02em",
                 marginBottom: 24,
               }}
@@ -407,8 +407,8 @@ export default function MusicPageContent() {
                     fontFamily: "var(--font-display), serif",
                     fontSize: 13,
                     letterSpacing: 2,
-                    color: "#EEF0E2",
-                    border: "1px solid #EEF0E2",
+                    color: "var(--brand-yellow)",
+                    border: "1px solid var(--brand-yellow)",
                     padding: "8px 20px",
                     textTransform: "uppercase",
                   }}

@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond } from "next/font/google";
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
@@ -15,32 +14,27 @@ import Splash from "@/components/Splash";
 const SPLASH_KEY = "jw_splash_cominghome";
 const splashScript = `try{var e=document.documentElement;if(sessionStorage.getItem('${SPLASH_KEY}')){e.classList.add('splash-entered')}else if(location.pathname.indexOf('/legal')===0){e.classList.add('splash-exempt')}}catch(err){}`;
 
-const momsTypewriter = localFont({
-  src: "../../public/fonts/MomsTypewriter.ttf",
-  variable: "--font-display",
-  display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
-  weight: "400",
-  style: "italic",
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-// Splash-only face for the Coming Home campaign. Extracted from the supplied
-// Tamil Sangam MN.ttc collection (next/font/local does not accept .ttc) and
-// subset to Latin, since the splash copy never needs the Tamil glyphs. That
-// takes it from 365K to 14K. Regular only, so prefer real weight changes over
-// `font-semibold`, which the browser would synthesise.
-// The variable is deliberately named differently from the Tailwind theme key
-// (--font-sangam) so the theme entry can point at it without self-reference.
+// Brand face: Tamil Sangam MN, extracted from the supplied .ttc collection
+// (next/font/local does not accept .ttc) and subset to Latin, since the site
+// never needs the Tamil glyphs. Roughly 14K per weight.
+// Regular carries body copy. Bold is registered as its own family and drives
+// --font-display, so headlines get the real bold cut, never a synthesised one.
+// The variables are deliberately named differently from the Tailwind theme
+// keys (--font-sangam, --font-display) so the theme entries can point at them
+// without self-reference.
 const sangam = localFont({
   src: "../../public/fonts/TamilSangamMN-Regular.woff2",
   weight: "400",
   style: "normal",
   variable: "--sangam-font",
+  display: "swap",
+});
+
+const sangamBold = localFont({
+  src: "../../public/fonts/TamilSangamMN-Bold.woff2",
+  weight: "700",
+  style: "normal",
+  variable: "--sangam-bold-font",
   display: "swap",
 });
 
@@ -82,7 +76,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#181912",
+  themeColor: "var(--brand-yellow)",
 };
 
 export default function RootLayout({
@@ -95,13 +89,11 @@ export default function RootLayout({
     // before React hydrates, so server and client markup intentionally differ.
     <html
       lang="en"
-      className={`${momsTypewriter.variable} ${cormorant.variable} ${sangam.variable} h-full antialiased`}
+      className={`${sangam.variable} ${sangamBold.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: splashScript }} />
-        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
-        <link rel="stylesheet" href="https://use.typekit.net/xek3xzy.css" />
 
         {/* Evidon (Crownpeak) consent management — account 7155. Scripts are
             rendered via next/script below; preconnect stays here. */}
@@ -173,7 +165,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </noscript>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-darkgreen focus:text-cream focus:px-4 focus:py-2 focus:text-sm focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-brand-black focus:text-brand-yellow focus:px-4 focus:py-2 focus:text-sm focus:outline-none"
         >
           Skip to main content
         </a>

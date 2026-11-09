@@ -21,9 +21,9 @@ export default function SingleArtworkRelease({
   const parallaxRef = useParallax(0.1);
 
   return (
-    <section data-bg="dark" className="bg-darkgreen text-cream py-20 md:py-32 px-6">
+    <section data-bg="dark" className="bg-brand-black text-brand-yellow py-20 md:py-32 px-6">
       <div className="mx-auto max-w-xl flex flex-col items-center text-center">
-        <p className="text-xs uppercase tracking-[0.2em] text-olive mb-6">
+        <p className="text-xs uppercase tracking-[0.2em] text-brand-yellow/70 mb-6">
           {kicker}
         </p>
         <div
@@ -46,7 +46,7 @@ export default function SingleArtworkRelease({
           href={ctaHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-block bg-russet text-cream font-display uppercase text-sm tracking-wider px-8 py-3.5 transition-opacity hover:opacity-85"
+          className="mt-6 inline-block bg-brand-yellow text-brand-black font-display uppercase text-sm tracking-wider px-8 py-3.5 transition-opacity hover:opacity-85"
         >
           {ctaLabel}
         </a>

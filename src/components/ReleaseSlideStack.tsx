@@ -70,7 +70,7 @@ function PinnedIntro() {
           rel="noopener noreferrer"
           className="absolute inset-0 cursor-pointer release-slide-link z-20"
           aria-label={`Listen to ${RELEASES[0].title}`}
-          style={{ y: slide1Y, backgroundColor: "#181912" }}
+          style={{ y: slide1Y, backgroundColor: "var(--brand-black)" }}
         >
           <SlideImage release={RELEASES[0]} />
         </motion.a>
@@ -82,7 +82,7 @@ function PinnedIntro() {
           rel="noopener noreferrer"
           className="absolute inset-0 cursor-pointer release-slide-link z-30"
           aria-label={`Listen to ${RELEASES[1].title}`}
-          style={{ y: slide2Y, backgroundColor: "#181912" }}
+          style={{ y: slide2Y, backgroundColor: "var(--brand-black)" }}
         >
           <SlideImage release={RELEASES[1]} />
         </motion.a>
@@ -94,7 +94,7 @@ function PinnedIntro() {
           rel="noopener noreferrer"
           className="absolute inset-0 cursor-pointer release-slide-link z-40"
           aria-label={`Listen to ${RELEASES[2].title}`}
-          style={{ y: slide3Y, backgroundColor: "#181912" }}
+          style={{ y: slide3Y, backgroundColor: "var(--brand-black)" }}
         >
           <SlideImage release={RELEASES[2]} />
         </motion.a>
