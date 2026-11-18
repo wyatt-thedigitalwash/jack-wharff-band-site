@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnchorScroll from "@/components/shared/AnchorScroll";
 import CookieConsent from "@/components/consent/CookieConsent";
 import TermsGate from "@/components/consent/TermsGate";
+import RouteTracker from "@/components/consent/RouteTracker";
 import Splash from "@/components/Splash";
 
 // Keep in sync with SPLASH_KEY in src/components/Splash.tsx. Read before paint
@@ -95,9 +95,6 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: splashScript }} />
 
-        {/* Evidon (Crownpeak) consent management — account 7155. Scripts are
-            rendered via next/script below; preconnect stays here. */}
-        <link rel="preconnect" href="https://c.evidon.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-full flex flex-col">
         {/* Splash must be an early child of <body> so it exists on first
@@ -136,33 +133,11 @@ export default function RootLayout({
             }),
           }}
         />
-        {/* Evidon (Crownpeak) consent management — account 7155. Loads before GTM so
-            consent governs downstream tags. Order mirrors the label's WordPress setup;
-            all config lives server-side. strategy=beforeInteractive dedupes by id. */}
-        <Script id="evidon-settings" strategy="beforeInteractive" src="https://c.evidon.com/sitenotice/7155/thejackwharffband/settings.js" />
-        <Script id="evidon-themes" strategy="beforeInteractive" src="https://c.evidon.com/sitenotice/7155/snthemes.js" />
-        <Script id="evidon-location" strategy="beforeInteractive" src="https://c.evidon.com/geo/country.js" />
-        <Script id="evidon-notice" strategy="beforeInteractive" src="https://c.evidon.com/sitenotice/evidon-sitenotice-tag.js" />
-
-        {/* Google Tag Manager (GTM-M2J3BMQD) — master container; fires the label's
-            analytics tags. Full official bootstrap so dataLayer initializes. */}
-        <Script id="gtm-bootstrap" strategy="afterInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M2J3BMQD');`}
-        </Script>
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-M2J3BMQD"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-            title="Google Tag Manager"
-          />
-        </noscript>
+        {/* The label GTM container (GTM-M2J3BMQD) is NOT loaded here, and the
+            Evidon notice is gone. GTM is injected only after the visitor
+            consents, and receives the same "evidonConsentGiven" event Evidon
+            used to send -- see components/consent/injectScripts.ts. */}
+        <RouteTracker />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-brand-black focus:text-brand-yellow focus:px-4 focus:py-2 focus:text-sm focus:outline-none"
